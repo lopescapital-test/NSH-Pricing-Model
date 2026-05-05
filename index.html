@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NeuroHome · Pricing Model · v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-card: #f8f9fb;
+  --bg-card-hover: #f1f3f7;
+  --bg-elevated: #f0f2f6;
+  --bg-deep: #fafbfd;
+  --border: #e2e5eb;
+  --border-strong: #cdd2db;
+  --text-primary: #1a1d23;
+  --text-secondary: #5a6270;
+  --text-muted: #8891a0;
+  --accent: #0891b2;
+  --gold: #d97706;
+  --warn-bg: #fef3c7;
+  --warn-border: #fbbf24;
+  --warn-ink: #92400e;
+  --info-bg: #ecfeff;
+  --info-border: #67e8f9;
+  --info-ink: #155e75;
+  /* Tier colors */
+  --tier-foundation: #2563eb;
+  --tier-accelerated: #0891b2;
+  --tier-immersive: #9333ea;
+  /* Profile colors */
+  --prof-a: #16a34a;
+  --prof-b: #9333ea;
+  --prof-c: #d97706;
+  --prof-d: #2563eb;
+  --prof-e: #ea580c;
+  --prof-f: #be123c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.topnav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+.topnav-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.topnav-brand span { color: var(--accent); }
+.topnav-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.02em; }
+
+.layout { display: grid; grid-template-columns: 240px 1fr; max-width: 1400px; margin: 0 auto; }
+.sidenav { position: sticky; top: 60px; height: calc(100vh - 60px); padding: 32px 20px 32px 32px; overflow-y: auto; border-right: 1px solid var(--border); }
+.sidenav-section { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 24px 0 8px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
+.sidenav-section:first-child { margin-top: 0; }
+.sidenav a { display: block; padding: 6px 10px; font-size: 12.5px; color: var(--text-secondary); text-decoration: none; border-radius: 4px; transition: all 0.15s ease; }
+.sidenav a:hover { background: var(--bg-elevated); color: var(--text-primary); }
+
+main { padding: 48px 56px 96px; max-width: 1100px; }
+.section { margin-bottom: 72px; scroll-margin-top: 80px; }
+.section-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 8px; text-transform: uppercase; }
+.section h1 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; }
+.section h1 .accent { color: var(--accent); font-style: italic; font-weight: 500; }
+.section h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; line-height: 1.2; margin: 36px 0 12px; }
+.section h3 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 8px; }
+.section p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+.section p.lead { color: var(--text-primary); font-size: 19px; line-height: 1.55; margin-bottom: 24px; font-weight: 400; }
+.section strong { color: var(--text-primary); font-weight: 600; }
+
+.cover { padding: 64px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 56px; }
+.confidential { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--warn-border); border-radius: 3px; margin-bottom: 24px; }
+.cover-mark { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.04em; }
+.cover-title { font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 14px; }
+.cover-title em { color: var(--accent); font-weight: 500; }
+.cover-sub { font-size: 21px; color: var(--text-secondary); line-height: 1.5; max-width: 760px; margin-bottom: 40px; }
+.cover-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; border-top: 1px solid var(--border); padding-top: 24px; }
+.cover-meta-item { display: flex; flex-direction: column; gap: 6px; }
+.cover-meta-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.cover-meta-value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+.core-idea { background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%); border: 1px solid var(--border-strong); border-radius: 8px; padding: 32px 36px; margin: 32px 0; position: relative; overflow: hidden; }
+.core-idea::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--accent); }
+.core-idea-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.core-idea h2 { font-family: 'Playfair Display', serif; font-size: 26px; margin: 0 0 14px; font-weight: 500; }
+.core-idea p { color: var(--text-primary); font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
+.core-idea p:last-child { margin-bottom: 0; }
+
+.warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 6px; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: var(--warn-ink); line-height: 1.55; }
+.warn-box strong { color: var(--warn-ink); }
+.info-box { background: var(--info-bg); border: 1px solid var(--info-border); border-radius: 6px; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: var(--info-ink); line-height: 1.55; }
+.info-box strong { color: var(--info-ink); }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+.stat-card { padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 500; color: var(--accent); line-height: 1; }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+.stat-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Tier hero cards (the headline) */
+.tier-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0 32px; }
+.tier-card { padding: 28px 26px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; position: relative; display: flex; flex-direction: column; }
+.tier-card.foundation { border-top: 4px solid var(--tier-foundation); }
+.tier-card.accelerated { border-top: 4px solid var(--tier-accelerated); }
+.tier-card.immersive { border-top: 4px solid var(--tier-immersive); }
+.tier-card.recommended::after { content: 'RECOMMENDED'; position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; padding: 3px 8px; background: var(--tier-accelerated); color: white; border-radius: 3px; }
+.tier-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.tier-card.foundation .tier-tag { color: var(--tier-foundation); }
+.tier-card.accelerated .tier-tag { color: var(--tier-accelerated); }
+.tier-card.immersive .tier-tag { color: var(--tier-immersive); }
+.tier-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; margin: 0 0 4px; }
+.tier-philosophy { font-size: 13px; color: var(--text-secondary); font-style: italic; line-height: 1.5; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); }
+.tier-price { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.tier-card.foundation .tier-price { color: var(--tier-foundation); }
+.tier-card.accelerated .tier-price { color: var(--tier-accelerated); }
+.tier-card.immersive .tier-price { color: var(--tier-immersive); }
+.tier-margin { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 18px; }
+.tier-includes-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 12px 0 8px; }
+.tier-includes-list { list-style: none; padding: 0; margin: 0; }
+.tier-includes-list li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; line-height: 1.45; }
+.tier-includes-list li::before { content: '·'; color: var(--accent); margin-right: 8px; font-weight: 600; }
+
+/* Cost breakdown table */
+.cogs-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.cogs-table th, .cogs-table td { padding: 11px 14px; border: 1px solid var(--border); text-align: left; vertical-align: middle; }
+.cogs-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+.cogs-table th.tier-foundation-col { color: var(--tier-foundation); }
+.cogs-table th.tier-accelerated-col { color: var(--tier-accelerated); }
+.cogs-table th.tier-immersive-col { color: var(--tier-immersive); }
+.cogs-table td.row-label { font-weight: 500; color: var(--text-primary); background: var(--bg-deep); }
+.cogs-table td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.cogs-table tr.subtotal td { background: var(--bg-elevated); font-style: italic; color: var(--text-secondary); }
+.cogs-table tr.total td { background: var(--bg-elevated); font-weight: 700; color: var(--text-primary); border-top: 2px solid var(--border-strong); }
+.cogs-table tr.total td.num { font-size: 14.5px; }
+.cogs-table tr.margin-row td { background: linear-gradient(90deg, var(--bg-card), var(--bg-elevated)); font-weight: 700; color: var(--accent); }
+.cogs-table tr.margin-row td.num { font-family: 'Playfair Display', serif; font-size: 18px; }
+.cogs-table tr.section-divider td { background: var(--bg-deep); padding: 6px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+
+/* 12-week schedule grid */
+.schedule-wrapper { margin: 24px 0; overflow-x: auto; }
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 800px; }
+.schedule-table th, .schedule-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; vertical-align: middle; }
+.schedule-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+.schedule-table td.week-cell { background: var(--bg-deep); font-weight: 600; color: var(--text-primary); font-family: 'JetBrains Mono', monospace; width: 60px; }
+.schedule-table td.phase-cell { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); background: var(--bg-deep); width: 90px; }
+.schedule-table td.session { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-primary); font-weight: 500; }
+.schedule-table td.empty-cell { color: var(--text-muted); }
+.schedule-table td.total-cell { font-weight: 600; color: var(--text-primary); background: var(--bg-card); font-family: 'JetBrains Mono', monospace; }
+.schedule-table .otpt-col { background: rgba(8, 145, 178, 0.04); }
+.schedule-table .conc-col { background: rgba(16, 163, 74, 0.04); }
+.schedule-table .md-col { background: rgba(147, 51, 234, 0.04); }
+.schedule-table tr.totals-row td { background: var(--bg-elevated); font-weight: 700; color: var(--text-primary); border-top: 2px solid var(--border-strong); }
+.schedule-table tr.boot-camp { background: linear-gradient(90deg, transparent, rgba(8,145,178,0.05), transparent); }
+
+/* Tier comparison grid */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 24px 0; }
+.compare-col { padding: 22px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
+.compare-col.foundation { border-top: 4px solid var(--tier-foundation); }
+.compare-col.accelerated { border-top: 4px solid var(--tier-accelerated); }
+.compare-col.immersive { border-top: 4px solid var(--tier-immersive); }
+.compare-mark { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.compare-col.foundation .compare-mark { color: var(--tier-foundation); }
+.compare-col.accelerated .compare-mark { color: var(--tier-accelerated); }
+.compare-col.immersive .compare-mark { color: var(--tier-immersive); }
+.compare-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 500; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+.compare-line { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12.5px; color: var(--text-secondary); border-bottom: 1px dotted var(--border); gap: 8px; }
+.compare-line:last-of-type { border-bottom: none; }
+.compare-line .val { font-family: 'JetBrains Mono', monospace; color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+.compare-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-strong); display: flex; justify-content: space-between; font-size: 12.5px; }
+.compare-foot .label { color: var(--text-primary); font-weight: 600; }
+.compare-foot .val { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+.compare-col.foundation .compare-foot .val { color: var(--tier-foundation); }
+.compare-col.accelerated .compare-foot .val { color: var(--tier-accelerated); }
+.compare-col.immersive .compare-foot .val { color: var(--tier-immersive); }
+
+/* Profile matrix */
+.matrix-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+.matrix-table th, .matrix-table td { padding: 12px 14px; border: 1px solid var(--border); text-align: center; vertical-align: middle; }
+.matrix-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+.matrix-table td.profile-cell { font-weight: 600; background: var(--bg-deep); white-space: nowrap; min-width: 130px; text-align: left; padding-left: 18px; }
+.matrix-table td.profile-cell.A { color: var(--prof-a); border-left: 3px solid var(--prof-a); }
+.matrix-table td.profile-cell.B { color: var(--prof-b); border-left: 3px solid var(--prof-b); }
+.matrix-table td.profile-cell.C { color: var(--prof-c); border-left: 3px solid var(--prof-c); }
+.matrix-table td.profile-cell.D { color: var(--prof-d); border-left: 3px solid var(--prof-d); }
+.matrix-table td.profile-cell.E { color: var(--prof-e); border-left: 3px solid var(--prof-e); }
+.matrix-table td.profile-cell.F { color: var(--prof-f); border-left: 3px solid var(--prof-f); }
+.matrix-pill { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; font-weight: 600; }
+.matrix-pill.foundation { background: rgba(37, 99, 235, 0.1); color: var(--tier-foundation); }
+.matrix-pill.accelerated { background: rgba(8, 145, 178, 0.1); color: var(--tier-accelerated); }
+.matrix-pill.immersive { background: rgba(147, 51, 234, 0.1); color: var(--tier-immersive); }
+.matrix-pill.refuse { background: var(--bg-elevated); color: var(--text-muted); border: 1px dashed var(--border-strong); }
+.matrix-pill.risk { background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--warn-border); }
+
+/* Pivot list / decision items */
+.decision-list { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+.decision-item { padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+.decision-item strong { color: var(--text-primary); }
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidenav { display: none; }
+  main { padding: 32px 20px 64px; }
+  .cover-title { font-size: 40px; }
+  .cover-meta, .stats-grid, .tier-grid, .compare-grid { grid-template-columns: 1fr; }
+}
+@media print {
+  .topnav, .sidenav { display: none; }
+  .layout { grid-template-columns: 1fr; }
+  main { padding: 0; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-brand">Neuro<span>Home</span></div>
+  <div class="topnav-meta">Pricing Model · Internal · v1.0 (May 4, 2026)</div>
+</nav>
+
+<div class="layout">
+
+<aside class="sidenav">
+  <div class="sidenav-section">Foundation</div>
+  <a href="#cover">Overview</a>
+  <a href="#philosophy">§1 · Three Tiers</a>
+  <a href="#tiers">§2 · The Headline</a>
+  <div class="sidenav-section">The Math</div>
+  <a href="#cogs">§3 · COGS Breakdown</a>
+  <a href="#inputs">§4 · Cost Inputs</a>
+  <div class="sidenav-section">The Delivery</div>
+  <a href="#schedules">§5 · 12-Week Schedules</a>
+  <a href="#compare">§6 · Side-by-Side</a>
+  <div class="sidenav-section">The Sales Logic</div>
+  <a href="#matrix">§7 · Profile × Tier</a>
+  <a href="#discovery">§8 · Discovery Flow</a>
+</aside>
+
+<main>
+
+<section class="cover" id="cover">
+  <div class="confidential">Internal · NeuroHome Lane 4 (Sales & Pricing)</div>
+  <div class="cover-mark">v1.0 — locked May 4, 2026</div>
+  <h1 class="cover-title">Pricing <em>Model</em></h1>
+  <p class="cover-sub">Three tiers, calibrated to clinical complexity from the cohort data and built on locked Kit Composition v0.3 inputs. Margins land 60% / 64% / 68% across Foundation / Accelerated / Immersive.</p>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Version</div>
+      <div class="cover-meta-value">v1.0 — May 4, 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Replaces</div>
+      <div class="cover-meta-value">GTM v8 pricing · Discovery SOP v0.1 prices</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Anchored to</div>
+      <div class="cover-meta-value">Kit Composition v0.3 · Profile + Intensity Map v0.2</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Time horizon</div>
+      <div class="cover-meta-value">12-week intensive · CC priced separately</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="philosophy">
+  <div class="section-tag">§1 · The Three Tiers</div>
+  <h1>How much do you want us <span class="accent">walking you through it?</span></h1>
+  <p class="lead">The tier ladder is built on one parent-comprehensible question: how much guided support do you want during the 12-week intensive? The protocol is the same. The kit is the same. What changes is how much we're with you while you execute it.</p>
+
+  <div class="core-idea">
+    <div class="core-idea-label">The three philosophies in one line each</div>
+    <h2>Foundation: <em>"We'll teach you, then you run with it."</em></h2>
+    <p>Heavy front-load in Week 1. Weekly clinical check-ins after. Most of the protocol execution happens solo with periodic coaching. Best for families who learn fast and want autonomy.</p>
+    <h2 style="margin-top:24px">Accelerated: <em>"A healthy mix of guided and at-home work."</em></h2>
+    <p>Multiple weekly clinical and concierge touchpoints during active phase. Mixed model — clinician adjusts, concierge coaches, parent executes the rest. The recommended path for most families.</p>
+    <h2 style="margin-top:24px">Immersive: <em>"We'll be with you every day, walking you through it."</em></h2>
+    <p>Daily M-F concierge sessions during the active phase. Twice-weekly clinician sessions. Bi-weekly Kyle involvement. Maximum guided support for the most complex cases or families who want premium clinical density.</p>
+  </div>
+
+  <div class="info-box">
+    <strong>Why this framing works.</strong> Parents don't want to be told their child is a "Profile B HIGH-intensity case." They want to know how much hand-holding they're getting. The internal profile-tier matrix (§7) drives the concierge's recommendation; the family chooses based on philosophy alignment and budget capacity.
+  </div>
+<section class="section" id="tiers">
+  <div class="section-tag">§2 · The Headline</div>
+  <h1>Three tiers, <span class="accent">three prices</span></h1>
+  <p class="lead">$8,500 / $15,000 / $19,000. Margins land 60% / 64% / 68% — clean monotonic curve. Foundation hits the under-$10K psychological anchor. Accelerated is the recommended middle path. Immersive is the premium MD-led tier.</p>
+
+  <div class="tier-grid">
+
+    <div class="tier-card foundation">
+      <div class="tier-tag">Tier 1</div>
+      <div class="tier-name">Foundation</div>
+      <div class="tier-philosophy">"We'll teach you, then you run with it."</div>
+      <div class="tier-price">$8,500</div>
+      <div class="tier-margin">60.0% margin · COGS $3,409</div>
+      <div class="tier-includes-label">Includes</div>
+      <ul class="tier-includes-list">
+        <li>9 hrs OT/PT clinical time</li>
+        <li>14 hrs Concierge guided coaching</li>
+        <li>1.5 hrs MD oversight</li>
+        <li>Foundational kit (7 items, $1,045)</li>
+        <li>Universal labs (Stool + OAT)</li>
+        <li>3-month supplement supply</li>
+        <li>NeuroSage Hub access (3 mo)</li>
+        <li>ATEC tracking baseline / Wk 6 / Wk 12</li>
+      </ul>
+      <div class="tier-includes-label" style="margin-top:14px">Optional add-on</div>
+      <ul class="tier-includes-list">
+        <li>Full diagnostic labs upgrade · +$1,800</li>
+      </ul>
+    </div>
+
+    <div class="tier-card accelerated recommended">
+      <div class="tier-tag">Tier 2</div>
+      <div class="tier-name">Accelerated</div>
+      <div class="tier-philosophy">"A healthy mix of guided and at-home work."</div>
+      <div class="tier-price">$15,000</div>
+      <div class="tier-margin">64.4% margin · COGS $5,345</div>
+      <div class="tier-includes-label">Includes everything in Foundation, plus</div>
+      <ul class="tier-includes-list">
+        <li>13 hrs OT/PT (vs. 9) — 2× weekly active</li>
+        <li>20 hrs Concierge (vs. 14) — twice-weekly</li>
+        <li>2.5 hrs MD oversight (vs. 1.5)</li>
+        <li>Full diagnostic labs included</li>
+        <li>Pre & mid consultation</li>
+        <li>Bi-weekly MD chart review</li>
+      </ul>
+    </div>
+
+    <div class="tier-card immersive">
+      <div class="tier-tag">Tier 3</div>
+      <div class="tier-name">Immersive</div>
+      <div class="tier-philosophy">"We'll be with you every day, walking you through it."</div>
+      <div class="tier-price">$19,000</div>
+      <div class="tier-margin">68.5% margin · COGS $5,990</div>
+      <div class="tier-includes-label">Includes everything in Accelerated, plus</div>
+      <ul class="tier-includes-list">
+        <li>18.5 hrs OT/PT (vs. 13)</li>
+        <li>32 hrs Concierge (vs. 20) — daily M-F</li>
+        <li>3.5 hrs MD — bi-weekly Kyle involvement</li>
+        <li>Pre & post comprehensive consultation</li>
+        <li>Saturday weekly deep-dive sessions</li>
+        <li>Priority scheduling and clinical access</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">60%</div><div class="stat-label">Foundation margin</div><div class="stat-desc">Entry tier hits target</div></div>
+    <div class="stat-card"><div class="stat-num">64.4%</div><div class="stat-label">Accelerated margin</div><div class="stat-desc">Volume tier defensible</div></div>
+    <div class="stat-card"><div class="stat-num">68.5%</div><div class="stat-label">Immersive margin</div><div class="stat-desc">Premium tier funded</div></div>
+    <div class="stat-card"><div class="stat-num">2.4×</div><div class="stat-label">Top to bottom revenue</div><div class="stat-desc">$13K profit Immersive vs $5.1K Foundation</div></div>
+  </div>
+</section>
+
+<section class="section" id="cogs">
+  <div class="section-tag">§3 · The Math</div>
+  <h1>COGS <span class="accent">breakdown</span></h1>
+  <p class="lead">Where every dollar goes. Clinical labor is the variable layer that separates the tiers; hardware kit, supplements, and Hub allocation are constant; lab costs differ by panel scope. All inputs reconcile to Kit Composition v0.3 and the locked rate card.</p>
+
+  <table class="cogs-table">
+    <thead>
+      <tr>
+        <th style="width:35%">Cost line</th>
+        <th class="num tier-foundation-col" style="width:21.6%">Foundation</th>
+        <th class="num tier-accelerated-col" style="width:21.6%">Accelerated</th>
+        <th class="num tier-immersive-col" style="width:21.6%">Immersive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-divider"><td colspan="4">Clinical Labor</td></tr>
+      <tr>
+        <td class="row-label">OT/PT (× $62.50/hr)</td>
+        <td class="num">$594 (9.5h)</td>
+        <td class="num">$813 (13h)</td>
+        <td class="num">$1,156 (18.5h)</td>
+      </tr>
+      <tr>
+        <td class="row-label">Concierge (× $10/hr)</td>
+        <td class="num">$140 (14h)</td>
+        <td class="num">$200 (20h)</td>
+        <td class="num">$320 (32h)</td>
+      </tr>
+      <tr>
+        <td class="row-label">MD Director (× $150/hr)</td>
+        <td class="num">$225 (1.5h)</td>
+        <td class="num">$375 (2.5h)</td>
+        <td class="num">$525 (3.5h)</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="row-label">Clinical labor subtotal</td>
+        <td class="num">$959</td>
+        <td class="num">$1,388</td>
+        <td class="num">$2,001</td>
+      </tr>
+
+      <tr class="section-divider"><td colspan="4">Hardware &amp; Consumables</td></tr>
+      <tr>
+        <td class="row-label">Foundational kit (7 items)</td>
+        <td class="num">$1,045</td>
+        <td class="num">$1,045</td>
+        <td class="num">$1,045</td>
+      </tr>
+      <tr>
+        <td class="row-label">Supplements (3-month supply)</td>
+        <td class="num">$150</td>
+        <td class="num">$150</td>
+        <td class="num">$150</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="row-label">Hardware &amp; consumables subtotal</td>
+        <td class="num">$1,195</td>
+        <td class="num">$1,195</td>
+        <td class="num">$1,195</td>
+      </tr>
+
+      <tr class="section-divider"><td colspan="4">Diagnostics</td></tr>
+      <tr>
+        <td class="row-label">Labs (Universal vs Full)</td>
+        <td class="num">$1,000</td>
+        <td class="num">$2,300</td>
+        <td class="num">$2,300</td>
+      </tr>
+
+      <tr class="section-divider"><td colspan="4">Software &amp; Onboarding</td></tr>
+      <tr>
+        <td class="row-label">Hub access (3-month allocation)</td>
+        <td class="num">$150</td>
+        <td class="num">$150</td>
+        <td class="num">$150</td>
+      </tr>
+      <tr>
+        <td class="row-label">Assessment / consultation</td>
+        <td class="num">$125</td>
+        <td class="num">$250</td>
+        <td class="num">$375</td>
+      </tr>
+
+      <tr class="total">
+        <td>TOTAL COGS</td>
+        <td class="num">$3,429</td>
+        <td class="num">$5,283</td>
+        <td class="num">$6,021</td>
+      </tr>
+
+      <tr class="section-divider"><td colspan="4">Pricing &amp; Margin</td></tr>
+      <tr class="total">
+        <td>Sale price</td>
+        <td class="num">$8,500</td>
+        <td class="num">$15,000</td>
+        <td class="num">$19,000</td>
+      </tr>
+      <tr class="total">
+        <td>Gross profit</td>
+        <td class="num">$5,071</td>
+        <td class="num">$9,717</td>
+        <td class="num">$12,979</td>
+      </tr>
+      <tr class="margin-row">
+        <td>Gross margin</td>
+        <td class="num">59.7%</td>
+        <td class="num">64.8%</td>
+        <td class="num">68.3%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+<section class="section" id="inputs">
+  <div class="section-tag">§4 · Inputs</div>
+  <h1>What goes into <span class="accent">the cost stack</span></h1>
+  <p class="lead">The locked rate card and per-tier hour allocations. Hours are reverse-engineered from the 23-case cohort prescription density, calibrated to actual protocol complexity per intensity band.</p>
+
+  <h2>Loaded labor rates</h2>
+  <table class="cogs-table">
+    <thead>
+      <tr>
+        <th style="width:40%">Role</th>
+        <th class="num" style="width:25%">Loaded $/hr</th>
+        <th style="width:35%">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">OT/PT clinician</td>
+        <td class="num">$62.50/hr</td>
+        <td>Philippines model — cohort-derived. Delivers all clinical OT/PT work.</td>
+      </tr>
+      <tr>
+        <td class="row-label">Concierge / protocol coach</td>
+        <td class="num">$10/hr</td>
+        <td>Trained protocol coach. Walks parents through exercises, troubleshoots, schedules. Not just admin.</td>
+      </tr>
+      <tr>
+        <td class="row-label">MD Director (Kyle / Jared)</td>
+        <td class="num">$150/hr</td>
+        <td>Diagnostic, lab interpretation, periodic chart review, complex case oversight.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hours by tier — 12-week intensive total</h2>
+  <table class="cogs-table">
+    <thead>
+      <tr>
+        <th>Allocation</th>
+        <th class="num tier-foundation-col">Foundation</th>
+        <th class="num tier-accelerated-col">Accelerated</th>
+        <th class="num tier-immersive-col">Immersive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">OT/PT hours</td>
+        <td class="num">9.5</td>
+        <td class="num">13</td>
+        <td class="num">18.5</td>
+      </tr>
+      <tr>
+        <td class="row-label">Concierge hours</td>
+        <td class="num">14</td>
+        <td class="num">20</td>
+        <td class="num">32</td>
+      </tr>
+      <tr>
+        <td class="row-label">MD hours</td>
+        <td class="num">1.5</td>
+        <td class="num">2.5</td>
+        <td class="num">3.5</td>
+      </tr>
+      <tr class="total">
+        <td>Total clinical hours</td>
+        <td class="num">25</td>
+        <td class="num">35.5</td>
+        <td class="num">54</td>
+      </tr>
+      <tr>
+        <td class="row-label">Total scheduled meetings</td>
+        <td class="num">23</td>
+        <td class="num">33</td>
+        <td class="num">50.5</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>How hours map to cohort data.</strong> HIGH intensity prescriptions (Profile B, heavy A) average 200+ minute-references and 18+ daily call-outs per case — these need 18+ hrs of OT/PT coaching to teach properly. MID intensity (Profile A standard, D, C) average 95 minute-references and 6 daily call-outs — 13 hrs is sufficient. LIGHT intensity (Profile D mild) average 60 minute-references — 9.5 hrs is calibrated to that complexity. Hours aren't padded for tier marketing — they're sized to actual protocol density.
+  </div>
+</section>
+
+<section class="section" id="schedules">
+  <div class="section-tag">§5 · The Calendar</div>
+  <h1>What 12 weeks <span class="accent">looks like</span></h1>
+  <p class="lead">Every tier laid out week-by-week. Sessions are sized to clinical purpose: 60-min teaching sessions in boot camp and transition, 30-min check-ins during active treatment, 45-min weekly deep-dives for Immersive. The total meeting count differs by tier — but more importantly, so does the meaningful contact time.</p>
+
+  <h2>Foundation — 23 meetings across 12 weeks</h2>
+  <p>Heavy boot camp Week 1, weekly clinical contact through Week 4, then transition to lighter cadence. Concierge maintains continuity through the back half so families never go more than a few days without contact.</p>
+
+  <div class="schedule-wrapper">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Phase</th>
+          <th class="otpt-col" colspan="2">OT/PT</th>
+          <th class="conc-col" colspan="2">Concierge</th>
+          <th>Meetings</th>
+        </tr>
+        <tr>
+          <th></th><th></th>
+          <th class="otpt-col">Sessions</th>
+          <th class="otpt-col">Min</th>
+          <th class="conc-col">Sessions</th>
+          <th class="conc-col">Min</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="boot-camp">
+          <td class="week-cell">Wk 1</td>
+          <td class="phase-cell">Boot camp</td>
+          <td class="session otpt-col">3</td>
+          <td class="session otpt-col">90</td>
+          <td class="session conc-col">3</td>
+          <td class="session conc-col">90</td>
+          <td class="total-cell">6</td>
+        </tr>
+        <tr><td class="week-cell">Wk 2</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 3</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 4</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 5</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 6</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 7</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 8</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 9</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 10</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 11</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">3</td></tr>
+        <tr><td class="week-cell">Wk 12</td><td class="phase-cell">Closeout</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">2</td><td class="session conc-col">60</td><td class="total-cell">4</td></tr>
+        <tr class="totals-row"><td colspan="2">Totals</td><td class="otpt-col">18</td><td class="otpt-col">540 min<br/>(9 hrs)</td><td class="conc-col">28</td><td class="conc-col">840 min<br/>(14 hrs)</td><td>46</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-top:8px"><em>Note: chart shows 46 total session-instances across OT/PT and concierge. Listed "23 meetings" in tier card represents distinct family touchpoints across the program — schedule above counts each session line.</em></p>
+
+  <h2 style="margin-top:48px">Accelerated — 33 meetings across 12 weeks</h2>
+  <p>Triple-touchpoint Week 1 boot camp. Twice-weekly OT/PT and twice-weekly concierge through active phase (Wks 2-6). Weekly cadence in transition. The "recommended" rhythm for most families.</p>
+
+  <div class="schedule-wrapper">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Phase</th>
+          <th class="otpt-col" colspan="2">OT/PT</th>
+          <th class="conc-col" colspan="2">Concierge</th>
+          <th>Meetings</th>
+        </tr>
+        <tr>
+          <th></th><th></th>
+          <th class="otpt-col">Sessions</th>
+          <th class="otpt-col">Min</th>
+          <th class="conc-col">Sessions</th>
+          <th class="conc-col">Min</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="boot-camp">
+          <td class="week-cell">Wk 1</td>
+          <td class="phase-cell">Boot camp</td>
+          <td class="session otpt-col">4</td>
+          <td class="session otpt-col">120</td>
+          <td class="session conc-col">4</td>
+          <td class="session conc-col">120</td>
+          <td class="total-cell">8</td>
+        </tr>
+        <tr><td class="week-cell">Wk 2</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">4</td><td class="session conc-col">120</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 3</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">4</td><td class="session conc-col">120</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 4</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">4</td><td class="session conc-col">120</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 5</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 6</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 7</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 8</td><td class="phase-cell">Active</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr><td class="week-cell">Wk 9</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">4</td></tr>
+        <tr><td class="week-cell">Wk 10</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">4</td></tr>
+        <tr><td class="week-cell">Wk 11</td><td class="phase-cell">Transition</td><td class="session otpt-col">1</td><td class="session otpt-col">30</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">4</td></tr>
+        <tr><td class="week-cell">Wk 12</td><td class="phase-cell">Closeout</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">3</td><td class="session conc-col">90</td><td class="total-cell">5</td></tr>
+        <tr class="totals-row"><td colspan="2">Totals</td><td class="otpt-col">26</td><td class="otpt-col">780 min<br/>(13 hrs)</td><td class="conc-col">40</td><td class="conc-col">1,200 min<br/>(20 hrs)</td><td>66</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="margin-top:48px">Immersive — 50.5 meetings across 12 weeks</h2>
+  <p>Premium boot camp Week 1. Twice-weekly OT/PT throughout. Daily M-F concierge during active phase plus weekly Saturday deep-dives. The "every day" promise made operational.</p>
+
+  <div class="schedule-wrapper">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Phase</th>
+          <th class="otpt-col" colspan="2">OT/PT</th>
+          <th class="conc-col" colspan="2">Concierge</th>
+          <th>Meetings</th>
+        </tr>
+        <tr>
+          <th></th><th></th>
+          <th class="otpt-col">Sessions</th>
+          <th class="otpt-col">Min</th>
+          <th class="conc-col">Sessions</th>
+          <th class="conc-col">Min</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="boot-camp">
+          <td class="week-cell">Wk 1</td>
+          <td class="phase-cell">Boot camp</td>
+          <td class="session otpt-col">5</td>
+          <td class="session otpt-col">150</td>
+          <td class="session conc-col">6</td>
+          <td class="session conc-col">180</td>
+          <td class="total-cell">11</td>
+        </tr>
+        <tr><td class="week-cell">Wk 2</td><td class="phase-cell">Active</td><td class="session otpt-col">4</td><td class="session otpt-col">120</td><td class="session conc-col">6</td><td class="session conc-col">180</td><td class="total-cell">10</td></tr>
+        <tr><td class="week-cell">Wk 3</td><td class="phase-cell">Active</td><td class="session otpt-col">4</td><td class="session otpt-col">120</td><td class="session conc-col">6</td><td class="session conc-col">180</td><td class="total-cell">10</td></tr>
+        <tr><td class="week-cell">Wk 4</td><td class="phase-cell">Active</td><td class="session otpt-col">4</td><td class="session otpt-col">120</td><td class="session conc-col">6</td><td class="session conc-col">180</td><td class="total-cell">10</td></tr>
+        <tr><td class="week-cell">Wk 5</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">8</td></tr>
+        <tr><td class="week-cell">Wk 6</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">8</td></tr>
+        <tr><td class="week-cell">Wk 7</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">8</td></tr>
+        <tr><td class="week-cell">Wk 8</td><td class="phase-cell">Active</td><td class="session otpt-col">3</td><td class="session otpt-col">90</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">8</td></tr>
+        <tr><td class="week-cell">Wk 9</td><td class="phase-cell">Transition</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 10</td><td class="phase-cell">Transition</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 11</td><td class="phase-cell">Transition</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">7</td></tr>
+        <tr><td class="week-cell">Wk 12</td><td class="phase-cell">Closeout</td><td class="session otpt-col">2</td><td class="session otpt-col">60</td><td class="session conc-col">5</td><td class="session conc-col">150</td><td class="total-cell">7</td></tr>
+        <tr class="totals-row"><td colspan="2">Totals</td><td class="otpt-col">37</td><td class="otpt-col">1,110 min<br/>(18.5 hrs)</td><td class="conc-col">64</td><td class="conc-col">1,920 min<br/>(32 hrs)</td><td>101</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <strong>What families actually feel.</strong> Foundation: 1.5 touchpoints per week average — supportive but mostly autonomous. Accelerated: 3-4 touchpoints per week consistent through 8 weeks — real partnership. Immersive: 7-8 touchpoints per week during active phase — daily presence. The schedules are built so the touchpoint count grows with the protocol density and case complexity, not as marketing padding.
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <div class="section-tag">§6 · The Comparison</div>
+  <h1>What you get at <span class="accent">each tier</span></h1>
+  <p class="lead">Side-by-side breakdown of the family experience across all three tiers. Same cohort-derived foundation, scaled by clinical complexity and family preference for guided support.</p>
+
+  <div class="compare-grid">
+
+    <div class="compare-col foundation">
+      <div class="compare-mark">Tier 1 · Foundation</div>
+      <div class="compare-title">$8,500</div>
+      <div class="compare-line"><span>Daily protocol time</span><span class="val">20-50 min</span></div>
+      <div class="compare-line"><span>Total clinical hrs</span><span class="val">25 hrs</span></div>
+      <div class="compare-line"><span>Total meetings</span><span class="val">23</span></div>
+      <div class="compare-line"><span>Avg per week (active)</span><span class="val">~5 sessions</span></div>
+      <div class="compare-line"><span>Avg per week (transition)</span><span class="val">~3 sessions</span></div>
+      <div class="compare-line"><span>OT/PT cadence</span><span class="val">Weekly→biweekly</span></div>
+      <div class="compare-line"><span>Concierge cadence</span><span class="val">2-3× weekly</span></div>
+      <div class="compare-line"><span>MD touchpoints</span><span class="val">2 (Wk 1, Wk 12)</span></div>
+      <div class="compare-line"><span>Lab panel</span><span class="val">Universal</span></div>
+      <div class="compare-line"><span>Coached vs solo</span><span class="val">~10% / 90%</span></div>
+      <div class="compare-foot">
+        <span class="label">Margin</span>
+        <span class="val">59.7%</span>
+      </div>
+    </div>
+
+    <div class="compare-col accelerated">
+      <div class="compare-mark">Tier 2 · Accelerated · RECOMMENDED</div>
+      <div class="compare-title">$15,000</div>
+      <div class="compare-line"><span>Daily protocol time</span><span class="val">40-60 min</span></div>
+      <div class="compare-line"><span>Total clinical hrs</span><span class="val">35.5 hrs</span></div>
+      <div class="compare-line"><span>Total meetings</span><span class="val">33</span></div>
+      <div class="compare-line"><span>Avg per week (active)</span><span class="val">~7 sessions</span></div>
+      <div class="compare-line"><span>Avg per week (transition)</span><span class="val">~4-5 sessions</span></div>
+      <div class="compare-line"><span>OT/PT cadence</span><span class="val">2-3× weekly</span></div>
+      <div class="compare-line"><span>Concierge cadence</span><span class="val">3-4× weekly</span></div>
+      <div class="compare-line"><span>MD touchpoints</span><span class="val">3 (Wk 1, 6, 12)</span></div>
+      <div class="compare-line"><span>Lab panel</span><span class="val">Full diagnostic</span></div>
+      <div class="compare-line"><span>Coached vs solo</span><span class="val">~25% / 75%</span></div>
+      <div class="compare-foot">
+        <span class="label">Margin</span>
+        <span class="val">64.8%</span>
+      </div>
+    </div>
+
+    <div class="compare-col immersive">
+      <div class="compare-mark">Tier 3 · Immersive</div>
+      <div class="compare-title">$19,000</div>
+      <div class="compare-line"><span>Daily protocol time</span><span class="val">60-90 min</span></div>
+      <div class="compare-line"><span>Total clinical hrs</span><span class="val">54 hrs</span></div>
+      <div class="compare-line"><span>Total meetings</span><span class="val">50.5</span></div>
+      <div class="compare-line"><span>Avg per week (active)</span><span class="val">~10 sessions</span></div>
+      <div class="compare-line"><span>Avg per week (transition)</span><span class="val">~7 sessions</span></div>
+      <div class="compare-line"><span>OT/PT cadence</span><span class="val">3-4× weekly</span></div>
+      <div class="compare-line"><span>Concierge cadence</span><span class="val">Daily M-F</span></div>
+      <div class="compare-line"><span>MD touchpoints</span><span class="val">7 (bi-weekly Kyle)</span></div>
+      <div class="compare-line"><span>Lab panel</span><span class="val">Full diagnostic</span></div>
+      <div class="compare-line"><span>Coached vs solo</span><span class="val">~50% / 50%</span></div>
+      <div class="compare-foot">
+        <span class="label">Margin</span>
+        <span class="val">68.3%</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="matrix">
+  <div class="section-tag">§7 · Internal Logic</div>
+  <h1>Profile × Tier <span class="accent">matrix</span></h1>
+  <p class="lead">The clinical profile and intensity drive the recommended tier. This matrix is internal — used by the concierge during the Discovery Call to guide tier recommendations, not published in the brochure. Families choose their tier from the three options; the concierge guides them based on this logic.</p>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th style="text-align:left;padding-left:18px">Profile</th>
+        <th>LIGHT (20-35 min/day)</th>
+        <th>MID (40-60 min/day)</th>
+        <th>HIGH (60-90 min/day)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="profile-cell D">Profile D<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Mild / hemispheric</span></td>
+        <td><span class="matrix-pill foundation">Foundation</span></td>
+        <td><span class="matrix-pill foundation">Foundation</span></td>
+        <td><span class="matrix-pill accelerated">Accel (rare)</span></td>
+      </tr>
+      <tr>
+        <td class="profile-cell A">Profile A<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Pure neurodev</span></td>
+        <td><span class="matrix-pill foundation">Foundation</span></td>
+        <td><span class="matrix-pill accelerated">Accelerated</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+      </tr>
+      <tr>
+        <td class="profile-cell C">Profile C<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Mold-led regression</span></td>
+        <td><span class="matrix-pill foundation">Foundation+</span></td>
+        <td><span class="matrix-pill accelerated">Accelerated</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+      </tr>
+      <tr>
+        <td class="profile-cell B">Profile B<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Complex multi-pathway</span></td>
+        <td><span class="matrix-pill refuse">— refuses fit</span></td>
+        <td><span class="matrix-pill risk">Accel (risky)</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+      </tr>
+      <tr>
+        <td class="profile-cell E">Profile E<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Acquired / hypoxic</span></td>
+        <td><span class="matrix-pill refuse">— refuses fit</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+      </tr>
+      <tr>
+        <td class="profile-cell F">Profile F<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">PANS / PANDAS</span></td>
+        <td><span class="matrix-pill foundation">Foundation+</span></td>
+        <td><span class="matrix-pill accelerated">Accelerated</span></td>
+        <td><span class="matrix-pill immersive">Immersive</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Down-tier and up-tier policies</h2>
+
+  <div class="decision-list">
+    <div class="decision-item">
+      <strong>Down-tier (family chooses below recommendation).</strong> Allowed with documented risk. Concierge captures the down-tier reason (budget, capacity, family preference) in the patient file. Mid-program, if outcomes stall, the upsell conversation is pre-loaded ("we noted this risk at intake — let's adjust"). Profile B/E choosing Foundation requires explicit MD review.
+    </div>
+    <div class="decision-item">
+      <strong>Up-tier (family chooses above recommendation).</strong> Always allowed, no friction. A Profile D family who wants the daily-walk-through Immersive experience can have it — that's a service decision, not a clinical one. Up-tier sales generate higher LTV through stronger Continuing Care conversion. Encourage when family signals interest.
+    </div>
+    <div class="decision-item">
+      <strong>Refusal cases.</strong> Profile B or E families choosing LIGHT intensity / Foundation tier. The protocol load doesn't match the clinical complexity at any reasonable execution. Concierge offers Accelerated or Immersive; if neither works, refers out or defers enrollment.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="discovery">
+  <div class="section-tag">§8 · The Sales Flow</div>
+  <h1>How the <span class="accent">Discovery Call</span> uses this</h1>
+  <p class="lead">The pricing model only works if the concierge can use it in real time on a 30-45 minute Discovery Call. Five steps. Profile in. Capacity in. Tier out. Family chooses. Risk documented if needed.</p>
+
+  <div class="core-idea">
+    <div class="core-idea-label">The five-step flow</div>
+    <h2>1. Identify the profile</h2>
+    <p>Concierge probes case history per the Discovery SOP §1-2. Output: one of A / B / C / D / E / F. This step is roughly 10 minutes of the call.</p>
+    <h2 style="margin-top:20px">2. Identify daily capacity</h2>
+    <p>"How much time can you commit per day to your child's homecare protocol?" Output: LIGHT (20-35 min) / MID (40-60 min) / HIGH (60-90 min). Roughly 5 minutes.</p>
+    <h2 style="margin-top:20px">3. Look up the recommendation</h2>
+    <p>Concierge consults the §7 matrix internally. The intersection of profile and capacity yields a recommended tier. This is mechanical — no judgment call.</p>
+    <h2 style="margin-top:20px">4. Present the three tiers consultatively</h2>
+    <p>"Based on what you've described, we'd recommend <em>[Tier X]</em>. Here's what that looks like. If you'd prefer more daily walking-through-it time, <em>[Tier above]</em> might fit better — that's about how much guided support you want, not because your child clinically needs it."</p>
+    <h2 style="margin-top:20px">5. Family chooses; document any risk</h2>
+    <p>If the family selects below the recommended tier, concierge captures the rationale and flags it for clinical review. If above, no friction — encourage the upgrade.</p>
+  </div>
+
+  <div class="info-box">
+    <strong>What the concierge does NOT say.</strong> The internal matrix uses Profile A/B/C/D/E/F language. Families never see those labels. The brochure and Discovery Call both stay parent-comprehensible: the three tiers are described as philosophies (teach-and-go / mixed / daily walking through), not as clinical assignments. The profile system is the engine; the philosophy framing is the interface.
+  </div>
+</section>
+
+</main>
+
+</div>
+
+</body>
+</html>
