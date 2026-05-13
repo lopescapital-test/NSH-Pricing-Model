@@ -204,6 +204,15 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
 .toggle-btn[data-tier="foundation"].active { color: var(--tier-foundation); border-bottom: 3px solid var(--tier-foundation); }
 .toggle-btn[data-tier="accelerated"].active { color: var(--tier-accelerated); border-bottom: 3px solid var(--tier-accelerated); }
 .toggle-btn[data-tier="immersive"].active { color: var(--tier-immersive); border-bottom: 3px solid var(--tier-immersive); }
+
+/* State toggle — pilot vs post-patent (global to the doc) */
+.state-toggle-wrap { display: flex; align-items: center; gap: 12px; margin: 24px 0 8px; flex-wrap: wrap; }
+.state-toggle-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.state-toggle { display: inline-flex; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
+.state-toggle button { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 14px; background: transparent; border: none; cursor: pointer; color: var(--text-muted); border-radius: 5px; transition: all 0.2s ease; }
+.state-toggle button.active { background: var(--bg-card); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.state-toggle button:hover:not(.active) { color: var(--text-secondary); }
+.state-note { font-size: 12px; color: var(--text-muted); font-style: italic; }
 .toggle-btn-label { font-size: 14px; font-weight: 600; }
 .toggle-btn-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.04em; }
 .toggle-btn.active .toggle-btn-sub { color: inherit; opacity: 0.7; }
@@ -279,39 +288,37 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
   <a href="#tiers">§2 · The Headline</a>
   <div class="sidenav-section">The Math</div>
   <a href="#cogs">§3 · COGS Breakdown</a>
-  <a href="#inputs">§4 · Cost Inputs</a>
+  <a href="#retention">§4 · Retention Discount</a>
+  <a href="#inputs">§5 · Cost Inputs</a>
   <div class="sidenav-section">The Delivery</div>
-  <a href="#schedules">§5 · 12-Week Schedules</a>
-  <a href="#compare">§6 · Side-by-Side</a>
-  <div class="sidenav-section">The Sales Logic</div>
-  <a href="#matrix">§7 · Profile × Tier</a>
-  <a href="#discovery">§8 · Discovery Flow</a>
+  <a href="#schedules">§6 · 12-Week Schedules</a>
+  <a href="#compare">§7 · Side-by-Side</a>
 </aside>
 
 <main>
 
 <section class="cover" id="cover">
   <div class="confidential">Internal · NeuroHome Lane 4 (Sales & Pricing)</div>
-  <div class="cover-mark">v1.3 — Mendi unit absorbed into kit COGS, prices held, May 9, 2026</div>
+  <div class="cover-mark">v1.4.1 — Kit Composition v0.7 reconciliation, Foundation reprice, retention-discount framework, sales sections removed, May 12, 2026</div>
   <h1 class="cover-title">Pricing <em>Model</em></h1>
-  <p class="cover-sub">Three tiers, calibrated to clinical complexity from the cohort data and built on locked Kit Composition v0.4 inputs. Prices held at $8,500 / $15,000 / $19,000. Margins land 59% / 65% / 69% across Foundation / Accelerated / Immersive after absorbing the $150 Mendi B2B unit cost into the foundational kit.</p>
+  <p class="cover-sub">Three tiers, calibrated to clinical complexity from the cohort data and reconciled to Kit Composition v0.7 (9 devices, pilot/post-patent toggle, supplements at $375). Foundation moves from $8,500 → $9,500 to restore the 60% margin floor after the Green LED Laser addition and supplement correction. Accelerated and Immersive hold at $15,000 / $19,000. A $1,500 / $2,000 / $2,500 retention-discount structure, applied as Continuing Care credit, completes the LTV framework.</p>
 
   <div class="cover-meta">
     <div class="cover-meta-item">
       <div class="cover-meta-label">Version</div>
-      <div class="cover-meta-value">v1.3 — May 9, 2026</div>
+      <div class="cover-meta-value">v1.4.1 — May 12, 2026</div>
     </div>
     <div class="cover-meta-item">
       <div class="cover-meta-label">Replaces</div>
-      <div class="cover-meta-value">Pricing Model v1.2.1 (May 6) — Mendi added to kit COGS</div>
+      <div class="cover-meta-value">Pricing Model v1.3 (May 9) — Foundation $8,500 → $9,500, supplements $125 → $375, Green LED Laser added, pilot/post-patent toggle</div>
     </div>
     <div class="cover-meta-item">
       <div class="cover-meta-label">Anchored to</div>
-      <div class="cover-meta-value">Kit Composition v0.4 · Profile + Intensity Map v0.2</div>
+      <div class="cover-meta-value">Kit Composition v0.7 · Profile + Intensity Map v0.2</div>
     </div>
     <div class="cover-meta-item">
       <div class="cover-meta-label">Time horizon</div>
-      <div class="cover-meta-value">12-week intensive · CC priced separately</div>
+      <div class="cover-meta-value">12-week intensive · CC priced separately · Retention discount applied as CC credit</div>
     </div>
   </div>
 </section>
@@ -332,12 +339,21 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
   </div>
 
   <div class="info-box">
-    <strong>Why this framing works.</strong> Parents don't want to be told their child is a "Profile B HIGH-intensity case." They want to know how much hand-holding they're getting. The internal profile-tier matrix (§7) drives the concierge's recommendation; the family chooses based on philosophy alignment and budget capacity.
+    <strong>Why this framing works.</strong> Parents don't want to be told their child is a "Profile B HIGH-intensity case." They want to know how much hand-holding they're getting. The internal profile-to-tier mapping drives the concierge's recommendation; the family chooses based on philosophy alignment and budget capacity.
   </div>
 <section class="section" id="tiers">
   <div class="section-tag">§2 · The Headline</div>
   <h1>Three tiers, <span class="accent">three prices</span></h1>
-  <p class="lead">$8,500 / $15,000 / $19,000 — held from v1.2. Margins re-state to 58.8% / 65.3% / 68.7% as the $150 Mendi unit lands in every kit. Foundation slips ~1.7pt below the 60% line; Accelerated and Immersive remain comfortably above target. Trade is intentional: weekly objective brain-performance data on every family is worth more than a margin defense at the entry tier — though pushing Mendi back to ~$99–$120 (closer to a true relationship rate) would restore Foundation above 60%.</p>
+  <p class="lead">$9,500 / $15,000 / $19,000 sticker. Foundation moves up $1,000 from v1.3 to restore the 60% margin floor after the Green LED Laser ($220) joined the kit and supplements were reconciled to their true cost of $375 (Intramax + Gut Feeling, 3-month supply). Accelerated and Immersive prices hold. All three tiers offer a retention-applied discount — $1,500 / $2,000 / $2,500 — earned through Continuing Care commitment after the 12-week intensive.</p>
+
+  <div class="state-toggle-wrap">
+    <span class="state-toggle-label">Show margins for kit state:</span>
+    <div class="state-toggle">
+      <button type="button" class="state-toggle-btn active" data-state="pilot">Pilot · Pre-patent</button>
+      <button type="button" class="state-toggle-btn" data-state="production">Post-patent</button>
+    </div>
+    <span class="state-note">Pilot uses Red LED Handheld ($145) while LED Laser NSH patent is pending; post-patent uses NSH custom build ($300).</span>
+  </div>
 
   <div class="tier-grid">
 
@@ -345,19 +361,23 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="tier-tag">Tier 1</div>
       <div class="tier-name">Foundation</div>
       <div class="tier-philosophy">"We'll teach you, then you run with it."</div>
-      <div class="tier-price">$8,500</div>
-      <div class="tier-margin">58.8% margin · COGS $3,504</div>
+      <div class="tier-price">$9,500</div>
+      <div class="tier-margin"><span data-pilot="61.8%" data-production="60.2%">61.8%</span> margin · COGS <span data-pilot="$3,627" data-production="$3,782">$3,627</span></div>
       <div class="tier-includes-label">Includes</div>
       <ul class="tier-includes-list">
         <li>9 hrs OT/PT clinical time</li>
         <li>14 hrs Concierge guided coaching</li>
         <li>1.5 hrs MD oversight</li>
-        <li>Foundational kit (8 items, $1,195)</li>
+        <li>Foundational kit (9 items, <span data-pilot="$1,218" data-production="$1,373">$1,218</span>)</li>
         <li><strong>Mendi headband</strong> — weekly fNIRS tracking, family keeps</li>
         <li>Universal labs (Stool + OAT)</li>
-        <li>3-month supplement supply</li>
+        <li>3-month supplement supply (Intramax + Gut Feeling, $375)</li>
         <li>NeuroSage Hub access (3 mo)</li>
         <li>ATEC tracking baseline / Wk 6 / Wk 12 + weekly Mendi score</li>
+      </ul>
+      <div class="tier-includes-label" style="margin-top:14px">Retention discount</div>
+      <ul class="tier-includes-list">
+        <li>$1,500 credit applied to Continuing Care · earned at Wk 12 completion + CC enrollment</li>
       </ul>
       <div class="tier-includes-label" style="margin-top:14px">Optional add-on</div>
       <ul class="tier-includes-list">
@@ -370,15 +390,19 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="tier-name">Accelerated</div>
       <div class="tier-philosophy">"A healthy mix of guided and at-home work."</div>
       <div class="tier-price">$15,000</div>
-      <div class="tier-margin">65.3% margin · COGS $5,208</div>
+      <div class="tier-margin"><span data-pilot="64.5%" data-production="63.4%">64.5%</span> margin · COGS <span data-pilot="$5,331" data-production="$5,486">$5,331</span></div>
       <div class="tier-includes-label">Includes everything in Foundation, plus</div>
       <ul class="tier-includes-list">
         <li>13 hrs OT/PT (vs. 9) — 2× weekly active</li>
         <li>20 hrs Concierge (vs. 14) — twice-weekly</li>
         <li>2.5 hrs MD oversight (vs. 1.5)</li>
-        <li>Full diagnostic labs included</li>
+        <li>Full diagnostic labs included (Total Tox + Neural Zoomer Plus)</li>
         <li>Mendi score reviewed in bi-weekly clinical chart review</li>
         <li>Pre & mid consultation</li>
+      </ul>
+      <div class="tier-includes-label" style="margin-top:14px">Retention discount</div>
+      <ul class="tier-includes-list">
+        <li>$2,000 credit applied to Continuing Care · earned at Wk 12 completion + CC enrollment</li>
       </ul>
     </div>
 
@@ -387,7 +411,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="tier-name">Immersive</div>
       <div class="tier-philosophy">"We'll be with you every day, walking you through it."</div>
       <div class="tier-price">$19,000</div>
-      <div class="tier-margin">68.7% margin · COGS $5,946</div>
+      <div class="tier-margin"><span data-pilot="68.1%" data-production="67.2%">68.1%</span> margin · COGS <span data-pilot="$6,069" data-production="$6,224">$6,069</span></div>
       <div class="tier-includes-label">Includes everything in Accelerated, plus</div>
       <ul class="tier-includes-list">
         <li>18.5 hrs OT/PT (vs. 13)</li>
@@ -398,22 +422,30 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
         <li>Saturday weekly deep-dive sessions</li>
         <li>Priority scheduling and clinical access</li>
       </ul>
+      <div class="tier-includes-label" style="margin-top:14px">Retention discount</div>
+      <ul class="tier-includes-list">
+        <li>$2,500 credit applied to Continuing Care · earned at Wk 12 completion + CC enrollment</li>
+      </ul>
     </div>
 
   </div>
 
   <div class="stats-grid">
-    <div class="stat-card"><div class="stat-num">58.8%</div><div class="stat-label">Foundation margin</div><div class="stat-desc">−1.7pt vs v1.2 (Mendi @ $150 absorbed)</div></div>
-    <div class="stat-card"><div class="stat-num">65.3%</div><div class="stat-label">Accelerated margin</div><div class="stat-desc">−1.0pt vs v1.2 — still above target</div></div>
-    <div class="stat-card"><div class="stat-num">68.7%</div><div class="stat-label">Immersive margin</div><div class="stat-desc">−0.8pt vs v1.2 — still above target</div></div>
-    <div class="stat-card"><div class="stat-num">2.6×</div><div class="stat-label">Top to bottom revenue</div><div class="stat-desc">$13.1K profit Immersive vs $5.0K Foundation</div></div>
+    <div class="stat-card"><div class="stat-num" data-pilot="61.8%" data-production="60.2%">61.8%</div><div class="stat-label">Foundation margin</div><div class="stat-desc">at $9,500 sticker · above 60% floor in both states</div></div>
+    <div class="stat-card"><div class="stat-num" data-pilot="64.5%" data-production="63.4%">64.5%</div><div class="stat-label">Accelerated margin</div><div class="stat-desc">held at $15,000 sticker · comfortably above target</div></div>
+    <div class="stat-card"><div class="stat-num" data-pilot="68.1%" data-production="67.2%">68.1%</div><div class="stat-label">Immersive margin</div><div class="stat-desc">held at $19,000 sticker · premium tier headroom</div></div>
+    <div class="stat-card"><div class="stat-num">2.2×</div><div class="stat-label">Top to bottom gross profit</div><div class="stat-desc"><span data-pilot="$12,931" data-production="$12,776">$12,931</span> Immersive vs <span data-pilot="$5,873" data-production="$5,718">$5,873</span> Foundation</div></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Why Foundation moved.</strong> v1.3 held Foundation at $8,500 with 58.8% margin — an intentional 1.7pt sub-floor trade for the Mendi data play. v0.7 kit changes (Green LED Laser +$220, supplements corrected $125 → $375) added $470 of COGS to every tier. At $8,500, Foundation margin would have dropped to ~55% — a meaningfully different trade than the one v1.3 authorized. $9,500 restores 60.2% margin post-patent and 61.8% pilot, keeping the entry tier psychologically under $10K while clearing the floor. Accelerated and Immersive had the headroom to absorb the COGS increases without a price change.
   </div>
 </section>
 
 <section class="section" id="cogs">
   <div class="section-tag">§3 · The Math</div>
   <h1>COGS <span class="accent">breakdown</span></h1>
-  <p class="lead">Where every dollar goes. Clinical labor is the variable layer that separates the tiers; hardware kit, supplements, and Hub allocation are constant; lab costs differ by panel scope. All inputs reconcile to Kit Composition v0.3 and the locked rate card.</p>
+  <p class="lead">Where every dollar goes. Clinical labor is the variable layer that separates the tiers; the 9-item kit and 3-month supplement supply are constant across tiers; lab costs differ by panel scope. All inputs reconcile to Kit Composition v0.7 and the locked rate card. Toggle above for pilot vs post-patent kit state.</p>
 
   <table class="cogs-table">
     <thead>
@@ -451,24 +483,24 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
         <td class="num">$2,001</td>
       </tr>
 
-      <tr class="section-divider"><td colspan="4">Hardware &amp; Consumables</td></tr>
+      <tr class="section-divider"><td colspan="4">Hardware &amp; Consumables (Kit Composition v0.7)</td></tr>
       <tr>
-        <td class="row-label">Foundational kit (8 items, incl. Mendi @ $150)</td>
-        <td class="num">$1,195</td>
-        <td class="num">$1,195</td>
-        <td class="num">$1,195</td>
+        <td class="row-label">Foundational kit · 9 items, incl. Mendi $150, Green LED $220, Hub $10</td>
+        <td class="num"><span data-pilot="$1,218" data-production="$1,373">$1,218</span></td>
+        <td class="num"><span data-pilot="$1,218" data-production="$1,373">$1,218</span></td>
+        <td class="num"><span data-pilot="$1,218" data-production="$1,373">$1,218</span></td>
       </tr>
       <tr>
-        <td class="row-label">Supplements (3-month supply)</td>
-        <td class="num">$125</td>
-        <td class="num">$125</td>
-        <td class="num">$125</td>
+        <td class="row-label">Supplements · Intramax $135 + Gut Feeling $240 (3-month supply)</td>
+        <td class="num">$375</td>
+        <td class="num">$375</td>
+        <td class="num">$375</td>
       </tr>
       <tr class="subtotal">
         <td class="row-label">Hardware &amp; consumables subtotal</td>
-        <td class="num">$1,320</td>
-        <td class="num">$1,320</td>
-        <td class="num">$1,320</td>
+        <td class="num"><span data-pilot="$1,593" data-production="$1,748">$1,593</span></td>
+        <td class="num"><span data-pilot="$1,593" data-production="$1,748">$1,593</span></td>
+        <td class="num"><span data-pilot="$1,593" data-production="$1,748">$1,593</span></td>
       </tr>
 
       <tr class="section-divider"><td colspan="4">Diagnostics</td></tr>
@@ -479,13 +511,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
         <td class="num">$2,100</td>
       </tr>
 
-      <tr class="section-divider"><td colspan="4">Software &amp; Onboarding</td></tr>
-      <tr>
-        <td class="row-label">Hub access (3-month allocation)</td>
-        <td class="num">$150</td>
-        <td class="num">$150</td>
-        <td class="num">$150</td>
-      </tr>
+      <tr class="section-divider"><td colspan="4">Onboarding</td></tr>
       <tr>
         <td class="row-label">Assessment / consultation</td>
         <td class="num">$125</td>
@@ -495,40 +521,126 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
 
       <tr class="total">
         <td>TOTAL COGS</td>
-        <td class="num">$3,504</td>
-        <td class="num">$5,208</td>
-        <td class="num">$5,946</td>
+        <td class="num"><span data-pilot="$3,627" data-production="$3,782">$3,627</span></td>
+        <td class="num"><span data-pilot="$5,331" data-production="$5,486">$5,331</span></td>
+        <td class="num"><span data-pilot="$6,069" data-production="$6,224">$6,069</span></td>
       </tr>
 
-      <tr class="section-divider"><td colspan="4">Pricing &amp; Margin</td></tr>
+      <tr class="section-divider"><td colspan="4">Pricing &amp; Margin (Sticker)</td></tr>
       <tr class="total">
-        <td>Sale price</td>
-        <td class="num">$8,500</td>
+        <td>Sticker price</td>
+        <td class="num">$9,500</td>
         <td class="num">$15,000</td>
         <td class="num">$19,000</td>
       </tr>
       <tr class="total">
-        <td>Gross profit</td>
-        <td class="num">$4,996</td>
-        <td class="num">$9,792</td>
-        <td class="num">$13,054</td>
+        <td>Gross profit (at sticker)</td>
+        <td class="num"><span data-pilot="$5,873" data-production="$5,718">$5,873</span></td>
+        <td class="num"><span data-pilot="$9,669" data-production="$9,514">$9,669</span></td>
+        <td class="num"><span data-pilot="$12,931" data-production="$12,776">$12,931</span></td>
       </tr>
       <tr class="margin-row">
-        <td>Gross margin</td>
-        <td class="num">58.8%</td>
-        <td class="num">65.3%</td>
-        <td class="num">68.7%</td>
+        <td>Gross margin (at sticker)</td>
+        <td class="num"><span data-pilot="61.8%" data-production="60.2%">61.8%</span></td>
+        <td class="num"><span data-pilot="64.5%" data-production="63.4%">64.5%</span></td>
+        <td class="num"><span data-pilot="68.1%" data-production="67.2%">68.1%</span></td>
       </tr>
     </tbody>
   </table>
 
   <div class="info-box">
-    <strong>What changed in COGS vs v1.2.</strong> Single line item: the Mendi headband adds $150 per case to the foundational kit. Every other line is identical to v1.2.1. Total COGS rises by $150 across all three tiers; gross profit drops by the same $150; margin compression is mechanical (~1.7pt at Foundation, ~1pt at Accelerated, ~0.8pt at Immersive). No price changes, no labor reallocation, no lab adjustments. <strong>Note:</strong> $150 = ~50% off Mendi MSRP, which is standard B2B distributor terms — if Kyle's CEO relationship can move this to ~$99–$120, Foundation margin returns above the 60% line without a price hike.
+    <strong>Three changes vs v1.3 COGS.</strong> ① Green LED Laser ($220) added to the kit in every tier — chromatic-specific PBM addition prescribed alongside the red LED stack. ② Supplements corrected from $125 → $375 (Intramax $135 + Gut Feeling $240, 3-month supply). The v1.3 line item was stale. ③ Hub access ($10) folded into the kit hardware total rather than carried as a separate $150 allocation — reconciles to Kit Composition v0.7's wholesale cost. Net COGS change per family: +$258 pilot / +$413 post-patent vs v1.3. Foundation reprice from $8,500 → $9,500 absorbs the increase and restores 60%+ margin in both states.
+  </div>
+</section>
+
+<section class="section" id="retention">
+  <div class="section-tag">§4 · Retention Discount</div>
+  <h1>The discount is a <span class="accent">retention tool</span>, not a haircut</h1>
+  <p class="lead">$1,500 / $2,000 / $2,500 are not sticker discounts. They are credits applied to Continuing Care fees after the 12-week intensive completes and the family enrolls in CC. Families pay sticker upfront. They earn the discount by staying on the platform.</p>
+
+  <div class="core-idea">
+    <div class="core-idea-label">Why this structure</div>
+    <h2>Sticker stays clean. LTV pays for retention.</h2>
+    <p>A sticker discount tells the family "we're worth less than we said." A retention credit tells them "we'll be here for the long haul, and we'll prove it by lowering your ongoing cost when you stay with us." First framing erodes pricing power. Second framing builds relationship debt that pays off in CC retention months.</p>
+    <p>Mechanically: intensive revenue books at full sticker — $9,500 / $15,000 / $19,000. Intensive margin (61.8% / 64.5% / 68.1% pilot) is what hits the P&amp;L at Wk 12. The discount is a contingent liability that converts to a CC-fee offset only if the family enrolls in CC and continues using the platform.</p>
+  </div>
+
+  <h2>How the credit works</h2>
+  <p>At Wk 12 completion and CC enrollment, the discount amount is credited to the family's CC account. Applied against monthly CC fees until exhausted. If CC ends early, remaining credit lapses. If the family never enrolls in CC, the discount never costs the company anything.</p>
+
+  <table class="cogs-table" style="margin-top:24px">
+    <thead>
+      <tr>
+        <th style="width:35%">Mechanic</th>
+        <th class="num tier-foundation-col" style="width:21.6%">Foundation</th>
+        <th class="num tier-accelerated-col" style="width:21.6%">Accelerated</th>
+        <th class="num tier-immersive-col" style="width:21.6%">Immersive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Sticker (paid upfront)</td>
+        <td class="num">$9,500</td>
+        <td class="num">$15,000</td>
+        <td class="num">$19,000</td>
+      </tr>
+      <tr>
+        <td class="row-label">Retention discount (CC credit at Wk 12)</td>
+        <td class="num">$1,500</td>
+        <td class="num">$2,000</td>
+        <td class="num">$2,500</td>
+      </tr>
+      <tr>
+        <td class="row-label">Effective price if discount fully claimed</td>
+        <td class="num">$8,000</td>
+        <td class="num">$13,000</td>
+        <td class="num">$16,500</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="row-label">Discount as % of sticker</td>
+        <td class="num">15.8%</td>
+        <td class="num">13.3%</td>
+        <td class="num">13.2%</td>
+      </tr>
+      <tr class="section-divider"><td colspan="4">If discount is claimed (worst case for company)</td></tr>
+      <tr>
+        <td class="row-label">Effective gross profit (pilot)</td>
+        <td class="num">$4,373</td>
+        <td class="num">$7,669</td>
+        <td class="num">$10,431</td>
+      </tr>
+      <tr class="margin-row">
+        <td>Effective margin (pilot)</td>
+        <td class="num">54.7%</td>
+        <td class="num">59.0%</td>
+        <td class="num">63.2%</td>
+      </tr>
+      <tr>
+        <td class="row-label">Effective gross profit (post-patent)</td>
+        <td class="num">$4,218</td>
+        <td class="num">$7,514</td>
+        <td class="num">$10,276</td>
+      </tr>
+      <tr class="margin-row">
+        <td>Effective margin (post-patent)</td>
+        <td class="num">52.7%</td>
+        <td class="num">57.8%</td>
+        <td class="num">62.3%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Why the discount grows with tier.</strong> Higher-tier families have higher LTV expectations: more touch-points to retain, more reason to commit, more revenue at stake if they churn. $1,500 / $2,000 / $2,500 maps to that LTV gradient — entry tier rewards retention modestly, premium tier offers a bigger carrot to stay. Discount as % of sticker is monotonic: 15.8% / 13.3% / 13.2% — slightly bigger relative incentive at Foundation, where price sensitivity is highest.
+  </div>
+
+  <div class="warn-box">
+    <strong>Margin floor consideration.</strong> If 100% of families claim the full discount, effective margins compress below 60% on Foundation and Accelerated. This is acceptable because: ① the discount is gated on CC enrollment, which means the family is still on the platform generating CC revenue at its own margin; ② not all families will complete the 12 weeks or enroll in CC, so realized discount take-up is less than 100%; ③ the discount displaces revenue we wouldn't otherwise capture (most families don't enroll in CC at full price). CC pricing and CC margin are modeled separately — see Continuing Care Pricing v1.0 (forthcoming).
   </div>
 </section>
 
 <section class="section" id="inputs">
-  <div class="section-tag">§4 · Inputs</div>
+  <div class="section-tag">§5 · Inputs</div>
   <h1>What goes into <span class="accent">the cost stack</span></h1>
   <p class="lead">The locked rate card and per-tier hour allocations. Hours are reverse-engineered from the 23-case cohort prescription density, calibrated to actual protocol complexity per intensity band.</p>
 
@@ -683,7 +795,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
 </section>
 
 <section class="section" id="schedules">
-  <div class="section-tag">§5 · The Calendar</div>
+  <div class="section-tag">§6 · The Calendar</div>
   <h1>What 12 weeks <span class="accent">looks like</span></h1>
   <p class="lead">Toggle between the three tiers to see exactly how the 12 weeks unfold — what day each meeting lands on, how the cadence shifts from boot camp to active treatment to transition, and what the family's week-by-week experience actually feels like.</p>
 
@@ -692,7 +804,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
     <div class="toggle-bar" role="tablist">
       <button class="toggle-btn active" data-tier="foundation" role="tab">
         <span class="toggle-btn-label">Foundation</span>
-        <span class="toggle-btn-sub">$8,500 · 23 meetings</span>
+        <span class="toggle-btn-sub">$9,500 · 23 meetings</span>
       </button>
       <button class="toggle-btn" data-tier="accelerated" role="tab">
         <span class="toggle-btn-label">Accelerated</span>
@@ -1240,7 +1352,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
 </script>
 
 <section class="section" id="compare">
-  <div class="section-tag">§6 · The Comparison</div>
+  <div class="section-tag">§7 · The Comparison</div>
   <h1>What you get at <span class="accent">each tier</span></h1>
   <p class="lead">Side-by-side breakdown of the family experience across all three tiers. Same cohort-derived foundation, scaled by clinical complexity and family preference for guided support.</p>
 
@@ -1248,7 +1360,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
 
     <div class="compare-col foundation">
       <div class="compare-mark">Tier 1 · Foundation</div>
-      <div class="compare-title">$8,500</div>
+      <div class="compare-title">$9,500</div>
       <div class="compare-line"><span>Daily protocol time</span><span class="val">20-50 min</span></div>
       <div class="compare-line"><span>Total clinical hrs</span><span class="val">25 hrs</span></div>
       <div class="compare-line"><span>Total meetings</span><span class="val">23</span></div>
@@ -1262,7 +1374,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="compare-line"><span>Coached vs solo</span><span class="val">~10% / 90%</span></div>
       <div class="compare-foot">
         <span class="label">Margin</span>
-        <span class="val">58.8%</span>
+        <span class="val" data-pilot="61.8%" data-production="60.2%">61.8%</span>
       </div>
     </div>
 
@@ -1282,7 +1394,7 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="compare-line"><span>Coached vs solo</span><span class="val">~25% / 75%</span></div>
       <div class="compare-foot">
         <span class="label">Margin</span>
-        <span class="val">65.3%</span>
+        <span class="val" data-pilot="64.5%" data-production="63.4%">64.5%</span>
       </div>
     </div>
 
@@ -1302,109 +1414,34 @@ main { padding: 48px 56px 96px; max-width: 1100px; }
       <div class="compare-line"><span>Coached vs solo</span><span class="val">~50% / 50%</span></div>
       <div class="compare-foot">
         <span class="label">Margin</span>
-        <span class="val">68.7%</span>
+        <span class="val" data-pilot="68.1%" data-production="67.2%">68.1%</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<section class="section" id="matrix">
-  <div class="section-tag">§7 · Internal Logic</div>
-  <h1>Profile × Tier <span class="accent">matrix</span></h1>
-  <p class="lead">The clinical profile and intensity drive the recommended tier. This matrix is internal — used by the concierge during the Discovery Call to guide tier recommendations, not published in the brochure. Families choose their tier from the three options; the concierge guides them based on this logic.</p>
-
-  <table class="matrix-table">
-    <thead>
-      <tr>
-        <th style="text-align:left;padding-left:18px">Profile</th>
-        <th>LIGHT (20-35 min/day)</th>
-        <th>MID (40-60 min/day)</th>
-        <th>HIGH (60-90 min/day)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="profile-cell D">Profile D<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Mild / hemispheric</span></td>
-        <td><span class="matrix-pill foundation">Foundation</span></td>
-        <td><span class="matrix-pill foundation">Foundation</span></td>
-        <td><span class="matrix-pill accelerated">Accel (rare)</span></td>
-      </tr>
-      <tr>
-        <td class="profile-cell A">Profile A<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Pure neurodev</span></td>
-        <td><span class="matrix-pill foundation">Foundation</span></td>
-        <td><span class="matrix-pill accelerated">Accelerated</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-      </tr>
-      <tr>
-        <td class="profile-cell C">Profile C<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Mold-led regression</span></td>
-        <td><span class="matrix-pill foundation">Foundation+</span></td>
-        <td><span class="matrix-pill accelerated">Accelerated</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-      </tr>
-      <tr>
-        <td class="profile-cell B">Profile B<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Complex multi-pathway</span></td>
-        <td><span class="matrix-pill refuse">— refuses fit</span></td>
-        <td><span class="matrix-pill risk">Accel (risky)</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-      </tr>
-      <tr>
-        <td class="profile-cell E">Profile E<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">Acquired / hypoxic</span></td>
-        <td><span class="matrix-pill refuse">— refuses fit</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-      </tr>
-      <tr>
-        <td class="profile-cell F">Profile F<br/><span style="font-weight:400;color:var(--text-secondary);font-size:11px">PANS / PANDAS</span></td>
-        <td><span class="matrix-pill foundation">Foundation+</span></td>
-        <td><span class="matrix-pill accelerated">Accelerated</span></td>
-        <td><span class="matrix-pill immersive">Immersive</span></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>Down-tier and up-tier policies</h2>
-
-  <div class="decision-list">
-    <div class="decision-item">
-      <strong>Down-tier (family chooses below recommendation).</strong> Allowed with documented risk. Concierge captures the down-tier reason (budget, capacity, family preference) in the patient file. Mid-program, if outcomes stall, the upsell conversation is pre-loaded ("we noted this risk at intake — let's adjust"). Profile B/E choosing Foundation requires explicit MD review.
-    </div>
-    <div class="decision-item">
-      <strong>Up-tier (family chooses above recommendation).</strong> Always allowed, no friction. A Profile D family who wants the daily-walk-through Immersive experience can have it — that's a service decision, not a clinical one. Up-tier sales generate higher LTV through stronger Continuing Care conversion. Encourage when family signals interest.
-    </div>
-    <div class="decision-item">
-      <strong>Refusal cases.</strong> Profile B or E families choosing LIGHT intensity / Foundation tier. The protocol load doesn't match the clinical complexity at any reasonable execution. Concierge offers Accelerated or Immersive; if neither works, refers out or defers enrollment.
-    </div>
-  </div>
-</section>
-
-<section class="section" id="discovery">
-  <div class="section-tag">§8 · The Sales Flow</div>
-  <h1>How the <span class="accent">Discovery Call</span> uses this</h1>
-  <p class="lead">The pricing model only works if the concierge can use it in real time on a 30-45 minute Discovery Call. Five steps. Profile in. Capacity in. Tier out. Family chooses. Risk documented if needed.</p>
-
-  <div class="core-idea">
-    <div class="core-idea-label">The five-step flow</div>
-    <h2>1. Identify the profile</h2>
-    <p>Concierge probes case history per the Discovery SOP §1-2. Output: one of A / B / C / D / E / F. This step is roughly 10 minutes of the call.</p>
-    <h2 style="margin-top:20px">2. Identify daily capacity</h2>
-    <p>"How much time can you commit per day to your child's homecare protocol?" Output: LIGHT (20-35 min) / MID (40-60 min) / HIGH (60-90 min). Roughly 5 minutes.</p>
-    <h2 style="margin-top:20px">3. Look up the recommendation</h2>
-    <p>Concierge consults the §7 matrix internally. The intersection of profile and capacity yields a recommended tier. This is mechanical — no judgment call.</p>
-    <h2 style="margin-top:20px">4. Present the three tiers consultatively</h2>
-    <p>"Based on what you've described, we'd recommend <em>[Tier X]</em>. Here's what that looks like. If you'd prefer more daily walking-through-it time, <em>[Tier above]</em> might fit better — that's about how much guided support you want, not because your child clinically needs it."</p>
-    <h2 style="margin-top:20px">5. Family chooses; document any risk</h2>
-    <p>If the family selects below the recommended tier, concierge captures the rationale and flags it for clinical review. If above, no friction — encourage the upgrade.</p>
-  </div>
-
-  <div class="info-box">
-    <strong>What the concierge does NOT say.</strong> The internal matrix uses Profile A/B/C/D/E/F language. Families never see those labels. The brochure and Discovery Call both stay parent-comprehensible: the three tiers are described as philosophies (teach-and-go / mixed / daily walking through), not as clinical assignments. The profile system is the engine; the philosophy framing is the interface.
-  </div>
-</section>
 
 </main>
 
 </div>
+
+<script>
+(function() {
+  const setState = (state) => {
+    document.querySelectorAll('.state-toggle-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.state === state);
+    });
+    document.querySelectorAll('[data-pilot][data-production]').forEach(el => {
+      el.textContent = el.dataset[state];
+    });
+  };
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.state-toggle-btn');
+    if (btn) setState(btn.dataset.state);
+  });
+})();
+</script>
 
 </body>
 </html>
