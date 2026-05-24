@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NeuroHome · Pricing Model · v1.5.0</title>
+<title>NeuroHome · Plans &amp; Kits · v2.0.3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,6 +19,7 @@
   --text-secondary: #5a6270;
   --text-muted: #8891a0;
   --accent: #0891b2;
+  --gold: #d97706;
   --warn-bg: #fef3c7;
   --warn-border: #fbbf24;
   --warn-ink: #92400e;
@@ -28,392 +29,1867 @@
   --good-bg: #ecfdf5;
   --good-border: #6ee7b7;
   --good-ink: #065f46;
+  --internal-bg: #1a1d23;
+  --internal-ink: #f8f9fb;
+  --internal-accent: #67e8f9;
+  /* Plan colors */
+  --plan-a: #2563eb;
+  --plan-a-light: #dbeafe;
+  --plan-b: #0891b2;
+  --plan-b-light: #cffafe;
+  --plan-pre: #9333ea;
+  --plan-pre-light: #f3e8ff;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-.topnav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
-.topnav-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+/* ============ TOPNAV ============ */
+.topnav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.topnav-brand { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .topnav-brand span { color: var(--accent); }
 .topnav-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.02em; }
+.topnav-right { display: flex; align-items: center; gap: 16px; }
 
-.layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1200px; margin: 0 auto; }
-.sidenav { position: sticky; top: 60px; height: calc(100vh - 60px); padding: 32px 16px 32px 32px; overflow-y: auto; border-right: 1px solid var(--border); }
-.sidenav-section { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
-.sidenav-section:first-child { margin-top: 0; }
-.sidenav a { display: block; padding: 5px 10px; font-size: 12.5px; color: var(--text-secondary); text-decoration: none; border-radius: 4px; transition: all 0.15s ease; }
-.sidenav a:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.state-toggle-wrap { display: inline-flex; align-items: center; gap: 10px; }
+.state-toggle-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.state-toggle { display: inline-flex; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
+.state-toggle-btn { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; background: transparent; border: none; cursor: pointer; color: var(--text-muted); border-radius: 5px; transition: all 0.2s ease; }
+.state-toggle-btn.active { background: var(--bg); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
-main { padding: 40px 56px 80px; max-width: 980px; }
-.section { margin-bottom: 56px; scroll-margin-top: 80px; }
+/* ============ TABS ============ */
+.tab-nav { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 32px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 60px; z-index: 90; overflow-x: auto; }
+.tab-btn { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 16px 22px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); border-bottom: 3px solid transparent; transition: all 0.2s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+.tab-btn:hover { color: var(--text-primary); }
+.tab-btn.active { color: var(--text-primary); border-bottom-color: var(--accent); font-weight: 600; }
+.tab-btn[data-tab="plan-a"].active { border-bottom-color: var(--plan-a); color: var(--plan-a); }
+.tab-btn[data-tab="plan-b"].active { border-bottom-color: var(--plan-b); color: var(--plan-b); }
+.tab-btn[data-tab="pre-intensive"].active { border-bottom-color: var(--plan-pre); color: var(--plan-pre); }
+.tab-btn .tab-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 40px 32px 96px; }
+
+/* ============ COMMON CONTENT ============ */
+.section { margin-bottom: 56px; scroll-margin-top: 120px; }
 .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 8px; text-transform: uppercase; }
-.section h1 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 10px; }
+.section h1 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 10px; }
 .section h1 .accent { color: var(--accent); font-style: italic; font-weight: 500; }
+.section h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 500; line-height: 1.2; margin: 32px 0 12px; }
+.section h3 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 8px; }
 .section p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
-.section p.lead { color: var(--text-primary); font-size: 17px; line-height: 1.55; margin-bottom: 20px; font-weight: 400; }
+.section p.lead { color: var(--text-primary); font-size: 18px; line-height: 1.55; margin-bottom: 20px; font-weight: 400; }
 .section strong { color: var(--text-primary); font-weight: 600; }
 
-.cover { padding: 48px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
-.cover-mark { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.04em; }
+.cover { padding: 12px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.cover-mark { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
 .cover-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 14px; }
-.cover-title em { color: var(--accent); font-weight: 500; }
-.cover-sub { font-size: 19px; color: var(--text-secondary); line-height: 1.5; max-width: 720px; }
+.cover-title em { color: var(--accent); font-weight: 500; font-style: italic; }
+.cover-sub { font-size: 19px; color: var(--text-secondary); line-height: 1.5; max-width: 760px; }
 
-.tier-hero { padding: 36px 32px; background: var(--bg-card); border: 1px solid var(--border-strong); border-top: 4px solid var(--accent); border-radius: 8px; margin: 24px 0; }
-.tier-hero-name { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; line-height: 1.1; margin-bottom: 4px; }
-.tier-hero-philosophy { font-size: 15px; color: var(--text-secondary); font-style: italic; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px dashed var(--border-strong); }
-.tier-hero-price-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: end; }
-.tier-hero-price { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; line-height: 1; color: var(--accent); }
-.tier-hero-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-.tier-hero-stat-value { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; line-height: 1; color: var(--text-primary); }
-.tier-hero-includes-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 20px 0 10px; padding-top: 18px; border-top: 1px dashed var(--border-strong); }
-.tier-hero-includes-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
-.tier-hero-includes-list li { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; padding-left: 12px; position: relative; }
-.tier-hero-includes-list li::before { content: '·'; color: var(--accent); position: absolute; left: 2px; font-weight: 600; }
-.tier-hero-includes-list li strong { color: var(--text-primary); }
+/* ============ DECISION TREE (Tab 1) ============ */
+.decision-tree { background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%); border: 1px solid var(--border-strong); border-radius: 12px; padding: 32px 36px; margin: 24px 0 40px; }
+.decision-tree-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.decision-tree h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 0 18px; font-weight: 500; color: var(--text-primary); }
+.decision-row { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--border-strong); align-items: center; }
+.decision-row:last-child { border-bottom: none; }
+.decision-condition { font-size: 14.5px; color: var(--text-primary); line-height: 1.5; }
+.decision-arrow { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-size: 16px; }
+.decision-result { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600; padding: 6px 14px; border-radius: 4px; letter-spacing: 0.02em; }
+.decision-result.plan-a { background: var(--plan-a-light); color: var(--plan-a); }
+.decision-result.plan-b { background: var(--plan-b-light); color: var(--plan-b); }
+.decision-result.pre { background: var(--plan-pre-light); color: var(--plan-pre); }
+.decision-result.either { background: linear-gradient(90deg, var(--plan-a-light), var(--plan-b-light)); color: var(--text-primary); }
+.decision-result.refer { background: var(--warn-bg); color: var(--warn-ink); }
 
+/* ============ PLAN CARDS (Tab 1) ============ */
+.plan-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin: 24px 0; }
+.plan-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; position: relative; display: flex; flex-direction: column; }
+.plan-card.plan-a { border-top: 4px solid var(--plan-a); }
+.plan-card.plan-b { border-top: 4px solid var(--plan-b); }
+.plan-card.pre { border-top: 4px solid var(--plan-pre); }
+.plan-card-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.plan-card.plan-a .plan-card-tag { color: var(--plan-a); }
+.plan-card.plan-b .plan-card-tag { color: var(--plan-b); }
+.plan-card.pre .plan-card-tag { color: var(--plan-pre); }
+.plan-card-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; margin: 0 0 4px; line-height: 1.15; }
+.plan-card-philosophy { font-size: 13px; color: var(--text-secondary); font-style: italic; line-height: 1.5; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); min-height: 64px; }
+.plan-card-price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.plan-card.plan-a .plan-card-price { color: var(--plan-a); }
+.plan-card.plan-b .plan-card-price { color: var(--plan-b); }
+.plan-card.pre .plan-card-price { color: var(--plan-pre); }
+.plan-card-duration { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+.plan-card-quick { font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 16px; }
+.plan-card-quick strong { color: var(--text-primary); }
+.plan-card-headline-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 0; border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border); margin: 12px 0; }
+.plan-card-headline-cell { text-align: center; }
+.plan-card-headline-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.plan-card-headline-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+.plan-card-for { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; flex-grow: 1; }
+.plan-card-for strong { color: var(--text-primary); display: block; margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+.plan-card-cta { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-strong); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.04em; cursor: pointer; text-decoration: none; display: inline-block; }
+.plan-card-cta:hover { color: var(--text-primary); }
+.plan-card.plan-a .plan-card-cta { color: var(--plan-a); }
+.plan-card.plan-b .plan-card-cta { color: var(--plan-b); }
+.plan-card.pre .plan-card-cta { color: var(--plan-pre); }
+
+/* ============ INTERNAL MARGIN BAND (Tab 1) ============ */
+.internal-band { background: var(--internal-bg); color: var(--internal-ink); border-radius: 12px; padding: 28px 32px; margin: 40px 0 24px; }
+.internal-band-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--internal-accent); margin-bottom: 12px; }
+.internal-band h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: var(--internal-ink); margin: 0 0 16px; }
+.internal-band-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.internal-cell { padding: 14px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; }
+.internal-cell-tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.internal-cell-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
+.internal-cell-row .label { color: rgba(255,255,255,0.7); }
+.internal-cell-row .val { font-family: 'JetBrains Mono', monospace; color: var(--internal-ink); font-weight: 600; }
+
+/* ============ GRADUATION PATH DIAGRAM (Tab 1) ============ */
+.grad-path { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+.grad-path-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.grad-path h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; margin: 0 0 16px; }
+.grad-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 14px; align-items: center; }
+.grad-node { padding: 16px 14px; background: var(--bg); border: 1px solid var(--border-strong); border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.4; }
+.grad-node.pre { border-color: var(--plan-pre); background: var(--plan-pre-light); }
+.grad-node.plan-a { border-color: var(--plan-a); background: var(--plan-a-light); }
+.grad-node.plan-b { border-color: var(--plan-b); background: var(--plan-b-light); }
+.grad-node strong { display: block; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.grad-arrow { font-size: 24px; color: var(--text-muted); font-weight: 300; }
+.grad-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-secondary); text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+
+/* ============ FULL COMPARE TABLE (Tab 2) ============ */
+.compare-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.compare-table th, .compare-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.compare-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); position: sticky; top: 116px; z-index: 50; }
+.compare-table th.col-a { color: var(--plan-a); }
+.compare-table th.col-b { color: var(--plan-b); }
+.compare-table th.col-pre { color: var(--plan-pre); }
+.compare-table tr.section-divider td { background: var(--bg-deep); padding: 8px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border-strong); border-top: 1px solid var(--border-strong); }
+.compare-table tr.internal-divider td { background: var(--internal-bg); color: var(--internal-accent); padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; border-top: 2px solid var(--internal-bg); }
+.compare-table tr.internal-row td { background: rgba(26, 29, 35, 0.03); color: var(--text-primary); }
+.compare-table tr.internal-row td.muted { color: var(--text-muted); }
+.compare-table td.row-label { font-weight: 500; color: var(--text-primary); background: var(--bg-deep); width: 30%; }
+.compare-table td.val { font-family: 'DM Sans', sans-serif; }
+.compare-table td.val-mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.compare-table td.val small { color: var(--text-muted); font-size: 11.5px; display: block; margin-top: 2px; }
+.compare-table tr.highlight-row td.row-label { color: var(--accent); }
+
+/* ============ PLAN HERO (Tabs 3-5) ============ */
+.plan-hero { padding: 32px 32px 28px; border-radius: 12px; margin: 24px 0; position: relative; overflow: hidden; }
+.plan-hero.plan-a { background: linear-gradient(135deg, #fff 0%, var(--plan-a-light) 100%); border: 1px solid var(--plan-a); border-top: 5px solid var(--plan-a); }
+.plan-hero.plan-b { background: linear-gradient(135deg, #fff 0%, var(--plan-b-light) 100%); border: 1px solid var(--plan-b); border-top: 5px solid var(--plan-b); }
+.plan-hero.pre { background: linear-gradient(135deg, #fff 0%, var(--plan-pre-light) 100%); border: 1px solid var(--plan-pre); border-top: 5px solid var(--plan-pre); }
+.plan-hero-name { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 600; line-height: 1.05; margin-bottom: 6px; }
+.plan-hero-philosophy { font-size: 16px; color: var(--text-secondary); font-style: italic; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-strong); }
+.plan-hero-row { display: grid; grid-template-columns: auto 1fr 1fr 1fr; gap: 28px; align-items: end; }
+.plan-hero-price { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 600; line-height: 1; }
+.plan-hero.plan-a .plan-hero-price { color: var(--plan-a); }
+.plan-hero.plan-b .plan-hero-price { color: var(--plan-b); }
+.plan-hero.pre .plan-hero-price { color: var(--plan-pre); }
+.plan-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.plan-hero-stat-val { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; line-height: 1; color: var(--text-primary); }
+
+.plan-includes { padding: 24px 28px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); margin: 24px 0; }
+.plan-includes-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.plan-includes-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.plan-includes-list li { font-size: 14px; color: var(--text-secondary); padding-left: 14px; position: relative; line-height: 1.5; }
+.plan-includes-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 18px; line-height: 1; }
+.plan-includes-list li strong { color: var(--text-primary); }
+
+/* ============ COGS TABLE ============ */
 .cogs-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
-.cogs-table th, .cogs-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+.cogs-table th, .cogs-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: middle; }
 .cogs-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
-.cogs-table tr.subtotal { background: var(--bg-card); font-weight: 600; }
-.cogs-table tr.subtotal td { color: var(--text-primary); }
-.cogs-table tr.total td { background: var(--bg-elevated); color: var(--text-primary); font-weight: 700; padding: 12px; border-bottom: none; border-top: 2px solid var(--text-primary); font-size: 14px; }
 .cogs-table td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
-.cogs-table td.section-label { background: var(--bg-deep); padding: 6px 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
 .cogs-table td.muted { color: var(--text-muted); font-size: 12px; }
+.cogs-table tr.section-label td { background: var(--bg-deep); padding: 6px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+.cogs-table tr.subtotal td { background: var(--bg-card); font-weight: 600; color: var(--text-primary); }
+.cogs-table tr.total td { background: var(--bg-elevated); color: var(--text-primary); font-weight: 700; padding: 12px 14px; border-top: 2px solid var(--text-primary); font-size: 14px; }
+.cogs-table tr.margin-row td { background: linear-gradient(90deg, var(--bg-card), var(--bg-elevated)); font-weight: 700; color: var(--accent); padding: 12px 14px; }
+.cogs-table tr.margin-row td.num { font-family: 'Playfair Display', serif; font-size: 18px; }
 
+.callout-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+.callout-cell { padding: 16px; background: var(--bg-elevated); border-radius: 8px; text-align: center; }
+.callout-cell .num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; line-height: 1; color: var(--text-primary); }
+.callout-cell .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+
+/* ============ TYPICAL DAY ============ */
 .day-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
 .day-card.featured { border-color: var(--accent); border-width: 2px; }
-.day-card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-strong); }
+.day-card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-strong); gap: 16px; flex-wrap: wrap; }
 .day-card-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 .day-card-dur { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-secondary); }
 .day-card-content { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 .day-card-content strong { color: var(--text-primary); }
 
-.afternoon-grid { display: grid; grid-template-columns: 50px 1fr 60px; gap: 6px 14px; font-size: 12.5px; align-items: baseline; }
+.afternoon-grid { display: grid; grid-template-columns: 60px 1fr 70px; gap: 6px 14px; font-size: 12.5px; align-items: baseline; }
 .afternoon-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
 .afternoon-what { color: var(--text-secondary); line-height: 1.5; }
 .afternoon-what strong { color: var(--text-primary); }
 .afternoon-dur { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-primary); text-align: right; font-weight: 600; }
 
-.callout-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
-.callout-cell { padding: 14px; background: var(--bg-elevated); border-radius: 6px; text-align: center; }
-.callout-cell .num { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; line-height: 1; color: var(--text-primary); }
-.callout-cell .label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
-
+/* ============ 8 WEEKS PHASE GRID ============ */
 .phase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0; }
-.phase-cell { padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; }
+.phase-cell { padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; }
 .phase-cell .phase-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.06em; }
-.phase-cell .phase-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; margin: 4px 0 6px; }
+.phase-cell .phase-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin: 4px 0 6px; }
 .phase-cell .phase-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
+/* ============ 8-WEEK CALENDAR ============ */
+.calendar-wrap { margin: 24px 0 8px; }
+.calendar-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-secondary); align-items: center; }
+.calendar-legend-item { display: inline-flex; align-items: center; gap: 6px; letter-spacing: 0.04em; }
+.calendar-legend-pill { width: 18px; height: 12px; border-radius: 3px; display: inline-block; }
+.calendar-legend-pill.concierge { background: var(--accent); }
+.calendar-legend-pill.ot { background: var(--gold); }
+.calendar-legend-pill.md { background: #b91c1c; }
+.calendar-illustrative { font-style: italic; color: var(--text-muted); font-size: 11.5px; margin-top: 10px; line-height: 1.5; }
+.cal-wrap-scroll { overflow-x: auto; }
+.calendar { display: grid; grid-template-columns: 64px repeat(7, 1fr); gap: 2px; background: var(--border-strong); border: 1px solid var(--border-strong); border-radius: 8px; padding: 2px; min-width: 700px; }
+.cal-corner { background: var(--bg-elevated); }
+.cal-col-header { background: var(--bg-elevated); padding: 8px 4px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-align: center; font-weight: 600; }
+.cal-col-header.we { color: var(--text-muted); opacity: 0.6; }
+.cal-row-header { background: var(--bg-card); padding: 8px 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--text-secondary); text-align: center; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+.cal-row-header .wk-num { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text-primary); font-weight: 600; line-height: 1; }
+.cal-row-header .wk-lbl { font-size: 8.5px; color: var(--text-muted); }
+.cal-cell { background: var(--bg); padding: 6px 4px; min-height: 62px; display: flex; flex-direction: column; gap: 3px; align-items: stretch; justify-content: flex-start; }
+.cal-cell.weekend { background: var(--bg-deep); position: relative; }
+.cal-cell.weekend::before { content: '·'; color: var(--text-muted); text-align: center; font-size: 18px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.cal-cell.empty { background: var(--bg); position: relative; }
+.cal-pill { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.01em; padding: 3px 4px; border-radius: 3px; color: white; text-align: center; line-height: 1.15; white-space: nowrap; }
+.cal-pill.concierge { background: var(--accent); }
+.cal-pill.ot { background: var(--gold); }
+.cal-pill.md { background: #b91c1c; }
+.cal-note-band { padding: 10px 14px; margin-top: 12px; background: var(--bg-card); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.cal-note-band strong { color: var(--text-primary); }
+
+/* ============ WHO BLOCKS ============ */
 .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
-.who-cell { padding: 16px 18px; border-radius: 6px; }
+.who-cell { padding: 18px 20px; border-radius: 8px; }
 .who-yes { background: var(--good-bg); border: 1px solid var(--good-border); }
 .who-no { background: var(--warn-bg); border: 1px solid var(--warn-border); }
-.who-cell h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 500; margin: 0 0 8px; }
+.who-cell h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 500; margin: 0 0 10px; }
 .who-yes h3 { color: var(--good-ink); }
 .who-no h3 { color: var(--warn-ink); }
 .who-cell ul { list-style: none; padding: 0; margin: 0; }
-.who-cell li { font-size: 13px; line-height: 1.5; padding: 3px 0 3px 16px; position: relative; }
+.who-cell li { font-size: 13.5px; line-height: 1.55; padding: 3px 0 3px 18px; position: relative; }
 .who-yes li { color: var(--good-ink); }
 .who-no li { color: var(--warn-ink); }
 .who-cell li::before { position: absolute; left: 0; font-weight: 700; }
 .who-yes li::before { content: '✓'; color: var(--good-ink); }
 .who-no li::before { content: '×'; color: var(--warn-ink); }
 
+/* ============ INFO/WARN BOXES ============ */
 .info-box { background: var(--info-bg); border: 1px solid var(--info-border); border-radius: 6px; padding: 14px 18px; margin: 18px 0; font-size: 13.5px; color: var(--info-ink); line-height: 1.55; }
 .info-box strong { color: var(--info-ink); }
 .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 6px; padding: 14px 18px; margin: 18px 0; font-size: 13.5px; color: var(--warn-ink); line-height: 1.55; }
 .warn-box strong { color: var(--warn-ink); }
+.good-box { background: var(--good-bg); border: 1px solid var(--good-border); border-radius: 6px; padding: 14px 18px; margin: 18px 0; font-size: 13.5px; color: var(--good-ink); line-height: 1.55; }
+.good-box strong { color: var(--good-ink); }
+
+/* ============ ADD-ON SKU CARDS (Plan B) ============ */
+.addon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+.addon-card { padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; border-left: 3px solid var(--plan-b); }
+.addon-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 500; margin-bottom: 4px; color: var(--text-primary); }
+.addon-purpose { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; min-height: 36px; }
+.addon-price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 1px dashed var(--border-strong); }
+.addon-price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--plan-b); }
+.addon-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
+.addon-bundle { margin-top: 14px; padding: 14px 18px; background: var(--plan-b-light); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+.addon-bundle-name { font-size: 13.5px; color: var(--text-primary); }
+.addon-bundle-name strong { color: var(--plan-b); }
+.addon-bundle-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--plan-b); }
+.addon-bundle-strike { text-decoration: line-through; color: var(--text-muted); font-size: 13px; font-family: 'JetBrains Mono', monospace; margin-right: 8px; }
+
+/* ============ CONTINUATION (Pre-Intensive) ============ */
+.cont-hero { padding: 28px 32px; background: linear-gradient(135deg, var(--plan-pre-light) 0%, #fff 100%); border: 1px solid var(--plan-pre); border-left: 5px solid var(--plan-pre); border-radius: 12px; margin: 24px 0; }
+.cont-hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plan-pre); margin-bottom: 8px; }
+.cont-hero-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; line-height: 1.1; margin-bottom: 6px; }
+.cont-hero-philosophy { font-size: 14.5px; color: var(--text-secondary); font-style: italic; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--border-strong); }
+.cont-hero-row { display: grid; grid-template-columns: auto 1fr 1fr; gap: 24px; align-items: end; }
+.cont-hero-price { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 600; line-height: 1; color: var(--plan-pre); }
+.cont-hero-price small { font-size: 16px; color: var(--text-secondary); font-weight: 500; font-style: italic; margin-left: 4px; }
+
+/* ============ GRADUATION CREDIT TABLE ============ */
+.credit-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+.credit-table th, .credit-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: left; }
+.credit-table th { background: var(--bg-elevated); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+.credit-table td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--plan-pre); }
+.credit-table tr.cap td { background: var(--plan-pre-light); font-weight: 700; }
+
+/* ============ FOOTER / CHANGELOG ============ */
+footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 32px; margin-top: 64px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.footer-section h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; }
+.changelog-entry { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 12.5px; color: var(--text-secondary); }
+.changelog-entry:last-child { border-bottom: none; }
+.changelog-version { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text-primary); margin-right: 8px; }
+.changelog-date { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-size: 11px; margin-right: 8px; }
 
 @media (max-width: 980px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidenav { display: none; }
-  main { padding: 24px; }
+  main { padding: 24px 16px 64px; }
+  .topnav { padding: 12px 16px; }
   .cover-title { font-size: 36px; }
-  .tier-hero-price-row { grid-template-columns: 1fr; gap: 12px; }
-  .tier-hero-includes-list { grid-template-columns: 1fr; }
-  .callout-strip, .phase-grid, .who-grid { grid-template-columns: 1fr 1fr; }
+  .plan-cards { grid-template-columns: 1fr; }
+  .plan-hero-row { grid-template-columns: 1fr; gap: 16px; }
+  .plan-hero-price { font-size: 42px; }
+  .plan-includes-list { grid-template-columns: 1fr; }
+  .callout-strip, .phase-grid, .who-grid, .addon-grid { grid-template-columns: 1fr; }
+  .internal-band-grid { grid-template-columns: 1fr; }
+  .grad-flow { grid-template-columns: 1fr; }
+  .grad-arrow { transform: rotate(90deg); justify-self: center; padding: 4px 0; }
+  .compare-table { font-size: 11.5px; }
+  .compare-table th, .compare-table td { padding: 7px 8px; }
+  .calendar { font-size: 9px; }
+  .cal-pill { font-size: 8.5px; padding: 2px 3px; }
+  .footer-inner { grid-template-columns: 1fr; }
 }
 @media print {
-  .topnav, .sidenav { display: none; }
-  .layout { grid-template-columns: 1fr; }
-  main { padding: 0; max-width: 100%; }
+  .topnav, .tab-nav { display: none; }
+  .tab-panel { display: block !important; page-break-before: always; }
+  .tab-panel:first-of-type { page-break-before: auto; }
 }
 </style>
 </head>
 <body>
 
 <nav class="topnav">
-  <div class="topnav-brand">Neuro<span>Home</span></div>
-  <div class="topnav-meta">Pricing Model · Internal · v1.5.0 (May 20, 2026)</div>
+  <div>
+    <div class="topnav-brand">Neuro<span>Home</span></div>
+    <div class="topnav-meta">Plans &amp; Kits · Internal · v2.0.3 (May 24, 2026)</div>
+  </div>
+  <div class="topnav-right">
+    <div class="state-toggle-wrap">
+      <span class="state-toggle-label">Margin lens</span>
+      <div class="state-toggle" id="state-toggle">
+        <button type="button" class="state-toggle-btn active" data-state="pilot">Pilot</button>
+        <button type="button" class="state-toggle-btn" data-state="production">Post-patent</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
-<div class="layout">
-
-<aside class="sidenav">
-  <div class="sidenav-section">Foundation</div>
-  <a href="#cover">Overview</a>
-  <a href="#tier">The Offer</a>
-  <div class="sidenav-section">The Math</div>
-  <a href="#cogs">COGS &amp; Margin</a>
-  <div class="sidenav-section">The Delivery</div>
-  <a href="#day">A Typical Day</a>
-  <a href="#program">The 8 Weeks</a>
-  <a href="#who">Who This Is For</a>
-</aside>
+<nav class="tab-nav" id="tab-nav">
+  <button type="button" class="tab-btn active" data-tab="overview"><span class="tab-num">01</span> Overview</button>
+  <button type="button" class="tab-btn" data-tab="compare"><span class="tab-num">02</span> Compare</button>
+  <button type="button" class="tab-btn" data-tab="plan-a"><span class="tab-num">03</span> Plan A · Full</button>
+  <button type="button" class="tab-btn" data-tab="plan-b"><span class="tab-num">04</span> Plan B · Lite</button>
+  <button type="button" class="tab-btn" data-tab="pre-intensive"><span class="tab-num">05</span> Pre-Intensive</button>
+</nav>
 
 <main>
 
-<section class="cover" id="cover">
-  <div class="cover-mark">v1.5.0 · single-tier · telehealth-concierge · May 20, 2026</div>
-  <h1 class="cover-title">One <em>price</em>. One <em>promise</em>. One <em>schedule</em>.</h1>
-  <p class="cover-sub">NeuroHome is an 8-week home-based neurological intensive at $12,500. Daily telehealth concierge anchors a 2-hour afternoon treatment block, Monday through Friday. Foundational and Sensory-Motor families only.</p>
-</section>
+<!-- ========================================================== -->
+<!-- TAB 1 · OVERVIEW                                            -->
+<!-- ========================================================== -->
+<section class="tab-panel active" id="tab-overview">
 
-<section class="section" id="tier">
-  <div class="section-tag">§1 · The Offer</div>
-  <h1>NeuroHome <span class="accent">Intensive.</span></h1>
-  <p class="lead">Mom is the therapist. The concierge is on-screen with her every afternoon. The kit, the protocol, the labs, the outcome instrument are universal.</p>
-
-  <div class="tier-hero">
-    <div class="tier-hero-name">NeuroHome Intensive</div>
-    <div class="tier-hero-philosophy">"We're with you every afternoon, for 8 weeks, walking you through it."</div>
-
-    <div class="tier-hero-price-row">
-      <div>
-        <div class="tier-hero-stat-label">Sticker</div>
-        <div class="tier-hero-price">$12,500</div>
-      </div>
-      <div>
-        <div class="tier-hero-stat-label">Margin · pilot</div>
-        <div class="tier-hero-stat-value">68.2%</div>
-      </div>
-      <div>
-        <div class="tier-hero-stat-label">Margin · post-patent</div>
-        <div class="tier-hero-stat-value">66.9%</div>
-      </div>
-    </div>
-
-    <div class="tier-hero-includes-label">What's included</div>
-    <ul class="tier-hero-includes-list">
-      <li><strong>10-item NeuroHome Kit</strong> · ships before Day 1</li>
-      <li><strong>3-month supplements</strong> · Intrakid · Gut Feeling · benaGene</li>
-      <li><strong>2 universal labs</strong> · Stool (GI-MAP) + OAT</li>
-      <li><strong>Daily concierge</strong> · Mon-Fri · 2-hr afternoon block</li>
-      <li><strong>Weekly OT/PT</strong> · 30 min · day flexes per family</li>
-      <li><strong>MD review</strong> · 1 hr · plan + labs interpretation</li>
-      <li><strong>NeuroSage Hub access</strong> · 3 months included</li>
-      <li><strong>Mendi fNIRS</strong> · weekly scan · family keeps device</li>
-      <li><strong>Companion app</strong> · daily routine + Hub session</li>
-      <li><strong>Exit documentation</strong> · what to maintain after Week 8</li>
-    </ul>
+  <div class="cover">
+    <div class="cover-mark">Three pathways · clinical fit drives the route</div>
+    <h1 class="cover-title">Three plans. <em>One</em> system.</h1>
+    <p class="cover-sub">NeuroHome offers three distinct pathways — two intensities of Home Intensive for kids ready to do the work, plus a Pre-Intensive pathway for kids who need to get ready first. The decision tree below determines fit; the cards below summarize each plan; the math underneath shows the unit economics.</p>
   </div>
 
-  <div class="info-box"><strong>No add-ons, no upsells.</strong> The product is the same for every family. If a family needs something more than this delivers, they're on the treatment-first path — not a bigger home intensive.</div>
+  <div class="decision-tree">
+    <div class="decision-tree-label">§ Clinical-fit routing</div>
+    <h2>Which pathway does this family enter?</h2>
+
+    <div class="decision-row">
+      <div class="decision-condition"><strong>Foundational</strong> or <strong>Sensory-Motor</strong> profile · child can sustain a 2-hr daily block · family wants premium concierge presence</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-result plan-a">Plan A · Full</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-condition"><strong>Foundational</strong> or <strong>Sensory-Motor</strong> profile · child can sustain a 2-hr daily block · budget-conscious family with high parent capability</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-result plan-b">Plan B · Lite</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-condition"><strong>Foundational</strong> or <strong>Sensory-Motor</strong> profile · child <em>not yet ready</em> for a 2-hr block · sensory regulation work needed first</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-result pre">Pre-Intensive</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-condition">All other profiles: <strong>Hyperimmune / PANS-PANDAS</strong>, <strong>Metabolic / Mitochondrial</strong>, <strong>Birth Trauma / Structural</strong>, <strong>Acquired Regression</strong>, <strong>Severe Dysregulation</strong> — Pre-Intensive identifies the underlying driver via labs and runs regulation work until ready</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-result pre">Pre-Intensive</div>
+    </div>
+  </div>
+
+  <div class="plan-cards">
+
+    <div class="plan-card plan-a">
+      <div class="plan-card-tag">Plan A · Full</div>
+      <div class="plan-card-name">Full Intensive</div>
+      <div class="plan-card-philosophy">"We're with you every afternoon for 8 weeks, walking you through it."</div>
+      <div class="plan-card-price">$12,500</div>
+      <div class="plan-card-duration">8-week intensive · one-time</div>
+      <div class="plan-card-quick">Full 10-item kit · all 4 supplements · Stool + OAT labs · daily 2-hr concierge · live MD &amp; OT/PT</div>
+      <div class="plan-card-headline-row">
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val" data-pilot="67.6%" data-production="66.3%">67.6%</div>
+          <div class="plan-card-headline-lbl">Margin</div>
+        </div>
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val">68 hrs</div>
+          <div class="plan-card-headline-lbl">Concierge</div>
+        </div>
+      </div>
+      <div class="plan-card-for">
+        <strong>Who it's for</strong>
+        Premium-care families. Highest-touch experience. Daily concierge presence the full 8 weeks. Parents who want maximum clinical density and are willing to pay for it.
+      </div>
+      <a class="plan-card-cta" data-tab-link="plan-a">View full plan →</a>
+    </div>
+
+    <div class="plan-card plan-b">
+      <div class="plan-card-tag">Plan B · Lite</div>
+      <div class="plan-card-name">Lite Intensive</div>
+      <div class="plan-card-philosophy">"Start with the chassis. Add what you need as the program reveals it."</div>
+      <div class="plan-card-price">$8,000</div>
+      <div class="plan-card-duration">8-week intensive · one-time</div>
+      <div class="plan-card-quick">9-item kit · 3 supplements · Stool only · concierge tapers · async MD · upgrade paths available</div>
+      <div class="plan-card-headline-row">
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val" data-pilot="68.2%" data-production="66.3%">68.2%</div>
+          <div class="plan-card-headline-lbl">Margin</div>
+        </div>
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val">40 hrs</div>
+          <div class="plan-card-headline-lbl">Concierge</div>
+        </div>
+      </div>
+      <div class="plan-card-for">
+        <strong>Who it's for</strong>
+        Capable parent, ready child. The door-opener. Families who want the Home Intensive but at a more accessible price point. Add OAT, Gut Feeling, or LED panel as the program surfaces a need.
+      </div>
+      <a class="plan-card-cta" data-tab-link="plan-b">View full plan →</a>
+    </div>
+
+    <div class="plan-card pre">
+      <div class="plan-card-tag">Pre-Intensive</div>
+      <div class="plan-card-name">Pre-Intensive Pathway</div>
+      <div class="plan-card-philosophy">"Get ready first. We coach you remotely while we figure out why your child isn't yet ready."</div>
+      <div class="plan-card-price">$6,500<small> + $500/mo</small></div>
+      <div class="plan-card-duration">8-week entry · then monthly continuation</div>
+      <div class="plan-card-quick">8-item kit · all 4 supplements · full labs · light concierge check-ins · graduation credit toward A or B</div>
+      <div class="plan-card-headline-row">
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val" data-pilot="58.2%" data-production="55.9%">58.2%</div>
+          <div class="plan-card-headline-lbl">Entry margin</div>
+        </div>
+        <div class="plan-card-headline-cell">
+          <div class="plan-card-headline-val">79.0%</div>
+          <div class="plan-card-headline-lbl">Cont. margin</div>
+        </div>
+      </div>
+      <div class="plan-card-for">
+        <strong>Who it's for</strong>
+        Every child not immediately ready for the Home Intensive — dysregulated Foundational/Sensory-Motor kids plus all complex profiles where underlying drivers need diagnostic work first (Hyperimmune, Metabolic, Birth Trauma, Acquired Regression, Severe Dysregulation). Labs-led, MD-supervised. Goal: graduate to Plan A or Plan B.
+      </div>
+      <a class="plan-card-cta" data-tab-link="pre-intensive">View full plan →</a>
+    </div>
+
+  </div>
+
+  <div class="grad-path">
+    <div class="grad-path-label">§ Upgrade pathways</div>
+    <h3>How families move between plans</h3>
+    <div class="grad-flow">
+      <div class="grad-node pre">
+        <strong>Pre-Intensive</strong>
+        8-wk entry + monthly cont.
+      </div>
+      <div class="grad-arrow">→</div>
+      <div class="grad-node plan-b">
+        <strong>Plan B Lite</strong>
+        8-wk intensive
+      </div>
+      <div class="grad-arrow">⇄</div>
+      <div class="grad-node plan-a">
+        <strong>Plan A Full</strong>
+        8-wk intensive
+      </div>
+    </div>
+    <div class="grad-meta">Pre-Intensive grads apply $1,500 credit (escalating up to $3,000) toward A or B · Plan B → Plan A: add-on SKUs (OAT, Gut Feeling, LED panel) bring Plan B spec to Plan A spec</div>
+  </div>
+
+  <div class="internal-band">
+    <div class="internal-band-tag">⊙ Internal · COGS &amp; margin per plan</div>
+    <h3>The numbers behind the stickers</h3>
+    <div class="internal-band-grid">
+      <div class="internal-cell">
+        <div class="internal-cell-tag">Plan A · Full</div>
+        <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$12,500</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$4,053" data-production="$4,208">$4,053</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$8,447" data-production="$8,292">$8,447</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="67.6%" data-production="66.3%">67.6%</span></div>
+      </div>
+      <div class="internal-cell">
+        <div class="internal-cell-tag">Plan B · Lite</div>
+        <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$8,000</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$2,544" data-production="$2,699">$2,544</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$5,456" data-production="$5,301">$5,456</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="68.2%" data-production="66.3%">68.2%</span></div>
+      </div>
+      <div class="internal-cell">
+        <div class="internal-cell-tag">Pre-Intensive · Entry</div>
+        <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$6,500</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$2,714" data-production="$2,869">$2,714</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$3,786" data-production="$3,631">$3,786</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="58.2%" data-production="55.9%">58.2%</span></div>
+      </div>
+    </div>
+    <div style="margin-top: 14px; padding: 14px 16px; background: rgba(103, 232, 249, 0.08); border: 1px solid rgba(103, 232, 249, 0.2); border-radius: 6px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.5;">
+      <strong style="color: var(--internal-accent);">Pre-Intensive sub-floor note.</strong> Entry phase runs ~7pt below the 65% margin floor by design. The break-even is the continuation phase — at $500/mo and 79% margin, average continuation duration ≥7-8 months brings blended Pre-Intensive margin to floor. Track average continuation duration as a primary KPI. If it lands below 5 months in the first 6 months of operations, re-evaluate.
+    </div>
+  </div>
+
 </section>
 
-<section class="section" id="cogs">
-  <div class="section-tag">§2 · The Math</div>
-  <h1>COGS and <span class="accent">margin.</span></h1>
-  <p class="lead">Cost-to-deliver per family. Pilot state uses the Red LED Handheld laser; post-patent state uses the LED Laser NSH custom build ($155 swap).</p>
+<!-- ========================================================== -->
+<!-- TAB 2 · COMPARE (full side-by-side)                         -->
+<!-- ========================================================== -->
+<section class="tab-panel" id="tab-compare">
 
-  <table class="cogs-table">
+  <div class="cover">
+    <div class="cover-mark">Detailed comparison · every row of difference</div>
+    <h1 class="cover-title">Side by <em>side</em>.</h1>
+    <p class="cover-sub">Every kit item, every supplement, every lab, every clinical-labor allocation, every margin number. The full receipts for all three plans. Customer-facing rows up top, internal COGS / margin section at the bottom.</p>
+  </div>
+
+  <table class="compare-table">
     <thead>
-      <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+      <tr>
+        <th style="width: 28%">Dimension</th>
+        <th class="col-a" style="width: 24%">Plan A · Full</th>
+        <th class="col-b" style="width: 24%">Plan B · Lite</th>
+        <th class="col-pre" style="width: 24%">Pre-Intensive</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td colspan="4" class="section-label">Hardware (kit)</td></tr>
-      <tr><td>Red Panel</td><td class="muted">BlockBlueLight · 4-40 Hz</td><td class="num">$199</td><td class="num">$199</td></tr>
-      <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
-      <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
-      <tr><td>SaeboStim Pro 4-in-1</td><td class="muted">NMES + TENS + FES + SES</td><td class="num">$279</td><td class="num">$279</td></tr>
-      <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
-      <tr><td>Essential Oils Kit</td><td class="muted">Rosemary, peppermint, eucalyptus, frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
-      <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
-      <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
-      <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
-      <tr><td>Mendi Headband</td><td class="muted">B2B partner · family keeps device</td><td class="num">$150</td><td class="num">$150</td></tr>
-      <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,223</td><td class="num">$1,378</td></tr>
 
-      <tr><td colspan="4" class="section-label">Supplements · 3-month supply</td></tr>
-      <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 3</td><td class="num">$135</td><td class="num">$135</td></tr>
-      <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia</td><td class="num">$240</td><td class="num">$240</td></tr>
-      <tr><td>benaGene Lozenges</td><td class="muted">Thermally-stabilized oxaloacetate · 1/day × 90-day supply</td><td class="num">$90</td><td class="num">$90</td></tr>
-      <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$465</td><td class="num">$465</td></tr>
+      <tr class="section-divider"><td colspan="4">Overview</td></tr>
+      <tr>
+        <td class="row-label">Sticker price</td>
+        <td class="val"><strong>$12,500</strong><small>one-time</small></td>
+        <td class="val"><strong>$8,000</strong><small>one-time</small></td>
+        <td class="val"><strong>$6,500</strong> entry<small>+ $500/mo continuation</small></td>
+      </tr>
+      <tr>
+        <td class="row-label">Duration</td>
+        <td class="val">8 weeks fixed</td>
+        <td class="val">8 weeks fixed</td>
+        <td class="val">8-week entry + monthly continuation until clinically cleared</td>
+      </tr>
+      <tr>
+        <td class="row-label">Philosophy</td>
+        <td class="val"><em>"We're with you every afternoon."</em></td>
+        <td class="val"><em>"Start with the chassis, add what you need."</em></td>
+        <td class="val"><em>"Get ready first. We coach you remotely."</em></td>
+      </tr>
+      <tr>
+        <td class="row-label">Primary cohort</td>
+        <td class="val">Foundational + Sensory-Motor, ready for 2-hr daily blocks, premium-care families</td>
+        <td class="val">Foundational + Sensory-Motor, ready for 2-hr daily blocks, budget-conscious + capable parent</td>
+        <td class="val">Any child not immediately ready for Home Intensive — dysregulated Foundational/Sensory-Motor kids plus Hyperimmune, Metabolic, Birth Trauma, Acquired Regression, Severe Dysregulation profiles</td>
+      </tr>
 
-      <tr><td colspan="4" class="section-label">Labs · universal panel</td></tr>
-      <tr><td>Stool · GI-MAP</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
-      <tr><td>OAT · Organic Acids Test</td><td class="muted">All-in cost to clinic</td><td class="num">$400</td><td class="num">$400</td></tr>
-      <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td><td class="num">$950</td></tr>
+      <tr class="section-divider"><td colspan="4">Kit · hardware</td></tr>
+      <tr>
+        <td class="row-label">Items in kit</td>
+        <td class="val">10-item full</td>
+        <td class="val">9-item (LED panel as add-on)</td>
+        <td class="val">8-item (no SaeboStim, no Mendi)</td>
+      </tr>
+      <tr><td class="row-label">LED Light Panel</td><td class="val">✓ Included</td><td class="val">Add-on +$349</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Foundational Laser <small>(Red LED / NSH)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Green LED Laser</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">SaeboStim Pro 4-in-1</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">— Not included</td></tr>
+      <tr><td class="row-label">Blue Glasses + Eye Lights</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Essential Oils Kit</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Shen Men Beads</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Vibration Device</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">NeuroSage Hub access</td><td class="val">✓ 3 months</td><td class="val">✓ 3 months</td><td class="val">✓ 3 months · continues monthly</td></tr>
+      <tr><td class="row-label">Mendi Headband <small>(family keeps)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">— Not included</td></tr>
 
-      <tr><td colspan="4" class="section-label">Clinical labor · 8-week program</td></tr>
-      <tr><td>Concierge · telehealth</td><td class="muted">$10/hr · 2 hrs × 5 × 8 = 80 hrs</td><td class="num">$800</td><td class="num">$800</td></tr>
-      <tr><td>OT/PT · weekly check-in</td><td class="muted">$60/hr · 30 min × 8 weeks = 4 hrs</td><td class="num">$240</td><td class="num">$240</td></tr>
-      <tr><td>MD · plan + labs</td><td class="muted">$300/hr · 1 hr flat</td><td class="num">$300</td><td class="num">$300</td></tr>
-      <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$1,340</td><td class="num">$1,340</td></tr>
+      <tr class="section-divider"><td colspan="4">Supplements · 3-month supply</td></tr>
+      <tr><td class="row-label">Intrakid <small>(pediatric multivitamin)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Gut Feeling <small>(peptides + gut support)</small></td><td class="val">✓ Included</td><td class="val">Add-on +$420</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">benaGene Lozenges <small>(mito / NAD+)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">AdrenaCalm <small>(HPA-axis topical)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
 
-      <tr class="total"><td colspan="2">Total COGS per family</td><td class="num">$3,978</td><td class="num">$4,133</td></tr>
+      <tr class="section-divider"><td colspan="4">Labs · universal panel scope</td></tr>
+      <tr><td class="row-label">Stool / Gut Zoomer</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">OAT <small>(Organic Acids Test, mold + mito)</small></td><td class="val">✓ Included</td><td class="val">Add-on +$695</td><td class="val">✓ Included</td></tr>
+
+      <tr class="section-divider"><td colspan="4">Clinical labor · per family · 8 weeks</td></tr>
+      <tr><td class="row-label">Concierge hours</td><td class="val">68 hrs<small>5×/wk Wks 1-4 · 4×/wk Wks 5-6 · 3×/wk Wks 7-8</small></td><td class="val">40 hrs<small>5×/wk Wks 1-2 · 2×/wk Wks 3-6 · 2×/wk (1-hr) Wks 7-8</small></td><td class="val">10 hrs<small>2-3×/wk · 30-min check-ins · coaching style</small></td></tr>
+      <tr><td class="row-label">OT/PT hours</td><td class="val">4 hrs · live</td><td class="val">2 hrs · live</td><td class="val">1 hr · live</td></tr>
+      <tr><td class="row-label">MD time</td><td class="val">1 hr · live consultation</td><td class="val">Async report only</td><td class="val">30 min · live labs review</td></tr>
+
+      <tr class="section-divider"><td colspan="4">Family commitment</td></tr>
+      <tr><td class="row-label">Daily protocol time</td><td class="val">~140 min · 2-hr afternoon block + morning/evening anchors</td><td class="val">~140 min · same protocol structure, lighter concierge presence</td><td class="val">~30-45 min · sensory foundation + mom-led with check-ins</td></tr>
+      <tr><td class="row-label">Concierge presence per day</td><td class="val">2 hrs on-screen · M-F early; tapering</td><td class="val">2 hrs on-screen · M-F first 2 wks; tapering hard</td><td class="val">30 min check-ins · 2-3 days/wk</td></tr>
+      <tr><td class="row-label">Live MD touchpoints</td><td class="val">Initial labs consult + plan</td><td class="val">None · async only</td><td class="val">Initial labs review</td></tr>
+
+      <tr class="section-divider"><td colspan="4">Outcome tracking</td></tr>
+      <tr><td class="row-label">Mendi fNIRS scans</td><td class="val">Weekly · family keeps device</td><td class="val">Weekly · family keeps device</td><td class="val">— Not included (no Mendi)</td></tr>
+      <tr><td class="row-label">ATEC baseline / midpoint / final</td><td class="val">Wk 1 / 4 / 8</td><td class="val">Wk 1 / 4 / 8</td><td class="val">Wk 1 / 8 (entry) + every 3 mo in continuation</td></tr>
+
+      <tr class="section-divider"><td colspan="4">Graduation / upgrade</td></tr>
+      <tr><td class="row-label">Graduation credit</td><td class="val">— N/A (graduation destination)</td><td class="val">— N/A (graduation destination)</td><td class="val">$1,500 base + $500 per 4 months continuation · capped at $3,000 · valid in continuation or within 90 days of last payment</td></tr>
+      <tr><td class="row-label">Upgrade path during program</td><td class="val">— N/A</td><td class="val">OAT lab · Gut Feeling · LED panel · or bundle</td><td class="val">Continuation → Plan A or Plan B</td></tr>
+
+      <!-- INTERNAL SECTION -->
+      <tr class="internal-divider"><td colspan="4">⊙ Internal · COGS breakdown</td></tr>
+
+      <tr class="internal-row"><td class="row-label">Hardware</td><td class="val val-mono" data-pilot="$1,223" data-production="$1,378">$1,223</td><td class="val val-mono" data-pilot="$1,024" data-production="$1,179">$1,024</td><td class="val val-mono" data-pilot="$794" data-production="$949">$794</td></tr>
+      <tr class="internal-row"><td class="row-label">Supplements</td><td class="val val-mono">$660</td><td class="val val-mono">$420</td><td class="val val-mono">$660</td></tr>
+      <tr class="internal-row"><td class="row-label">Labs</td><td class="val val-mono">$950</td><td class="val val-mono">$550</td><td class="val val-mono">$950</td></tr>
+      <tr class="internal-row"><td class="row-label">Concierge</td><td class="val val-mono">$680<small class="muted">68 hrs × $10</small></td><td class="val val-mono">$400<small class="muted">40 hrs × $10</small></td><td class="val val-mono">$100<small class="muted">10 hrs × $10</small></td></tr>
+      <tr class="internal-row"><td class="row-label">OT/PT</td><td class="val val-mono">$240<small class="muted">4 hrs × $60</small></td><td class="val val-mono">$120<small class="muted">2 hrs × $60</small></td><td class="val val-mono">$60<small class="muted">1 hr × $60</small></td></tr>
+      <tr class="internal-row"><td class="row-label">MD</td><td class="val val-mono">$300<small class="muted">1 hr × $300</small></td><td class="val val-mono">$30<small class="muted">async</small></td><td class="val val-mono">$150<small class="muted">30 min × $300</small></td></tr>
+      <tr class="internal-row" style="font-weight: 700;">
+        <td class="row-label">Total COGS</td>
+        <td class="val val-mono" data-pilot="$4,053" data-production="$4,208">$4,053</td>
+        <td class="val val-mono" data-pilot="$2,544" data-production="$2,699">$2,544</td>
+        <td class="val val-mono" data-pilot="$2,714" data-production="$2,869">$2,714</td>
+      </tr>
+      <tr class="internal-row"><td class="row-label">Gross profit</td><td class="val val-mono" data-pilot="$8,447" data-production="$8,292">$8,447</td><td class="val val-mono" data-pilot="$5,456" data-production="$5,301">$5,456</td><td class="val val-mono" data-pilot="$3,786" data-production="$3,631">$3,786</td></tr>
+      <tr class="internal-row highlight-row" style="font-weight: 700;"><td class="row-label">Gross margin</td><td class="val val-mono" data-pilot="67.6%" data-production="66.3%">67.6%</td><td class="val val-mono" data-pilot="68.2%" data-production="66.3%">68.2%</td><td class="val val-mono" data-pilot="58.2%" data-production="55.9%">58.2%</td></tr>
+
     </tbody>
   </table>
 
-  <div class="callout-strip">
-    <div class="callout-cell"><div class="num">$12,500</div><div class="label">Sticker</div></div>
-    <div class="callout-cell"><div class="num">$8,522</div><div class="label">Profit (pilot)</div></div>
-    <div class="callout-cell"><div class="num">68.2%</div><div class="label">Margin (pilot)</div></div>
-  </div>
+  <div class="warn-box"><strong>Pre-Intensive sub-floor.</strong> Entry phase margin sits below the 65% portfolio floor by design. Break-even relies on continuation: at $500/mo and ~79% margin, average continuation of ≥7-8 months brings blended Pre-Intensive margin to floor. Track continuation duration from Day 1; revisit pricing if average continuation lands below 5 months.</div>
 
-  <div class="info-box"><strong>Telehealth concierge at $10/hr is what makes the math work.</strong> Assumes a coaching model — concierge is trained in NeuroSage Hub protocols and supervised by the OT/PT lead, but is not a credentialed therapist. Mom applies the SaeboStim pads, demos the reflex, holds the laser. The concierge walks her through it. The price is for the coaching system + kit + protocol IP.</div>
+  <div class="info-box"><strong>Plan B add-on economics.</strong> All three add-ons (OAT $695, Gut Feeling $420, LED panel $349) land at ~42-43% margin individually. Bundle of all three at $1,295 lands Plan B at Plan A spec equivalence. Realistic uptake model (30% OAT / 20% Gut Feeling / 15% LED): expected revenue uplift of ~$344 per Plan B family, expected margin uplift of ~$148.</div>
 
-  <div class="warn-box"><strong>Margin tripwires to watch.</strong> Concierge cost above $15/hr → margin to 64.4%. Lab drift +$100 + Mendi drift +$50 → margin to ~64.5%. If concierge tops $20/hr the sticker has to rise. Quarterly review of all three inputs.</div>
 </section>
 
-<section class="section" id="day">
-  <div class="section-tag">§3 · A Typical Day</div>
-  <h1>What a family <span class="accent">actually does.</span></h1>
-  <p class="lead">Week 3, protocol locked in. The concierge is on-screen for the 120-min afternoon block — present from setup through cool-down. Morning, lunch, dinner, and bedtime are mom-and-app, solo. Every block opens with a Hub game.</p>
+<!-- ========================================================== -->
+<!-- TAB 3 · PLAN A FULL                                         -->
+<!-- ========================================================== -->
+<section class="tab-panel" id="tab-plan-a">
 
-  <div class="day-card">
-    <div class="day-card-header">
-      <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
-      <div class="day-card-dur">3 min active · 10 passive</div>
-    </div>
-    <div class="day-card-content">Shen Men beads on both ears · rosemary L nostril + collar, eucalyptus R nostril + collar · Intrakid 1 oz + Gut Feeling · benaGene lozenge · theta music low. Blue eye lights on (outside L / inside R) while child eats.</div>
+  <div class="cover">
+    <div class="cover-mark" style="color: var(--plan-a)">Plan A · The premium pathway</div>
+    <h1 class="cover-title">Plan A · <em>Full Intensive</em></h1>
+    <p class="cover-sub">Daily 2-hr concierge presence on-screen, Monday through Friday, for 8 weeks. The full kit, all four supplements, both diagnostic labs, live MD and OT/PT touchpoints. White-glove home neurological intensive for families ready to commit.</p>
   </div>
 
-  <div class="day-card">
-    <div class="day-card-header">
-      <div class="day-card-label">12:30 pm · lunch touch-up · solo</div>
-      <div class="day-card-dur">3 min</div>
-    </div>
-    <div class="day-card-content">Oils round 2 · vibration device auricular vagus L+R ear 30 sec each.</div>
-  </div>
-
-  <div class="day-card featured">
-    <div class="day-card-header">
-      <div class="day-card-label">3:30 pm · afternoon treatment block · concierge present whole block</div>
-      <div class="day-card-dur">120 min</div>
-    </div>
-    <div class="afternoon-grid">
-      <div class="afternoon-time">3:30</div>
-      <div class="afternoon-what"><strong>Setup + Hub round 1</strong> · concierge greets, walks mom through SaeboStim pad placement (face + behind ears, Program 10), controller to child. Hub game: <strong>Mountain Climb</strong> — attention and visual-motor warm-up.</div>
-      <div class="afternoon-dur">25 min</div>
-
-      <div class="afternoon-time">3:55</div>
-      <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · Hub game: <strong>Forest Journey</strong>. Sequential cues from concierge: laser vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → Green LED abdomen + cervical (3) → vibration device face L+R (2). SaeboStim hands-free.</div>
-      <div class="afternoon-dur">25 min</div>
-
-      <div class="afternoon-time">4:20</div>
-      <div class="afternoon-what"><strong>Primitive reflex work</strong> · concierge demos each on camera, then watches child execute, live form correction · Starfish (Moro) · Cross-crawl (ATNR) · Snow angels (Spinal Galant) · single-leg balance · Superman · animal walks.</div>
-      <div class="afternoon-dur">30 min</div>
-
-      <div class="afternoon-time">4:50</div>
-      <div class="afternoon-what"><strong>Movement integration</strong> · cross-crawl with metronome at 60 bpm · eyes-closed single-leg balance · heel-to-toe walking · sport-pattern throws and catches with mom. Concierge cues timing.</div>
-      <div class="afternoon-dur">20 min</div>
-
-      <div class="afternoon-time">5:10</div>
-      <div class="afternoon-what"><strong>Hub round 3 + cool-down</strong> · Hub game: <strong>Fruit Catcher</strong>. Oils round 3. Concierge debriefs with mom, logs session, waves goodbye.</div>
-      <div class="afternoon-dur">20 min</div>
+  <div class="plan-hero plan-a">
+    <div class="plan-hero-name">NeuroHome Full Intensive</div>
+    <div class="plan-hero-philosophy">"We're with you every afternoon for 8 weeks, walking you through it."</div>
+    <div class="plan-hero-row">
+      <div>
+        <div class="plan-hero-stat-lbl">Sticker</div>
+        <div class="plan-hero-price">$12,500</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Margin · pilot</div>
+        <div class="plan-hero-stat-val" data-pilot="67.6%" data-production="66.3%">67.6%</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Duration</div>
+        <div class="plan-hero-stat-val">8 weeks</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Concierge total</div>
+        <div class="plan-hero-stat-val">68 hrs</div>
+      </div>
     </div>
   </div>
 
-  <div class="day-card">
-    <div class="day-card-header">
-      <div class="day-card-label">6:00 pm · dinner touch-up · solo</div>
-      <div class="day-card-dur">2 min</div>
-    </div>
-    <div class="day-card-content">Oils round 4 · vibration vagus L+R ear 30 sec each.</div>
+  <div class="plan-includes">
+    <div class="plan-includes-label">What's included</div>
+    <ul class="plan-includes-list">
+      <li><strong>10-item NeuroHome Kit</strong> · LED panel, lasers, SaeboStim, Mendi, glasses, oils, beads, vibration</li>
+      <li><strong>3-month supplement supply</strong> · Intrakid · Gut Feeling · benaGene · AdrenaCalm</li>
+      <li><strong>Universal labs panel</strong> · Stool (Gut Zoomer) + OAT</li>
+      <li><strong>Daily concierge</strong> · M-F · 2-hr afternoon block</li>
+      <li><strong>Weekly OT/PT</strong> · 30-min live · 8 sessions total</li>
+      <li><strong>Live MD consultation</strong> · 1 hr · plan + labs interpretation</li>
+      <li><strong>NeuroSage Hub</strong> · 3 months included</li>
+      <li><strong>Mendi fNIRS</strong> · weekly scans · family keeps device</li>
+      <li><strong>Companion app</strong> · daily routine + Hub session</li>
+      <li><strong>Exit documentation</strong> · maintenance protocol post-Week 8</li>
+    </ul>
   </div>
 
-  <div class="day-card">
-    <div class="day-card-header">
-      <div class="day-card-label">7:30 pm · bedtime wind-down · solo</div>
-      <div class="day-card-dur">12 min active</div>
-    </div>
-    <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off · LED panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
-  </div>
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-a)">§ COGS &amp; margin</div>
+    <h2>The math behind $12,500</h2>
+    <p>Cost-to-deliver per family. Pilot state uses Red LED Handheld laser ($145); post-patent state uses LED Laser NSH custom build ($300).</p>
 
-  <div class="callout-strip">
-    <div class="callout-cell"><div class="num">~140 min</div><div class="label">Mom active time</div></div>
-    <div class="callout-cell"><div class="num">120 min</div><div class="label">Concierge presence</div></div>
-    <div class="callout-cell"><div class="num">3</div><div class="label">Hub game rounds</div></div>
-  </div>
+    <table class="cogs-table">
+      <thead>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+      </thead>
+      <tbody>
+        <tr class="section-label"><td colspan="4">Hardware (kit · 10 items)</td></tr>
+        <tr><td>LED Light Panel</td><td class="muted">BlockBlueLight · 4-40 Hz</td><td class="num">$199</td><td class="num">$199</td></tr>
+        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
+        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
+        <tr><td>SaeboStim Pro 4-in-1</td><td class="muted">NMES + TENS + FES + SES</td><td class="num">$279</td><td class="num">$279</td></tr>
+        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
+        <tr><td>Mendi Headband</td><td class="muted">B2B partner · family keeps device</td><td class="num">$150</td><td class="num">$150</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,223</td><td class="num">$1,378</td></tr>
+
+        <tr class="section-label"><td colspan="4">Supplements · 3-month supply</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 3</td><td class="num">$135</td><td class="num">$135</td></tr>
+        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia</td><td class="num">$240</td><td class="num">$240</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 1/day · 90-day supply</td><td class="num">$90</td><td class="num">$90</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 1 pump/day · 3-month supply</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$660</td><td class="num">$660</td></tr>
+
+        <tr class="section-label"><td colspan="4">Labs · universal panel</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
+        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td><td class="num">$400</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td><td class="num">$950</td></tr>
+
+        <tr class="section-label"><td colspan="4">Clinical labor · 8-week program</td></tr>
+        <tr><td>Concierge · telehealth</td><td class="muted">$10/hr · 68 hrs total</td><td class="num">$680</td><td class="num">$680</td></tr>
+        <tr><td>OT/PT · weekly</td><td class="muted">$60/hr · 4 hrs total</td><td class="num">$240</td><td class="num">$240</td></tr>
+        <tr><td>MD · plan + labs</td><td class="muted">$300/hr · 1 hr live</td><td class="num">$300</td><td class="num">$300</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$1,220</td><td class="num">$1,220</td></tr>
+
+        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num" data-pilot="$4,053" data-production="$4,208">$4,053</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $12,500 sticker</td><td class="num" data-pilot="$8,447" data-production="$8,292">$8,447</td><td class="num">—</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num" data-pilot="67.6%" data-production="66.3%">67.6%</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout-strip">
+      <div class="callout-cell"><div class="num">$12,500</div><div class="label">Sticker</div></div>
+      <div class="callout-cell"><div class="num" data-pilot="$8,447" data-production="$8,292">$8,447</div><div class="label">Profit (pilot)</div></div>
+      <div class="callout-cell"><div class="num" data-pilot="67.6%" data-production="66.3%">67.6%</div><div class="label">Margin (pilot)</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-a)">§ A typical day</div>
+    <h2>Week 3, protocol locked in</h2>
+    <p>Concierge on-screen for the 120-min afternoon block — present from setup through cool-down. Morning, lunch, dinner, and bedtime are mom-and-app, solo. Every block opens with a Hub game.</p>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
+        <div class="day-card-dur">3 min active · 10 passive</div>
+      </div>
+      <div class="day-card-content">Shen Men beads on both ears · rosemary L nostril + collar, eucalyptus R nostril + collar · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on (outside L / inside R) while child eats.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">12:30 pm · lunch touch-up · solo</div>
+        <div class="day-card-dur">3 min</div>
+      </div>
+      <div class="day-card-content">Oils round 2 · vibration device auricular vagus L+R ear 30 sec each.</div>
+    </div>
+
+    <div class="day-card featured">
+      <div class="day-card-header">
+        <div class="day-card-label">3:30 pm · afternoon treatment block · concierge present whole block</div>
+        <div class="day-card-dur">120 min</div>
+      </div>
+      <div class="afternoon-grid">
+        <div class="afternoon-time">3:30</div>
+        <div class="afternoon-what"><strong>Setup + Hub round 1</strong> · concierge greets, walks mom through SaeboStim pad placement (face + behind ears, Program 10), controller to child. Hub game: <strong>Mountain Climb</strong> — attention and visual-motor warm-up.</div>
+        <div class="afternoon-dur">25 min</div>
+
+        <div class="afternoon-time">3:55</div>
+        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · Hub game: <strong>Forest Journey</strong>. Sequential cues from concierge: laser vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → Green LED abdomen + cervical (3) → vibration device face L+R (2). SaeboStim hands-free.</div>
+        <div class="afternoon-dur">25 min</div>
+
+        <div class="afternoon-time">4:20</div>
+        <div class="afternoon-what"><strong>Primitive reflex work</strong> · concierge demos each on camera, then watches child execute, live form correction · Starfish (Moro) · Cross-crawl (ATNR) · Snow angels (Spinal Galant) · single-leg balance · Superman · animal walks.</div>
+        <div class="afternoon-dur">30 min</div>
+
+        <div class="afternoon-time">4:50</div>
+        <div class="afternoon-what"><strong>Movement integration</strong> · cross-crawl with metronome at 60 bpm · eyes-closed single-leg balance · heel-to-toe walking · sport-pattern throws and catches with mom. Concierge cues timing.</div>
+        <div class="afternoon-dur">20 min</div>
+
+        <div class="afternoon-time">5:10</div>
+        <div class="afternoon-what"><strong>Hub round 3 + cool-down</strong> · Hub game: <strong>Fruit Catcher</strong>. Oils round 3. Concierge debriefs with mom, logs session, waves goodbye.</div>
+        <div class="afternoon-dur">20 min</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">6:00 pm · dinner touch-up · solo</div>
+        <div class="day-card-dur">2 min</div>
+      </div>
+      <div class="day-card-content">Oils round 4 · vibration vagus L+R ear 30 sec each.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 pm · bedtime wind-down · solo</div>
+        <div class="day-card-dur">12 min active</div>
+      </div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off · LED panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
+    </div>
+
+    <div class="callout-strip">
+      <div class="callout-cell"><div class="num">~140 min</div><div class="label">Mom active time</div></div>
+      <div class="callout-cell"><div class="num">120 min</div><div class="label">Concierge presence</div></div>
+      <div class="callout-cell"><div class="num">3</div><div class="label">Hub game rounds</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-a)">§ The 8 weeks</div>
+    <h2>Day one to graduation</h2>
+    <p>Phases are readiness-based, not week-locked. The arc below is the modal Foundational MID family — Sensory-Motor and lighter cases tend to step down faster.</p>
+
+    <div class="phase-grid">
+      <div class="phase-cell">
+        <div class="phase-num">WEEK 1</div>
+        <div class="phase-title">Onboarding</div>
+        <div class="phase-detail">Kit lands Day 1. Concierge runs extended sessions (~90 min/day) for the first 3 days teaching every device. Baseline Mendi logged. MD reviews labs and confirms classification.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 2-3</div>
+        <div class="phase-title">Protocol lock-in</div>
+        <div class="phase-detail">Concierge settles to the standard 2-hr afternoon block. Mom knows the kit. Weekly OT/PT call. Reflex work begins to feel boring and repetitive — that's the point.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 4-5</div>
+        <div class="phase-title">First wins</div>
+        <div class="phase-detail">Most Foundational kids show first reflex resolution. Mendi delta usually visible. Concierge pulls in advanced Hub games and tightens reflex progressions.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 6-7</div>
+        <div class="phase-title">Depth</div>
+        <div class="phase-detail">OT/PT and MD review labs returning insights. Parting recommendations — what to keep doing for gut-brain axis post-program. Concierge may drop presence to first 30 min.</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">Week 8 · Graduation</div>
+        <div class="day-card-dur">last week</div>
+      </div>
+      <div class="day-card-content"><strong>Final Mendi scan.</strong> Wk-1 → Wk-8 delta presented to family with explanation of what changed. <strong>Exit documentation</strong> — what worked, what to maintain, what to revisit. Continuing Care offered separately. Mom is running this in 30 minutes on autopilot. Family decides whether to schedule a follow-up intensive.</div>
+    </div>
+
+    <h2 style="margin-top: 32px;">Calendar view</h2>
+    <p>Every touchpoint across all 8 weeks at a glance. Concierge is the daily on-screen presence; OT/PT and MD are scheduled clinical touchpoints. Days flex with each family's schedule — the calendar below is illustrative.</p>
+
+    <div class="calendar-wrap">
+      <div class="calendar-legend">
+        <div class="calendar-legend-item"><span class="calendar-legend-pill concierge"></span> Concierge</div>
+        <div class="calendar-legend-item"><span class="calendar-legend-pill ot"></span> OT/PT</div>
+        <div class="calendar-legend-item"><span class="calendar-legend-pill md"></span> MD live</div>
+      </div>
+      <div class="cal-wrap-scroll">
+        <div class="calendar">
+          <div class="cal-corner"></div>
+          <div class="cal-col-header">Mon</div>
+          <div class="cal-col-header">Tue</div>
+          <div class="cal-col-header">Wed</div>
+          <div class="cal-col-header">Thu</div>
+          <div class="cal-col-header">Fri</div>
+          <div class="cal-col-header we">Sat</div>
+          <div class="cal-col-header we">Sun</div>
+
+          <!-- Week 1 -->
+          <div class="cal-row-header"><span class="wk-num">1</span><span class="wk-lbl">Onboard</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 2 -->
+          <div class="cal-row-header"><span class="wk-num">2</span><span class="wk-lbl">Lock-in</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 3 -->
+          <div class="cal-row-header"><span class="wk-num">3</span><span class="wk-lbl">Lock-in</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 4 -->
+          <div class="cal-row-header"><span class="wk-num">4</span><span class="wk-lbl">Labs back</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div><div class="cal-pill md">MD · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 5 -->
+          <div class="cal-row-header"><span class="wk-num">5</span><span class="wk-lbl">Step down</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 6 -->
+          <div class="cal-row-header"><span class="wk-num">6</span><span class="wk-lbl">Depth</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 7 -->
+          <div class="cal-row-header"><span class="wk-num">7</span><span class="wk-lbl">Taper</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 8 -->
+          <div class="cal-row-header"><span class="wk-num">8</span><span class="wk-lbl">Graduate</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div><div class="cal-pill md">MD · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+        </div>
+      </div>
+      <div class="cal-note-band"><strong>Plan A totals.</strong> 34 concierge sessions × 2 hrs = 68 hrs · 8 OT/PT sessions × 30 min on Fridays = 4 hrs · 2 MD live consults × 30 min (Wk 4 Fri labs review + Wk 8 Fri final review) = 1 hr. Days shown are illustrative; concierge schedule actually negotiates with each family's afternoon availability.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-a)">§ Who this is for</div>
+    <h2>The premium-care pathway</h2>
+
+    <div class="who-grid">
+      <div class="who-cell who-yes">
+        <h3>Yes — Plan A Full</h3>
+        <ul>
+          <li>Foundational or Sensory-Motor profile</li>
+          <li>Child can sustain a 2-hr daily afternoon block</li>
+          <li>Family wants daily concierge presence and live MD/OT/PT</li>
+          <li>One parent available afternoons M-F for 8 weeks</li>
+          <li>Budget capacity for premium tier</li>
+        </ul>
+      </div>
+      <div class="who-cell who-no">
+        <h3>Consider Plan B or Pre-Intensive instead</h3>
+        <ul>
+          <li>Budget-sensitive — consider Plan B Lite</li>
+          <li>Capable parent with strong learning curve — Plan B</li>
+          <li>Child can't yet sustain 2-hr blocks — Pre-Intensive</li>
+          <li>Complex underlying drivers — Pre-Intensive (labs-led)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 </section>
 
-<section class="section" id="program">
-  <div class="section-tag">§4 · The 8 Weeks</div>
-  <h1>Day one to <span class="accent">graduation.</span></h1>
-  <p class="lead">Phases are readiness-based, not week-locked. The arc below is the modal Foundational MID family — Sensory-Motor and lighter cases tend to step down faster.</p>
+<!-- ========================================================== -->
+<!-- TAB 4 · PLAN B LITE                                         -->
+<!-- ========================================================== -->
+<section class="tab-panel" id="tab-plan-b">
 
-  <div class="phase-grid">
-    <div class="phase-cell">
-      <div class="phase-num">WEEK 1</div>
-      <div class="phase-title">Onboarding</div>
-      <div class="phase-detail">Kit lands Day 1. Concierge runs extended sessions (~90 min/day) for the first 3 days teaching every device. Baseline Mendi logged. Kyle confirms classification.</div>
-    </div>
-    <div class="phase-cell">
-      <div class="phase-num">WEEKS 2-3</div>
-      <div class="phase-title">Protocol lock-in</div>
-      <div class="phase-detail">Concierge settles to the standard 2-hr afternoon block. Mom knows the kit. Weekly OT/PT call. Reflex work begins to feel boring and repetitive — that's the point.</div>
-    </div>
-    <div class="phase-cell">
-      <div class="phase-num">WEEKS 4-5</div>
-      <div class="phase-title">First wins</div>
-      <div class="phase-detail">Most Foundational kids show first reflex resolution. Mendi delta usually visible. Concierge pulls in advanced Hub games (Sea Adventure) and tightens reflex progressions.</div>
-    </div>
-    <div class="phase-cell">
-      <div class="phase-num">WEEKS 6-7</div>
-      <div class="phase-title">Depth</div>
-      <div class="phase-detail">Labs return. OT/PT and Kyle review as parting recommendations — what to keep doing for gut-brain axis post-program. Concierge may drop presence to first 30 min.</div>
+  <div class="cover">
+    <div class="cover-mark" style="color: var(--plan-b)">Plan B · The chassis-plus-upgrade pathway</div>
+    <h1 class="cover-title">Plan B · <em>Lite Intensive</em></h1>
+    <p class="cover-sub">Same 8-week home neurological intensive as Plan A, with a lighter concierge presence after the first 2 weeks, a 9-item kit, the universal stool panel only, and async MD oversight. Designed as a chassis with named upgrade lanes — families add OAT, Gut Feeling, or LED panel if the program reveals a need.</p>
+  </div>
+
+  <div class="plan-hero plan-b">
+    <div class="plan-hero-name">NeuroHome Lite Intensive</div>
+    <div class="plan-hero-philosophy">"Start with the chassis. Add what you need as the program reveals it."</div>
+    <div class="plan-hero-row">
+      <div>
+        <div class="plan-hero-stat-lbl">Sticker</div>
+        <div class="plan-hero-price">$8,000</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Margin · pilot</div>
+        <div class="plan-hero-stat-val" data-pilot="68.2%" data-production="66.3%">68.2%</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Duration</div>
+        <div class="plan-hero-stat-val">8 weeks</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Concierge total</div>
+        <div class="plan-hero-stat-val">40 hrs</div>
+      </div>
     </div>
   </div>
 
-  <div class="day-card">
-    <div class="day-card-header">
-      <div class="day-card-label">Week 8 · Graduation</div>
-      <div class="day-card-dur">last week</div>
-    </div>
-    <div class="day-card-content"><strong>Final Mendi scan.</strong> Wk-1 → Wk-8 delta presented to family with explanation of what changed. <strong>Exit documentation</strong> — what worked, what to maintain, what to revisit. Continuing Care offered separately. Mom is running this in 30 minutes on autopilot. Family decides whether to schedule a follow-up intensive.</div>
+  <div class="plan-includes">
+    <div class="plan-includes-label">What's included</div>
+    <ul class="plan-includes-list">
+      <li><strong>9-item NeuroHome Kit</strong> · LED panel available as add-on</li>
+      <li><strong>3-month supplement supply</strong> · Intrakid · benaGene · AdrenaCalm</li>
+      <li><strong>Stool / Gut Zoomer panel</strong> · OAT available as add-on</li>
+      <li><strong>Concierge presence</strong> · 5×/wk Wks 1-2 · 2×/wk Wks 3-6 · 2×/wk (1-hr) Wks 7-8</li>
+      <li><strong>OT/PT</strong> · 2 hrs live · split across 8 weeks</li>
+      <li><strong>Async MD report</strong> · written labs interpretation, no live call</li>
+      <li><strong>NeuroSage Hub</strong> · 3 months included</li>
+      <li><strong>Mendi fNIRS</strong> · weekly scans · family keeps device</li>
+      <li><strong>Companion app</strong> · daily routine + Hub session</li>
+      <li><strong>Exit documentation</strong> · maintenance protocol post-Week 8</li>
+    </ul>
   </div>
+
+  <div class="info-box"><strong>Plan B vs Plan A — the first 2 weeks are identical.</strong> Daily 2-hr concierge presence M-F through Week 2. Same kit teaching, same protocol scaffolding. After Week 2, Plan B concierge density steps down faster — mom is running the protocol with check-ins, not daily on-screen guidance. The 8-item kit is the same minus the LED panel (a bedtime-only modality). Three supplements share the foundation; Gut Feeling is the peptide gut-axis upgrade.</div>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-b)">§ Add-on SKUs</div>
+    <h2>Upgrade lanes within the program</h2>
+    <p>Concierge and OT/PT recommend add-ons clinically when the program surfaces a need. Stool panel returns unclear findings? OAT add-on. Gut-axis regulation lagging? Gut Feeling supplement. Bedtime regulation work needed? LED panel. Family can also opt into the bundle upfront if their phone consult already suggests they'll want all three.</p>
+
+    <div class="addon-grid">
+      <div class="addon-card">
+        <div class="addon-name">OAT lab</div>
+        <div class="addon-purpose">Organic Acids Test — mold, mito markers, parasite indicators. Recommended when Stool panel shows ambiguous findings or kid isn't progressing.</div>
+        <div class="addon-price-row">
+          <div class="addon-price">$695</div>
+          <div class="addon-meta">+$400 COGS</div>
+        </div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-name">Gut Feeling</div>
+        <div class="addon-purpose">3-month peptide + gut-axis supplement. BPC-157 + KPV + Akkermansia. Recommended for slow gut regulation progress or interesting stool findings.</div>
+        <div class="addon-price-row">
+          <div class="addon-price">$420</div>
+          <div class="addon-meta">+$240 COGS</div>
+        </div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-name">LED Light Panel</div>
+        <div class="addon-purpose">4-40 Hz bedtime wind-down panel. Recommended for kids with sleep-onset difficulty or evening dysregulation.</div>
+        <div class="addon-price-row">
+          <div class="addon-price">$349</div>
+          <div class="addon-meta">+$199 COGS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-bundle">
+      <div class="addon-bundle-name"><strong>Bundle of all three</strong> — Plan B → Plan A spec equivalence</div>
+      <div>
+        <span class="addon-bundle-strike">$1,464</span>
+        <span class="addon-bundle-price">$1,295</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-b)">§ COGS &amp; margin</div>
+    <h2>The math behind $8,000</h2>
+    <p>Cost-to-deliver per family. The hardware delta from Plan A is the LED Light Panel ($199). The supplement delta is Gut Feeling ($240). The labs delta is OAT ($400). The labor delta is concierge hours (28 fewer), OT/PT hours (2 fewer), and MD (no live call).</p>
+
+    <table class="cogs-table">
+      <thead>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+      </thead>
+      <tbody>
+        <tr class="section-label"><td colspan="4">Hardware (kit · 9 items, no LED panel)</td></tr>
+        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
+        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
+        <tr><td>SaeboStim Pro 4-in-1</td><td class="muted">NMES + TENS + FES + SES</td><td class="num">$279</td><td class="num">$279</td></tr>
+        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
+        <tr><td>Mendi Headband</td><td class="muted">B2B partner · family keeps device</td><td class="num">$150</td><td class="num">$150</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,024</td><td class="num">$1,179</td></tr>
+
+        <tr class="section-label"><td colspan="4">Supplements · 3-month supply (no Gut Feeling)</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 3</td><td class="num">$135</td><td class="num">$135</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 1/day · 90-day supply</td><td class="num">$90</td><td class="num">$90</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 1 pump/day · 3-month supply</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$420</td><td class="num">$420</td></tr>
+
+        <tr class="section-label"><td colspan="4">Labs · Stool only (no OAT)</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$550</td><td class="num">$550</td></tr>
+
+        <tr class="section-label"><td colspan="4">Clinical labor · 8-week program</td></tr>
+        <tr><td>Concierge · telehealth</td><td class="muted">$10/hr · 40 hrs total</td><td class="num">$400</td><td class="num">$400</td></tr>
+        <tr><td>OT/PT</td><td class="muted">$60/hr · 2 hrs total</td><td class="num">$120</td><td class="num">$120</td></tr>
+        <tr><td>MD · async report</td><td class="muted">Written labs interpretation, no live call</td><td class="num">$30</td><td class="num">$30</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$550</td><td class="num">$550</td></tr>
+
+        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num" data-pilot="$2,544" data-production="$2,699">$2,544</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $8,000 sticker</td><td class="num" data-pilot="$5,456" data-production="$5,301">$5,456</td><td class="num">—</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num" data-pilot="68.2%" data-production="66.3%">68.2%</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout-strip">
+      <div class="callout-cell"><div class="num">$8,000</div><div class="label">Sticker</div></div>
+      <div class="callout-cell"><div class="num" data-pilot="$5,456" data-production="$5,301">$5,456</div><div class="label">Profit (pilot)</div></div>
+      <div class="callout-cell"><div class="num" data-pilot="68.2%" data-production="66.3%">68.2%</div><div class="label">Margin (pilot)</div></div>
+    </div>
+
+    <div class="info-box"><strong>Add-on revenue uplift.</strong> Realistic uptake assumptions: 30% take OAT, 20% take Gut Feeling, 15% take LED panel. Expected revenue uplift per Plan B family: ~$344. Expected margin uplift per Plan B family: ~$148. Tracked as a primary KPI — add-on attach rate is the lever that protects Plan B's contribution to portfolio margin if Plan B mix runs high.</div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-b)">§ A typical day</div>
+    <h2>Week 4, concierge density tapering</h2>
+    <p>Same protocol structure as Plan A. After Week 2, concierge is on-screen 2×/week instead of daily. On non-concierge days, mom runs the afternoon block solo with the app guiding her through each segment.</p>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
+        <div class="day-card-dur">3 min active · 10 passive</div>
+      </div>
+      <div class="day-card-content">Shen Men beads on both ears · oils L+R nostril + collar · Intrakid 1 oz · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on while child eats.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">12:30 pm · lunch touch-up · solo</div>
+        <div class="day-card-dur">3 min</div>
+      </div>
+      <div class="day-card-content">Oils round 2 · vibration device auricular vagus L+R ear 30 sec each.</div>
+    </div>
+
+    <div class="day-card featured">
+      <div class="day-card-header">
+        <div class="day-card-label">3:30 pm · afternoon treatment block · mom-led with app (concierge T+Th only)</div>
+        <div class="day-card-dur">120 min</div>
+      </div>
+      <div class="afternoon-grid">
+        <div class="afternoon-time">3:30</div>
+        <div class="afternoon-what"><strong>Setup + Hub round 1</strong> · app cues SaeboStim pad placement (Mom already knows the routine from Wk 1-2). Hub game: <strong>Mountain Climb</strong>.</div>
+        <div class="afternoon-dur">25 min</div>
+
+        <div class="afternoon-time">3:55</div>
+        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · App cues sequence: laser vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → Green LED abdomen + cervical (3) → vibration device face L+R (2). Hub game: <strong>Forest Journey</strong>.</div>
+        <div class="afternoon-dur">25 min</div>
+
+        <div class="afternoon-time">4:20</div>
+        <div class="afternoon-what"><strong>Primitive reflex work</strong> · Mom runs the reflex routine. App video cues each one · Starfish (Moro) · Cross-crawl (ATNR) · Snow angels (Spinal Galant) · single-leg balance · Superman · animal walks. <em>Concierge reviews video log after the session on non-presence days.</em></div>
+        <div class="afternoon-dur">30 min</div>
+
+        <div class="afternoon-time">4:50</div>
+        <div class="afternoon-what"><strong>Movement integration</strong> · cross-crawl with metronome at 60 bpm · eyes-closed single-leg balance · heel-to-toe walking · throws and catches with mom.</div>
+        <div class="afternoon-dur">20 min</div>
+
+        <div class="afternoon-time">5:10</div>
+        <div class="afternoon-what"><strong>Hub round 3 + cool-down</strong> · Hub game: <strong>Fruit Catcher</strong>. Oils round 3. Mom closes out the session.</div>
+        <div class="afternoon-dur">20 min</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">6:00 pm · dinner touch-up · solo</div>
+        <div class="day-card-dur">2 min</div>
+      </div>
+      <div class="day-card-content">Oils round 4 · vibration vagus L+R ear 30 sec each.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 pm · bedtime wind-down · solo (no LED panel)</div>
+        <div class="day-card-dur">8 min active</div>
+      </div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off. <em>Plan B does not include LED panel — bedtime regulation relies on music + glycinate + sensory routine.</em></div>
+    </div>
+
+    <div class="callout-strip">
+      <div class="callout-cell"><div class="num">~140 min</div><div class="label">Mom active time</div></div>
+      <div class="callout-cell"><div class="num">2×/wk</div><div class="label">Concierge presence (Wk 3-6)</div></div>
+      <div class="callout-cell"><div class="num">3</div><div class="label">Hub game rounds</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-b)">§ The 8 weeks</div>
+    <h2>Day one to graduation</h2>
+    <p>First 2 weeks identical to Plan A. After Week 2, concierge density steps down sharply and the family runs the protocol with the app + 2 weekly check-ins.</p>
+
+    <div class="phase-grid">
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 1-2</div>
+        <div class="phase-title">Onboarding · full presence</div>
+        <div class="phase-detail">Identical to Plan A. Daily 2-hr concierge presence. Mom learns the entire kit. Baseline Mendi. MD writes async labs report.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 3-6</div>
+        <div class="phase-title">Protocol lock-in · mom-led</div>
+        <div class="phase-detail">Concierge drops to 2×/wk, 2-hr blocks. Mom runs the daily afternoon block with app cues on non-concierge days. Stool panel returns Wk 4. Recommendations for add-ons (OAT, Gut Feeling, LED) surface here.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 7-8</div>
+        <div class="phase-title">Taper · 1-hr check-ins</div>
+        <div class="phase-detail">Concierge to 2×/wk 1-hr check-ins. Mom owns the daily block. OT/PT does end-of-program assessment. Mendi delta tracked.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEK 8</div>
+        <div class="phase-title">Graduation</div>
+        <div class="phase-detail">Final Mendi scan. Exit documentation. Add-on uptake reviewed for any remaining recommendations. Continuing care options discussed.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 32px;">Calendar view</h2>
+    <p>First 2 weeks mirror Plan A — daily concierge presence. After Week 2, density steps down to Tuesday + Thursday only, with the family running the daily block solo on non-concierge days. Days shown are illustrative.</p>
+
+    <div class="calendar-wrap">
+      <div class="calendar-legend">
+        <div class="calendar-legend-item"><span class="calendar-legend-pill concierge"></span> Concierge</div>
+        <div class="calendar-legend-item"><span class="calendar-legend-pill ot"></span> OT/PT</div>
+        <div class="calendar-legend-item" style="opacity: 0.7;"><span class="calendar-legend-pill md"></span> MD · async report only (no live)</div>
+      </div>
+      <div class="cal-wrap-scroll">
+        <div class="calendar">
+          <div class="cal-corner"></div>
+          <div class="cal-col-header">Mon</div>
+          <div class="cal-col-header">Tue</div>
+          <div class="cal-col-header">Wed</div>
+          <div class="cal-col-header">Thu</div>
+          <div class="cal-col-header">Fri</div>
+          <div class="cal-col-header we">Sat</div>
+          <div class="cal-col-header we">Sun</div>
+
+          <!-- Week 1 -->
+          <div class="cal-row-header"><span class="wk-num">1</span><span class="wk-lbl">Onboard</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 2 -->
+          <div class="cal-row-header"><span class="wk-num">2</span><span class="wk-lbl">Onboard</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 3 -->
+          <div class="cal-row-header"><span class="wk-num">3</span><span class="wk-lbl">Mom-led</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 4 -->
+          <div class="cal-row-header"><span class="wk-num">4</span><span class="wk-lbl">Mom-led</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 5 -->
+          <div class="cal-row-header"><span class="wk-num">5</span><span class="wk-lbl">Mom-led</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 6 -->
+          <div class="cal-row-header"><span class="wk-num">6</span><span class="wk-lbl">Mom-led</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 2h</div></div>
+          <div class="cal-cell"><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 7 -->
+          <div class="cal-row-header"><span class="wk-num">7</span><span class="wk-lbl">Taper</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 1h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 1h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 8 -->
+          <div class="cal-row-header"><span class="wk-num">8</span><span class="wk-lbl">Graduate</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 1h</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 1h</div></div>
+          <div class="cal-cell"><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+        </div>
+      </div>
+      <div class="cal-note-band"><strong>Plan B totals.</strong> 10 daily sessions Wks 1-2 + 8 sessions Wks 3-6 (Tu+Th 2-hr blocks) + 4 sessions Wks 7-8 (Tu+Th 1-hr check-ins) = 40 concierge hours · 4 OT/PT sessions × 30 min every other Friday starting Wk 2 (Wks 2, 4, 6, 8) = 2 hrs · MD delivers async labs report Wk 4 — no live consultation. Days shown are illustrative.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-b)">§ Who this is for</div>
+    <h2>The door-opener pathway</h2>
+
+    <div class="who-grid">
+      <div class="who-cell who-yes">
+        <h3>Yes — Plan B Lite</h3>
+        <ul>
+          <li>Foundational or Sensory-Motor profile</li>
+          <li>Child can sustain a 2-hr daily afternoon block</li>
+          <li>Capable parent willing to be the on-the-ground therapist with lighter coaching</li>
+          <li>Comfortable running the protocol with app + 2 weekly check-ins after Week 2</li>
+          <li>Budget-sensitive — wants the Home Intensive but at an accessible price</li>
+        </ul>
+      </div>
+      <div class="who-cell who-no">
+        <h3>Consider Plan A or Pre-Intensive instead</h3>
+        <ul>
+          <li>Wants daily concierge presence the full 8 weeks — Plan A</li>
+          <li>Wants live MD consultation — Plan A</li>
+          <li>Limited parent capability or capacity — Plan A</li>
+          <li>Child can't yet sustain 2-hr blocks — Pre-Intensive</li>
+          <li>Complex underlying drivers needing labs-led diagnosis — Pre-Intensive</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 </section>
 
-<section class="section" id="who">
-  <div class="section-tag">§5 · Who This Is For</div>
-  <h1>Two patterns. <span class="accent">No exceptions.</span></h1>
-  <p class="lead">The home intensive works for Foundational Developmental Delay (severity 2/10) and Sensory-Motor Disconnection (severity 3/10). Borderline cases default in. Strong signals of an underlying driver — immune, metabolic, structural, regulatory — route to treatment first.</p>
+<!-- ========================================================== -->
+<!-- TAB 5 · PRE-INTENSIVE                                       -->
+<!-- ========================================================== -->
+<section class="tab-panel" id="tab-pre-intensive">
 
-  <div class="who-grid">
-    <div class="who-cell who-yes">
-      <h3>Yes — home intensive</h3>
-      <ul>
-        <li>Foundational Developmental Delay pattern</li>
-        <li>Sensory-Motor Disconnection pattern</li>
-        <li>Family can commit to a consistent after-school 2-hr window, Mon-Fri, for 8 weeks</li>
-        <li>One parent willing to be the on-the-ground therapist</li>
-        <li>Reliable home internet for daily telehealth</li>
+  <div class="cover">
+    <div class="cover-mark" style="color: var(--plan-pre)">Pre-Intensive · The readiness pathway</div>
+    <h1 class="cover-title">Pre-Intensive · <em>Pathway</em></h1>
+    <p class="cover-sub">Pre-Intensive is the entry point for everyone who isn't immediately ready for the Home Intensive — including kids whose underlying drivers need to be identified and addressed first. Not a discount Home Intensive — a fundamentally different way to get there. Two parts: an 8-week entry phase that gets the family set up with kit, supplements, and labs while the child does foundational regulation work. Then monthly continuation at $500/mo until the child is clinically ready to graduate to Plan A or Plan B.</p>
+  </div>
+
+  <div class="plan-hero pre">
+    <div class="plan-hero-name">Pre-Intensive Entry Phase</div>
+    <div class="plan-hero-philosophy">"Get ready first. We coach you remotely while we figure out why your child isn't yet ready."</div>
+    <div class="plan-hero-row">
+      <div>
+        <div class="plan-hero-stat-lbl">Entry sticker</div>
+        <div class="plan-hero-price">$6,500</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Margin · pilot</div>
+        <div class="plan-hero-stat-val" data-pilot="58.2%" data-production="55.9%">58.2%</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Entry duration</div>
+        <div class="plan-hero-stat-val">8 weeks</div>
+      </div>
+      <div>
+        <div class="plan-hero-stat-lbl">Concierge total</div>
+        <div class="plan-hero-stat-val">10 hrs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan-includes">
+    <div class="plan-includes-label">Entry phase includes</div>
+    <ul class="plan-includes-list">
+      <li><strong>8-item NeuroHome Kit</strong> · no SaeboStim, no Mendi (added when graduating)</li>
+      <li><strong>3-month supplement supply</strong> · all 4 supplements · bridges into continuation</li>
+      <li><strong>Universal labs panel</strong> · Stool (Gut Zoomer) + OAT — diagnostic-led</li>
+      <li><strong>Light concierge check-ins</strong> · 2-3×/wk · 30 min · coaching style</li>
+      <li><strong>1-hr OT/PT</strong> · initial protocol design + end-of-entry readiness assessment</li>
+      <li><strong>30-min live MD</strong> · labs review and protocol direction</li>
+      <li><strong>NeuroSage Hub</strong> · 3 months · continues monthly through continuation</li>
+      <li><strong>Companion app</strong> · daily routine + Hub session</li>
+      <li><strong>End-of-entry assessment</strong> · graduate to Plan A/B, continue, or refer</li>
+    </ul>
+  </div>
+
+  <div class="info-box"><strong>What makes Pre-Intensive different.</strong> This isn't a cheaper Home Intensive. It's a fundamentally different way to get there. Plan A and Plan B are on-screen daily-presence products for kids who can already sustain 2-hr blocks. Pre-Intensive is a labs-led, remotely-coached pathway for kids who aren't yet there. Concierge tells mom what to do; mom does the work between calls. Goal isn't completion — it's readiness.</div>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ Entry phase COGS &amp; margin</div>
+    <h2>The math behind the $6,500 entry</h2>
+    <p>Cost-to-deliver for the 8-week entry phase. Hardware drops two items vs Plan A (no SaeboStim, no Mendi — these get added when family graduates). All 4 supplements at 3-month supply because the supply bridges into continuation. Full lab panel because diagnosing the underlying driver is the whole point.</p>
+
+    <table class="cogs-table">
+      <thead>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+      </thead>
+      <tbody>
+        <tr class="section-label"><td colspan="4">Hardware (kit · 8 items)</td></tr>
+        <tr><td>LED Light Panel</td><td class="muted">BlockBlueLight · 4-40 Hz</td><td class="num">$199</td><td class="num">$199</td></tr>
+        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
+        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
+        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
+        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$794</td><td class="num">$949</td></tr>
+
+        <tr class="section-label"><td colspan="4">Supplements · 3-month supply (all 4)</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 3</td><td class="num">$135</td><td class="num">$135</td></tr>
+        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia</td><td class="num">$240</td><td class="num">$240</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 1/day · 90-day supply</td><td class="num">$90</td><td class="num">$90</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 1 pump/day · 3-month supply</td><td class="num">$195</td><td class="num">$195</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$660</td><td class="num">$660</td></tr>
+
+        <tr class="section-label"><td colspan="4">Labs · universal panel</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
+        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td><td class="num">$400</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td><td class="num">$950</td></tr>
+
+        <tr class="section-label"><td colspan="4">Clinical labor · 8-week entry</td></tr>
+        <tr><td>Concierge · telehealth check-ins</td><td class="muted">$10/hr · 10 hrs · 2-3×/wk · 30 min</td><td class="num">$100</td><td class="num">$100</td></tr>
+        <tr><td>OT/PT</td><td class="muted">$60/hr · 1 hr · initial + end</td><td class="num">$60</td><td class="num">$60</td></tr>
+        <tr><td>MD · labs review</td><td class="muted">$300/hr · 30 min live</td><td class="num">$150</td><td class="num">$150</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$310</td><td class="num">$310</td></tr>
+
+        <tr class="total"><td colspan="2">Total entry COGS per family</td><td class="num" data-pilot="$2,714" data-production="$2,869">$2,714</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $6,500 sticker</td><td class="num" data-pilot="$3,786" data-production="$3,631">$3,786</td><td class="num">—</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin · entry</td><td class="num" data-pilot="58.2%" data-production="55.9%">58.2%</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box"><strong>Entry phase sub-floor.</strong> Entry runs ~7-9 points below the 65% portfolio floor. By design. The break-even relies on continuation phase at ~79% margin offsetting it. Blended Pre-Intensive margin clears 65% at ~7-8 months average continuation duration. Below 5 months average, the pathway runs structurally sub-floor and needs re-pricing or a different unit-economics design.</div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ Continuation phase</div>
+    <h2>Monthly continuation</h2>
+    <p>After the 8-week entry phase, family enters monthly continuation at $500/mo. Continues until the child is clinically cleared to graduate to Plan A or Plan B — typically 4 to 12 months depending on severity. The family keeps the kit they bought in entry; what they're paying for is human time, ongoing protocol coaching, and quarterly clinical re-assessment.</p>
+
+    <div class="cont-hero">
+      <div class="cont-hero-tag">Continuation · monthly subscription</div>
+      <div class="cont-hero-name">Pre-Intensive Continuation</div>
+      <div class="cont-hero-philosophy">"Keep working with your concierge for as long as it takes. We're not going to make you re-buy the equipment."</div>
+      <div class="cont-hero-row">
+        <div>
+          <div class="plan-hero-stat-lbl">Monthly</div>
+          <div class="cont-hero-price">$500<small>/mo</small></div>
+        </div>
+        <div>
+          <div class="plan-hero-stat-lbl">Margin</div>
+          <div class="plan-hero-stat-val">79.0%</div>
+        </div>
+        <div>
+          <div class="plan-hero-stat-lbl">Duration</div>
+          <div class="plan-hero-stat-val">Open-ended · until ready</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-includes">
+      <div class="plan-includes-label">Each month of continuation includes</div>
+      <ul class="plan-includes-list">
+        <li><strong>Concierge check-ins</strong> · 4 hrs/month · 30-min calls 2-3×/wk</li>
+        <li><strong>OT/PT re-assessment</strong> · 0.5 hr every 2 months · protocol adjustment</li>
+        <li><strong>MD re-assessment</strong> · 30 min quarterly · readiness check</li>
+        <li><strong>NeuroSage Hub access</strong> · continues</li>
+        <li><strong>Companion app</strong> · daily routine + Hub session</li>
+        <li><strong>Supplement refills</strong> · optional separate SKU · family can source independently</li>
       </ul>
     </div>
-    <div class="who-cell who-no">
-      <h3>Not yet — treatment first</h3>
-      <ul>
-        <li>Hyperimmune / PANS-PANDAS</li>
-        <li>Environmental Neuroinflammatory</li>
-        <li>Metabolic / Mitochondrial</li>
-        <li>Birth Trauma / Structural</li>
-        <li>Acquired Regression</li>
-        <li>Severe Neurodevelopmental Dysregulation</li>
-        <li>Foundational/Sensory-Motor kids not yet able to sustain a 2-hr block</li>
-      </ul>
+
+    <h3 style="margin-top: 24px;">Continuation COGS per month</h3>
+    <table class="cogs-table">
+      <thead>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Monthly</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Concierge</td><td class="muted">$10/hr · 4 hrs · 30-min calls 2-3×/wk</td><td class="num">$40</td></tr>
+        <tr><td>OT/PT</td><td class="muted">$60/hr · 0.5 hr every 2 mo · amortized</td><td class="num">$15</td></tr>
+        <tr><td>MD</td><td class="muted">$300/hr · 30 min quarterly · amortized</td><td class="num">$50</td></tr>
+        <tr class="total"><td colspan="2">Total COGS / month</td><td class="num">$105</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $500/mo</td><td class="num">$395</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin · continuation</td><td class="num">79.0%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ Graduation credit</div>
+    <h2>Earning the upgrade</h2>
+    <p>Families who graduate from Pre-Intensive into Plan A or Plan B apply an escalating credit to the destination sticker. The credit grows with continued investment — families who needed longer continuation get larger credits at graduation, partly recovering what they invested in getting there.</p>
+
+    <table class="credit-table">
+      <thead>
+        <tr><th>Pre-Intensive duration at graduation</th><th>Pre-Intensive spend</th><th style="text-align:right">Graduation credit</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Entry phase only (8 weeks)</td><td>$6,500</td><td class="num">$1,500</td></tr>
+        <tr><td>Entry + 4 months continuation</td><td>$8,500</td><td class="num">$2,000</td></tr>
+        <tr><td>Entry + 8 months continuation</td><td>$10,500</td><td class="num">$2,500</td></tr>
+        <tr class="cap"><td>Entry + 12+ months continuation</td><td>$12,500+</td><td class="num">$3,000 (cap)</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Credit validity.</strong> Valid as long as family is in active monthly continuation, or within 90 days of last continuation payment. Credit applies to sticker price of Plan A or Plan B. Cannot be combined with other discounts. Not transferable.</p>
+
+    <div class="good-box"><strong>Why escalating.</strong> Family who needed 12 months of regulation work to become ready isn't paying a penalty for severity — they're earning a larger credit toward graduation. The longer they invest, the more they get back at the upgrade. This protects the perception that Pre-Intensive isn't a "you pay extra for being harder" trap.</div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ A typical day · entry phase</div>
+    <h2>Week 3, dysregulated kid, mom-led with check-in support</h2>
+    <p>Pre-Intensive families are running much shorter daily protocols — 30-45 minutes total, broken into short sensory anchors. The dysregulated child can't tolerate the 2-hr block that defines Plan A and Plan B. The day is about sensory foundation work and getting the brain to feel safe.</p>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
+        <div class="day-card-dur">5 min active</div>
+      </div>
+      <div class="day-card-content">Shen Men beads on both ears · oils L nostril (rosemary) + R nostril (eucalyptus) · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · classical music low.</div>
     </div>
-  </div>
 
-  <div class="info-box"><strong>"Not yet" doesn't mean turned away.</strong> Families in the right column receive clinical care to address the underlying driver — immune, metabolic, structural, regulatory — and to build the regulation and sit-tolerance the home intensive demands. The intensive is the next phase once the child is in the green. The pathway is not yet fully defined and needs a clinical and pricing design pass.</div>
+    <div class="day-card featured">
+      <div class="day-card-header">
+        <div class="day-card-label">10:00 am · sensory foundation block · concierge check-in (Tue + Thu)</div>
+        <div class="day-card-dur">20 min</div>
+      </div>
+      <div class="afternoon-grid">
+        <div class="afternoon-time">10:00</div>
+        <div class="afternoon-what"><strong>Concierge greets + reviews log.</strong> What worked yesterday? What didn't? Adjust today's anchor sequence. Set the goal for the session.</div>
+        <div class="afternoon-dur">5 min</div>
 
-  <div class="warn-box"><strong>The afternoon-window question is the real filter.</strong> Two hours per day, five days a week, for eight weeks is a meaningful commitment. Families with packed school-activity schedules, two working parents with no caregiver overlap, or unstable home routines should be steered to treatment-first care and onboarded into the intensive later. The phone consult script needs to set this expectation before the family sees the price.</div>
+        <div class="afternoon-time">10:05</div>
+        <div class="afternoon-what"><strong>Laser anchor</strong> · concierge cues placement: vagus L+R behind ear (3 min) → cerebellum L+R (2 min). Child sits or lies still with eye lights on (passive). Music continues.</div>
+        <div class="afternoon-dur">5 min</div>
+
+        <div class="afternoon-time">10:10</div>
+        <div class="afternoon-what"><strong>Green LED to abdomen</strong> · 3 min while child watches Hub passive scene (Forest Journey passive mode). Vibration device gently to face L+R (low setting) interspersed.</div>
+        <div class="afternoon-dur">5 min</div>
+
+        <div class="afternoon-time">10:15</div>
+        <div class="afternoon-what"><strong>Wind-down + check-in close</strong> · oils round 2. Concierge confirms next call, gives mom the day's "homework" (which 1-2 micro-exercises to try as the kid tolerates).</div>
+        <div class="afternoon-dur">5 min</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">1:00 pm · midday touch-up · solo</div>
+        <div class="day-card-dur">3 min</div>
+      </div>
+      <div class="day-card-content">Oils round 3 · vibration device gently to face for 1-2 min as kid tolerates. Stop immediately if dysregulation rising.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">4:00 pm · play observation · solo</div>
+        <div class="day-card-dur">10 min</div>
+      </div>
+      <div class="day-card-content">Mom notes child's regulation state for the daily log (will share with concierge tomorrow). Hub passive mode if child engages. No active exercises today.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-label">7:30 pm · bedtime wind-down · solo</div>
+        <div class="day-card-dur">10 min</div>
+      </div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off · LED panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
+    </div>
+
+    <div class="callout-strip">
+      <div class="callout-cell"><div class="num">~30-45 min</div><div class="label">Mom active time</div></div>
+      <div class="callout-cell"><div class="num">2-3×/wk</div><div class="label">Concierge check-ins</div></div>
+      <div class="callout-cell"><div class="num">0</div><div class="label">Long-block sessions</div></div>
+    </div>
+
+    <div class="info-box"><strong>The protocol is the opposite shape of Plan A/B.</strong> Where the Home Intensive concentrates work into a single 2-hr afternoon block, Pre-Intensive spreads short sensory anchors through the day. Brain needs to feel safe before it can do focused work. Each anchor is short enough the dysregulated child can tolerate it. Once tolerance builds and the lab-informed protocol takes hold, anchors lengthen — eventually graduating to the Home Intensive's 2-hr block.</div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ The 8 weeks · entry phase</div>
+    <h2>Entry phase arc</h2>
+    <p>The entry phase has one job: figure out what the child needs, and start building regulation. Phase pacing is readiness-gated.</p>
+
+    <div class="phase-grid">
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 1-2</div>
+        <div class="phase-title">Onboarding + labs</div>
+        <div class="phase-detail">Kit lands Day 1. Concierge 3×/wk teaching sensory anchors. Labs ordered Wk 1, samples mailed back. OT/PT initial 30-min protocol design call after kit lands.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 3-6</div>
+        <div class="phase-title">Labs return + protocol</div>
+        <div class="phase-detail">Concierge 2×/wk. Labs return Wk 4. MD 30-min live labs review with family — direction set. Protocol adjusts to lab findings (mold? gut? mito?). Mom learns the regulation rhythm.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">WEEKS 7-8</div>
+        <div class="phase-title">Readiness assessment</div>
+        <div class="phase-detail">Concierge 3×/wk. OT/PT end-of-entry assessment (30 min). Three possible outcomes: ready to graduate to Plan A/B, continue monthly until ready, or (rare) refer out for acute medical care if the child has moved into crisis.</div>
+      </div>
+      <div class="phase-cell">
+        <div class="phase-num">END OF WK 8</div>
+        <div class="phase-title">Decision point</div>
+        <div class="phase-detail">Family hits one of three forks: graduate up with credit, enter continuation at $500/mo, or refer out. Clinical decision, not sales decision.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 32px;">Calendar view · entry phase</h2>
+    <p>Concierge check-ins are short (30 min) and frequent — the dysregulated cohort needs touchpoint rhythm more than session length. Front-load M/W/F while teaching the kit, drop to Tu/Th while labs cook, return to M/W/F for the readiness ramp. Days shown are illustrative.</p>
+
+    <div class="calendar-wrap">
+      <div class="calendar-legend">
+        <div class="calendar-legend-item"><span class="calendar-legend-pill concierge"></span> Concierge</div>
+        <div class="calendar-legend-item"><span class="calendar-legend-pill ot"></span> OT/PT</div>
+        <div class="calendar-legend-item"><span class="calendar-legend-pill md"></span> MD live</div>
+      </div>
+      <div class="cal-wrap-scroll">
+        <div class="calendar">
+          <div class="cal-corner"></div>
+          <div class="cal-col-header">Mon</div>
+          <div class="cal-col-header">Tue</div>
+          <div class="cal-col-header">Wed</div>
+          <div class="cal-col-header">Thu</div>
+          <div class="cal-col-header">Fri</div>
+          <div class="cal-col-header we">Sat</div>
+          <div class="cal-col-header we">Sun</div>
+
+          <!-- Week 1 -->
+          <div class="cal-row-header"><span class="wk-num">1</span><span class="wk-lbl">Kit teach</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 2 -->
+          <div class="cal-row-header"><span class="wk-num">2</span><span class="wk-lbl">Labs sent</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 3 -->
+          <div class="cal-row-header"><span class="wk-num">3</span><span class="wk-lbl">Labs cook</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 4 -->
+          <div class="cal-row-header"><span class="wk-num">4</span><span class="wk-lbl">Labs back</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 5 -->
+          <div class="cal-row-header"><span class="wk-num">5</span><span class="wk-lbl">MD review</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell"><div class="cal-pill md">MD · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 6 -->
+          <div class="cal-row-header"><span class="wk-num">6</span><span class="wk-lbl">Protocol</span></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 7 -->
+          <div class="cal-row-header"><span class="wk-num">7</span><span class="wk-lbl">Readiness</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+
+          <!-- Week 8 -->
+          <div class="cal-row-header"><span class="wk-num">8</span><span class="wk-lbl">Decide</span></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div></div>
+          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-pill concierge">C · 30m</div><div class="cal-pill ot">OT · 30m</div></div>
+          <div class="cal-cell weekend"></div>
+          <div class="cal-cell weekend"></div>
+        </div>
+      </div>
+      <div class="cal-note-band"><strong>Pre-Intensive Entry totals.</strong> 20 concierge check-ins × 30 min = 10 hrs · 2 OT/PT sessions × 30 min on Fridays (Wk 2 Fri initial protocol design after labs returned, Wk 8 Fri readiness assessment) = 1 hr · 1 MD live consult × 30 min (Wk 5 Fri, labs review) = 30 min. Continuation phase (after Wk 8) is open-ended monthly with 30-min concierge check-ins ~2-3×/wk and quarterly OT/PT and MD touchpoints — not shown on this calendar.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag" style="color: var(--plan-pre)">§ Who this is for</div>
+    <h2>The readiness pathway</h2>
+
+    <div class="who-grid">
+      <div class="who-cell who-yes">
+        <h3>Yes — Pre-Intensive</h3>
+        <ul>
+          <li>Any child not immediately ready for the Home Intensive</li>
+          <li>Dysregulated Foundational or Sensory-Motor profiles</li>
+          <li>Hyperimmune / PANS-PANDAS profiles</li>
+          <li>Metabolic / Mitochondrial profiles</li>
+          <li>Birth Trauma / Structural profiles</li>
+          <li>Acquired Regression profiles</li>
+          <li>Severe Neurodevelopmental Dysregulation</li>
+          <li>Family willing to commit to labs-led diagnostic phase plus monthly continuation until ready</li>
+        </ul>
+      </div>
+      <div class="who-cell who-no">
+        <h3>Not Pre-Intensive</h3>
+        <ul>
+          <li>Child can already sustain a 2-hr daily block consistently — direct entry to Plan A or Plan B</li>
+          <li>Active medical crisis requiring acute hospital-level care — phone consult declines and refers out</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box"><strong>The narrow out-of-scope cohort.</strong> With Pre-Intensive now serving all profiles that need diagnostic and regulation work before the Home Intensive, the truly out-of-scope cohort narrows to families in active medical crisis — kids who need acute care (hospital admission, IV treatments, surgical intervention) before any rehab pathway makes sense. Phone consult identifies these edge cases and declines, with referral language: "Your child needs acute medical care first. Reach back when stable and we'll start with Pre-Intensive."</div>
+  </section>
+
 </section>
+
 </main>
-</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-section">
+      <h4>About this document</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">Single source of truth for NeuroHome's three pathways — Plan A Full Intensive, Plan B Lite Intensive, and Pre-Intensive (Entry + Continuation). Merges prior Pricing Model and Kit Composition documents. Internal use; not customer-facing in this form (Tab 1 + Tab 2 customer rows can be lifted into a customer view).</p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">Document v2.0.3 · May 24, 2026 · Replaces Pricing Model v1.5.0 + Kit Composition v0.12</p>
+    </div>
+    <div class="footer-section">
+      <h4>Changelog</h4>
+      <div class="changelog-entry"><span class="changelog-version">v2.0.3</span><span class="changelog-date">May 24, 2026</span>Calendar schedule revisions across all three plans. <strong>Plan A:</strong> OT/PT moves to Fridays (30 min weekly, every OT/PT now paired with a concierge day); MD splits from 1×1hr to 2×30min — Wk 4 Fri labs review + Wk 8 Fri final review. <strong>Plan B:</strong> OT/PT moves to every other Friday starting Wk 2 (4 × 30 min total). <strong>Pre-Intensive:</strong> OT/PT and MD move to Fridays. Hour totals unchanged across all plans; positioning and clinical-anchor cadence improved.</div>
+      <div class="changelog-entry"><span class="changelog-version">v2.0.2</span><span class="changelog-date">May 24, 2026</span>Added illustrative 8-week calendar view to Plan A, Plan B, and Pre-Intensive Entry tabs. Each calendar shows all concierge / OT/PT / MD touchpoints across the 8-week arc with day-by-day granularity. Day-of-week assignments are illustrative — real families flex.</div>
+      <div class="changelog-entry"><span class="changelog-version">v2.0.1</span><span class="changelog-date">May 24, 2026</span>Pre-Intensive scope expanded to serve all profiles not immediately ready for Home Intensive — including Hyperimmune/PANS-PANDAS, Metabolic, Birth Trauma, Acquired Regression, Severe Dysregulation. Treatment-first care narrows to active-medical-crisis edge cases only. No changes to Pre-Intensive kit, labs, pricing, or protocol — positioning change only.</div>
+      <div class="changelog-entry"><span class="changelog-version">v2.0.0</span><span class="changelog-date">May 24, 2026</span>Merged Pricing Model and Kit Composition into single document. Three-plan architecture: Plan A Full ($12,500), Plan B Lite ($8,000) with add-on SKUs, Pre-Intensive ($6,500 entry + $500/mo continuation) with escalating graduation credit. Document-level pilot/post-patent toggle. URL hash routing per tab.</div>
+      <div class="changelog-entry"><span class="changelog-version">v1.5.0</span><span class="changelog-date">May 20, 2026</span>Pricing Model single-tier collapse to $12,500. Replaced 3-tier ladder with single sticker.</div>
+      <div class="changelog-entry"><span class="changelog-version">Kit v0.12</span><span class="changelog-date">May 16, 2026</span>Added AdrenaCalm as 4th supplement. Added Pre-Intensive kit variant (no SaeboStim, no Mendi). Fixed benaGene "3-month supply" framing across all supplements.</div>
+      <div class="changelog-entry"><span class="changelog-version">Pricing v1.4.4</span><span class="changelog-date">May 16, 2026</span>Added benaGene to supplement stack (+$90/family). Intramax → Intrakid swap. Foundation post-patent intentional 0.8pt sub-floor at 59.2%.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // ============ Pilot/post-patent state toggle ============
+  const setState = (state) => {
+    document.querySelectorAll('.state-toggle-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.state === state);
+    });
+    document.querySelectorAll('[data-pilot][data-production]').forEach(el => {
+      el.textContent = el.dataset[state];
+    });
+  };
+
+  // ============ Tab routing with URL hash ============
+  const setTab = (tabId) => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === 'tab-' + tabId);
+    });
+    if (window.location.hash !== '#' + tabId) {
+      history.replaceState(null, '', '#' + tabId);
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  // Initialize from URL hash if present
+  const validTabs = ['overview', 'compare', 'plan-a', 'plan-b', 'pre-intensive'];
+  const initialHash = window.location.hash.replace('#', '');
+  if (validTabs.includes(initialHash)) {
+    setTab(initialHash);
+  }
+
+  // ============ Click handlers ============
+  document.addEventListener('click', e => {
+    // State toggle
+    const stateBtn = e.target.closest('.state-toggle-btn');
+    if (stateBtn) {
+      setState(stateBtn.dataset.state);
+      return;
+    }
+    // Tab button
+    const tabBtn = e.target.closest('.tab-btn');
+    if (tabBtn) {
+      setTab(tabBtn.dataset.tab);
+      return;
+    }
+    // Tab link (from card CTAs)
+    const tabLink = e.target.closest('[data-tab-link]');
+    if (tabLink) {
+      e.preventDefault();
+      setTab(tabLink.dataset.tabLink);
+    }
+  });
+
+  // Listen for hash changes (browser back/forward)
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (validTabs.includes(hash)) setTab(hash);
+  });
+})();
+</script>
+
 </body>
 </html>
