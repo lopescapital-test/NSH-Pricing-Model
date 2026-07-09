@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NeuroHome · Plans &amp; Kits · v2.2.0</title>
+<title>NeuroHome · Plans &amp; Kits · v2.3.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -55,11 +55,6 @@ body { background: var(--bg); color: var(--text-primary); font-family: 'DM Sans'
 .topnav-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.02em; }
 .topnav-right { display: flex; align-items: center; gap: 16px; }
 
-.state-toggle-wrap { display: inline-flex; align-items: center; gap: 10px; }
-.state-toggle-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-.state-toggle { display: inline-flex; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
-.state-toggle-btn { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; background: transparent; border: none; cursor: pointer; color: var(--text-muted); border-radius: 5px; transition: all 0.2s ease; }
-.state-toggle-btn.active { background: var(--bg); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
 /* ============ TABS ============ */
 .tab-nav { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 32px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 60px; z-index: 90; overflow-x: auto; }
@@ -404,17 +399,9 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
 <nav class="topnav">
   <div>
     <div class="topnav-brand">Neuro<span>Home</span></div>
-    <div class="topnav-meta">Plans &amp; Kits · Internal · v2.2.0 · 8-week intensive · American Labor ($25/hr concierge)</div>
+    <div class="topnav-meta">Plans &amp; Kits · Internal · v2.3.0 · 8-week intensive · American Labor ($25/hr concierge) · costs per Inventory master</div>
   </div>
-  <div class="topnav-right">
-    <div class="state-toggle-wrap">
-      <span class="state-toggle-label">Margin lens</span>
-      <div class="state-toggle" id="state-toggle">
-        <button type="button" class="state-toggle-btn active" data-state="pilot">Pilot</button>
-        <button type="button" class="state-toggle-btn" data-state="production">Post-patent</button>
-      </div>
-    </div>
-  </div>
+  <div class="topnav-right"></div>
 </nav>
 
 <nav class="tab-nav" id="tab-nav">
@@ -472,10 +459,10 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="plan-card-philosophy">"We're with you every afternoon for 8 weeks, walking you through it."</div>
       <div class="plan-card-price">$11,500</div>
       <div class="plan-card-duration">8-week intensive · one-time</div>
-      <div class="plan-card-quick">Full 10-item kit · all 4 supplements · Stool + OAT labs · daily 2-hr concierge · live MD &amp; OT/PT</div>
+      <div class="plan-card-quick">Full 9-item kit · all 4 supplements · Stool + OAT labs · daily 2-hr concierge · live MD &amp; OT/PT</div>
       <div class="plan-card-headline-row">
         <div class="plan-card-headline-cell">
-          <div class="plan-card-headline-val" data-pilot="57.8%" data-production="56.5%">57.8%</div>
+          <div class="plan-card-headline-val">59.5%</div>
           <div class="plan-card-headline-lbl">Margin</div>
         </div>
         <div class="plan-card-headline-cell">
@@ -496,10 +483,10 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="plan-card-philosophy">"Start with the chassis. Add what you need as the program reveals it."</div>
       <div class="plan-card-price">$6,500</div>
       <div class="plan-card-duration">8-week intensive · one-time</div>
-      <div class="plan-card-quick">9-item kit · 3 supplements · Stool only · concierge tapers · async MD · upgrade SKUs available</div>
+      <div class="plan-card-quick">8-item kit · 3 supplements · Stool only · concierge tapers · async MD · upgrade SKUs available</div>
       <div class="plan-card-headline-row">
         <div class="plan-card-headline-cell">
-          <div class="plan-card-headline-val" data-pilot="53.8%" data-production="51.4%">53.8%</div>
+          <div class="plan-card-headline-val">56.8%</div>
           <div class="plan-card-headline-lbl">Margin</div>
         </div>
         <div class="plan-card-headline-cell">
@@ -509,7 +496,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       </div>
       <div class="plan-card-for">
         <strong>Who it's for</strong>
-        Capable parent, ready child. The door-opener. Families who want the Home Intensive but at a more accessible price point. Add OAT, Gut Feeling, or LED panel as the program surfaces a need.
+        Capable parent, ready child. The door-opener. Families who want the Home Intensive but at a more accessible price point. Add OAT, Gut Feeling, or Red Light Panel as the program surfaces a need.
       </div>
       <a class="plan-card-cta" data-tab-link="plan-b">View full plan →</a>
     </div>
@@ -523,7 +510,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="plan-card-quick">8-item kit · all 4 supplements · full labs · light concierge check-ins · graduation credit toward A or B</div>
       <div class="plan-card-headline-row">
         <div class="plan-card-headline-cell">
-          <div class="plan-card-headline-val" data-pilot="51.9%" data-production="49.1%">51.9%</div>
+          <div class="plan-card-headline-val">52.3%</div>
           <div class="plan-card-headline-lbl">Entry margin</div>
         </div>
         <div class="plan-card-headline-cell">
@@ -559,7 +546,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         8-wk intensive
       </div>
     </div>
-    <div class="grad-meta">Pre-Intensive grads apply $1,500 credit (escalating up to $3,000) toward A or B · Plan B → Plan A: add-on SKUs (OAT, Gut Feeling, LED panel) bring Plan B spec to Plan A spec</div>
+    <div class="grad-meta">Pre-Intensive grads apply $1,500 credit (escalating up to $3,000) toward A or B · Plan B → Plan A: add-on SKUs (OAT, Gut Feeling, Red Light Panel) bring Plan B spec to Plan A spec</div>
   </div>
 
   <div class="internal-band">
@@ -569,27 +556,27 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="internal-cell">
         <div class="internal-cell-tag">Plan A · Full</div>
         <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$11,500</span></div>
-        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$4,853" data-production="$5,008">$4,853</span></div>
-        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$6,647" data-production="$6,492">$6,647</span></div>
-        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="57.8%" data-production="56.5%">57.8%</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val">$4,656</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val">$6,844</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val">59.5%</span></div>
       </div>
       <div class="internal-cell">
         <div class="internal-cell-tag">Plan B · Lite</div>
         <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$6,500</span></div>
-        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$3,004" data-production="$3,159">$3,004</span></div>
-        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$3,496" data-production="$3,341">$3,496</span></div>
-        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="53.8%" data-production="51.4%">53.8%</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val">$2,806</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val">$3,694</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val">56.8%</span></div>
       </div>
       <div class="internal-cell">
         <div class="internal-cell-tag">Pre-Intensive · Entry</div>
         <div class="internal-cell-row"><span class="label">Sticker</span><span class="val">$5,500</span></div>
-        <div class="internal-cell-row"><span class="label">COGS</span><span class="val" data-pilot="$2,644" data-production="$2,799">$2,644</span></div>
-        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val" data-pilot="$2,856" data-production="$2,701">$2,856</span></div>
-        <div class="internal-cell-row"><span class="label">Margin</span><span class="val" data-pilot="51.9%" data-production="49.1%">51.9%</span></div>
+        <div class="internal-cell-row"><span class="label">COGS</span><span class="val">$2,626</span></div>
+        <div class="internal-cell-row"><span class="label">Gross profit</span><span class="val">$2,874</span></div>
+        <div class="internal-cell-row"><span class="label">Margin</span><span class="val">52.3%</span></div>
       </div>
     </div>
     <div style="margin-top: 14px; padding: 14px 16px; background: rgba(103, 232, 249, 0.08); border: 1px solid rgba(103, 232, 249, 0.2); border-radius: 6px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.5;">
-      <strong style="color: var(--internal-accent);">American Labor model.</strong> All COGS calculations use $25/hr concierge labor (US-based hires). MD $300/hr and OT/PT $60/hr unchanged. Entry-level intensive margins (51-58%) sit below the legacy 65% portfolio floor — this is intentional. The intensive is positioned as the first transaction in a longer customer relationship; the broader lifecycle model (continuing care, maintenance subscription, re-intensives) is documented separately. Pre-Intensive Continuation at 67% margin is the only ongoing-revenue product in this document.
+      <strong style="color: var(--internal-accent);">American Labor model.</strong> All COGS calculations use $25/hr concierge labor (US-based hires). MD $300/hr and OT/PT $60/hr. Device and supplement costs are the NeuroHome Inventory master unit costs (single cost basis); NeuroSage Hub carries $0 COGS (proprietary, no marginal cost) and its $25/mo is a family subscription price, not a per-kit cost. Entry-level intensive margins (52-60%) sit below the legacy 65% portfolio floor — this is intentional. The intensive is positioned as the first transaction in a longer customer relationship; the broader lifecycle model (continuing care, maintenance subscription, re-intensives) is documented separately. Pre-Intensive Continuation at 67% margin is the only ongoing-revenue product in this document.
     </div>
   </div>
 
@@ -646,24 +633,23 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <tr class="section-divider"><td colspan="4">Kit · hardware</td></tr>
       <tr>
         <td class="row-label">Items in kit</td>
-        <td class="val">10-item full</td>
-        <td class="val">9-item (LED panel as add-on)</td>
-        <td class="val">8-item (no SaeboStim, no Mendi)</td>
+        <td class="val">9-item full</td>
+        <td class="val">8-item (Red Light Panel as add-on)</td>
+        <td class="val">8-item (no SaeboStim)</td>
       </tr>
-      <tr><td class="row-label">LED Light Panel</td><td class="val">✓ Included</td><td class="val">Add-on +$349</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Foundational Laser <small>(Red LED / NSH)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Green LED Laser</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">SaeboStim Pro 4-in-1</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">— Not included</td></tr>
-      <tr><td class="row-label">Blue Glasses + Eye Lights</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Essential Oils Kit</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Shen Men Beads</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Vibration Device</td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Red Light Panel <small>(RLPRO 100-9Wave)</small></td><td class="val">✓ Included</td><td class="val">Add-on +$349</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Red Light Handheld <small>(RL12-B.1)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Green Light Handheld <small>(RL12-B.2)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">SaeboStim <small>(4-in-1 Neuromuscular Estim)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">— Not included</td></tr>
+      <tr><td class="row-label">Blue Glasses <small>(Blue LED Eyelights)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Essential Oils <small>(ArtNaturals Top 6)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Acupressure Seeds <small>(Vaccaria)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Vibration Stimulation <small>(SensoryBuzz)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
       <tr><td class="row-label">NeuroSage Hub access</td><td class="val">✓ 3 months</td><td class="val">✓ 3 months</td><td class="val">✓ 3 months · continues monthly</td></tr>
-      <tr><td class="row-label">Mendi Headband <small>(family keeps)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">— Not included</td></tr>
 
       <tr class="section-divider"><td colspan="4">Supplements · 2-month supply</td></tr>
       <tr><td class="row-label">Intrakid <small>(pediatric multivitamin)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
-      <tr><td class="row-label">Gut Feeling <small>(peptides + gut support)</small></td><td class="val">✓ Included</td><td class="val">Add-on +$280</td><td class="val">✓ Included</td></tr>
+      <tr><td class="row-label">Gut Feeling <small>(peptides + gut support)</small></td><td class="val">✓ Included</td><td class="val">Add-on +$420</td><td class="val">✓ Included</td></tr>
       <tr><td class="row-label">benaGene Lozenges <small>(mito / NAD+)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
       <tr><td class="row-label">AdrenaCalm <small>(HPA-axis topical)</small></td><td class="val">✓ Included</td><td class="val">✓ Included</td><td class="val">✓ Included</td></tr>
 
@@ -682,17 +668,17 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <tr><td class="row-label">Live MD touchpoints</td><td class="val">Wk 4 Fri (labs review) + Wk 8 Fri (final review)</td><td class="val">None · async only</td><td class="val">Wk 5 Fri (labs review)</td></tr>
 
       <tr class="section-divider"><td colspan="4">Outcome tracking</td></tr>
-      <tr><td class="row-label">Mendi fNIRS scans</td><td class="val">Weekly · family keeps device</td><td class="val">Weekly · family keeps device</td><td class="val">— Not included (no Mendi)</td></tr>
+      <tr><td class="row-label">NeuroSage Hub engagement data</td><td class="val">Continuous</td><td class="val">Continuous</td><td class="val">Continuous</td></tr>
       <tr><td class="row-label">ATEC baseline / midpoint / final</td><td class="val">Wk 1 / 4 / 8</td><td class="val">Wk 1 / 4 / 8</td><td class="val">Wk 1 / 8 (entry) + every 3 mo in continuation</td></tr>
 
       <tr class="section-divider"><td colspan="4">Graduation / upgrade</td></tr>
       <tr><td class="row-label">Graduation credit</td><td class="val">— N/A (graduation destination)</td><td class="val">— N/A (graduation destination)</td><td class="val">$1,500 base + $500 per 4 months continuation · capped at $3,000 · valid in continuation or within 90 days of last payment</td></tr>
-      <tr><td class="row-label">Upgrade path during program</td><td class="val">— N/A</td><td class="val">OAT lab · Gut Feeling · LED panel · or bundle</td><td class="val">Continuation → Plan A or Plan B</td></tr>
+      <tr><td class="row-label">Upgrade path during program</td><td class="val">— N/A</td><td class="val">OAT lab · Gut Feeling · Red Light Panel · or bundle</td><td class="val">Continuation → Plan A or Plan B</td></tr>
 
       <!-- INTERNAL SECTION -->
-      <tr class="internal-divider"><td colspan="4">⊙ Internal · COGS breakdown · American Labor ($25/hr concierge)</td></tr>
+      <tr class="internal-divider"><td colspan="4">⊙ Internal · COGS breakdown · American Labor ($25/hr concierge) · Inventory master costs</td></tr>
 
-      <tr class="internal-row"><td class="row-label">Hardware</td><td class="val val-mono" data-pilot="$1,223" data-production="$1,378">$1,223</td><td class="val val-mono" data-pilot="$1,024" data-production="$1,179">$1,024</td><td class="val val-mono" data-pilot="$794" data-production="$949">$794</td></tr>
+      <tr class="internal-row"><td class="row-label">Hardware</td><td class="val val-mono">$1,026</td><td class="val val-mono">$826</td><td class="val val-mono">$776</td></tr>
       <tr class="internal-row"><td class="row-label">Supplements (2-mo)</td><td class="val val-mono">$440</td><td class="val val-mono">$280</td><td class="val val-mono">$440</td></tr>
       <tr class="internal-row"><td class="row-label">Labs</td><td class="val val-mono">$950</td><td class="val val-mono">$550</td><td class="val val-mono">$950</td></tr>
       <tr class="internal-row"><td class="row-label">Concierge</td><td class="val val-mono">$1,700<small class="muted">68 hrs × $25</small></td><td class="val val-mono">$1,000<small class="muted">40 hrs × $25</small></td><td class="val val-mono">$250<small class="muted">10 hrs × $25</small></td></tr>
@@ -700,19 +686,19 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <tr class="internal-row"><td class="row-label">MD</td><td class="val val-mono">$300<small class="muted">1 hr × $300</small></td><td class="val val-mono">$30<small class="muted">async</small></td><td class="val val-mono">$150<small class="muted">30 min × $300</small></td></tr>
       <tr class="internal-row" style="font-weight: 700;">
         <td class="row-label">Total COGS</td>
-        <td class="val val-mono" data-pilot="$4,853" data-production="$5,008">$4,853</td>
-        <td class="val val-mono" data-pilot="$3,004" data-production="$3,159">$3,004</td>
-        <td class="val val-mono" data-pilot="$2,644" data-production="$2,799">$2,644</td>
+        <td class="val val-mono">$4,656</td>
+        <td class="val val-mono">$2,806</td>
+        <td class="val val-mono">$2,626</td>
       </tr>
-      <tr class="internal-row"><td class="row-label">Gross profit</td><td class="val val-mono" data-pilot="$6,647" data-production="$6,492">$6,647</td><td class="val val-mono" data-pilot="$3,496" data-production="$3,341">$3,496</td><td class="val val-mono" data-pilot="$2,856" data-production="$2,701">$2,856</td></tr>
-      <tr class="internal-row highlight-row" style="font-weight: 700;"><td class="row-label">Gross margin</td><td class="val val-mono" data-pilot="57.8%" data-production="56.5%">57.8%</td><td class="val val-mono" data-pilot="53.8%" data-production="51.4%">53.8%</td><td class="val val-mono" data-pilot="51.9%" data-production="49.1%">51.9%</td></tr>
+      <tr class="internal-row"><td class="row-label">Gross profit</td><td class="val val-mono">$6,844</td><td class="val val-mono">$3,694</td><td class="val val-mono">$2,874</td></tr>
+      <tr class="internal-row highlight-row" style="font-weight: 700;"><td class="row-label">Gross margin</td><td class="val val-mono">59.5%</td><td class="val val-mono">56.8%</td><td class="val val-mono">52.3%</td></tr>
 
     </tbody>
   </table>
 
-  <div class="info-box"><strong>Entry margins sit between 51-58%.</strong> Below the legacy 65% portfolio floor — intentional. The intensive is positioned as the first transaction in a longer customer relationship; broader lifecycle products (continuing care, maintenance subscription, re-intensives) are documented separately.</div>
+  <div class="info-box"><strong>Entry margins sit between 52-60%.</strong> Below the legacy 65% portfolio floor — intentional. The intensive is positioned as the first transaction in a longer customer relationship; broader lifecycle products (continuing care, maintenance subscription, re-intensives) are documented separately.</div>
 
-  <div class="info-box"><strong>Plan B add-on economics.</strong> All three add-ons (OAT $695, Gut Feeling $420, LED panel $349) land at ~42-43% margin individually. Bundle of all three at $1,295 lands Plan B at Plan A spec equivalence. Realistic uptake model (30% OAT / 20% Gut Feeling / 15% LED): expected revenue uplift of ~$344 per Plan B family, expected margin uplift of ~$148.</div>
+  <div class="info-box"><strong>Plan B add-on economics.</strong> Three add-ons upgrade Plan B toward Plan A spec: OAT ($695 retail / +$400 COGS), Gut Feeling ($420 retail / +$160 COGS), Red Light Panel ($349 retail / +$200 COGS). Bundle of all three at $1,295 lands Plan B at Plan A spec equivalence. Realistic uptake model (30% OAT / 20% Gut Feeling / 15% panel): expected revenue uplift of ~$344 per Plan B family.</div>
 
 </section>
 
@@ -736,8 +722,8 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="plan-hero-price">$11,500</div>
       </div>
       <div>
-        <div class="plan-hero-stat-lbl">Margin · pilot</div>
-        <div class="plan-hero-stat-val" data-pilot="57.8%" data-production="56.5%">57.8%</div>
+        <div class="plan-hero-stat-lbl">Margin</div>
+        <div class="plan-hero-stat-val">59.5%</div>
       </div>
       <div>
         <div class="plan-hero-stat-lbl">Duration</div>
@@ -753,14 +739,14 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <div class="plan-includes">
     <div class="plan-includes-label">What's included</div>
     <ul class="plan-includes-list">
-      <li><strong>10-item NeuroHome Kit</strong> · LED panel, lasers, SaeboStim, Mendi, glasses, oils, beads, vibration</li>
+      <li><strong>9-item NeuroHome Kit</strong> · Red Light Panel, red &amp; green handhelds, SaeboStim, blue glasses, oils, seeds, vibration, Hub</li>
       <li><strong>2-month supplement supply</strong> · Intrakid · Gut Feeling · benaGene · AdrenaCalm</li>
       <li><strong>Universal labs panel</strong> · Stool (Gut Zoomer) + OAT</li>
       <li><strong>Daily concierge</strong> · M-F · 2-hr afternoon block · 68 hrs total</li>
       <li><strong>OT/PT</strong> · 4 hrs live across the 8 weeks (Fridays)</li>
       <li><strong>Live MD consultation</strong> · 30 min Wk 4 (labs review) + 30 min Wk 8 (final review)</li>
       <li><strong>NeuroSage Hub</strong> · 3 months included</li>
-      <li><strong>Mendi fNIRS</strong> · weekly scans · family keeps device</li>
+      <li><strong>Outcome tracking</strong> · ATEC baseline / midpoint / final + Hub engagement data</li>
       <li><strong>Companion app</strong> · daily routine + Hub session</li>
       <li><strong>Exit documentation</strong> · maintenance protocol post-Week 8</li>
     </ul>
@@ -769,54 +755,53 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <section class="section">
     <div class="section-tag" style="color: var(--plan-a)">§ COGS &amp; margin</div>
     <h2>The math behind $11,500</h2>
-    <p>Cost-to-deliver per family across the 8-week intensive. American Labor model — $25/hr concierge. Pilot state uses Red LED Handheld laser ($145); post-patent state uses LED Laser NSH custom build ($300).</p>
+    <p>Cost-to-deliver per family across the 8-week intensive. American Labor model — $25/hr concierge. Device and supplement unit costs are the NeuroHome Inventory master values.</p>
 
     <table class="cogs-table">
       <thead>
-        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Cost</th></tr>
       </thead>
       <tbody>
-        <tr class="section-label"><td colspan="4">Hardware (kit · 10 items)</td></tr>
-        <tr><td>LED Light Panel</td><td class="muted">BlockBlueLight · 4-40 Hz</td><td class="num">$199</td><td class="num">$199</td></tr>
-        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
-        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
-        <tr><td>SaeboStim Pro 4-in-1</td><td class="muted">NMES + TENS + FES + SES</td><td class="num">$279</td><td class="num">$279</td></tr>
-        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
-        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
-        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
-        <tr><td>Mendi Headband</td><td class="muted">B2B partner · family keeps device</td><td class="num">$150</td><td class="num">$150</td></tr>
-        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,223</td><td class="num">$1,378</td></tr>
+        <tr class="section-label"><td colspan="3">Hardware (kit · 9 items)</td></tr>
+        <tr><td>Red Light Panel</td><td class="muted">RLPRO 100-9Wave · Idea Light</td><td class="num">$200</td></tr>
+        <tr><td>Red Light Handheld</td><td class="muted">RL12-B.1 · Idea Light</td><td class="num">$120</td></tr>
+        <tr><td>Green Light Handheld</td><td class="muted">RL12-B.2 · Idea Light</td><td class="num">$200</td></tr>
+        <tr><td>SaeboStim</td><td class="muted">4-in-1 Neuromuscular Estim · Saebo</td><td class="num">$250</td></tr>
+        <tr><td>Blue Glasses</td><td class="muted">Blue LED Eyelights</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils</td><td class="muted">ArtNaturals Top 6</td><td class="num">$15</td></tr>
+        <tr><td>Acupressure Seeds</td><td class="muted">Vaccaria seeds · Tophld</td><td class="num">$6</td></tr>
+        <tr><td>Vibration Stimulation</td><td class="muted">SensoryBuzz oral motor kit · Joyreal</td><td class="num">$40</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · $0 COGS ($25/mo family sub)</td><td class="num">$0</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,026</td></tr>
 
-        <tr class="section-label"><td colspan="4">Supplements · 2-month supply</td></tr>
-        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 2</td><td class="num">$90</td><td class="num">$90</td></tr>
-        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia · 2 mo</td><td class="num">$160</td><td class="num">$160</td></tr>
-        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td><td class="num">$60</td></tr>
-        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td><td class="num">$130</td></tr>
-        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$440</td><td class="num">$440</td></tr>
+        <tr class="section-label"><td colspan="3">Supplements · 2-month supply</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · 2 mo</td><td class="num">$90</td></tr>
+        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia · 2 mo</td><td class="num">$160</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$440</td></tr>
 
-        <tr class="section-label"><td colspan="4">Labs · universal panel</td></tr>
-        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
-        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td><td class="num">$400</td></tr>
-        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td><td class="num">$950</td></tr>
+        <tr class="section-label"><td colspan="3">Labs · universal panel</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td></tr>
+        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td></tr>
 
-        <tr class="section-label"><td colspan="4">Clinical labor · 8-week intensive</td></tr>
-        <tr><td>Concierge · daily presence</td><td class="muted">$25/hr · 68 hrs total</td><td class="num">$1,700</td><td class="num">$1,700</td></tr>
-        <tr><td>OT/PT · Fridays</td><td class="muted">$60/hr · 4 hrs total</td><td class="num">$240</td><td class="num">$240</td></tr>
-        <tr><td>MD · labs + final review</td><td class="muted">$300/hr · 30 min Wk 4 + 30 min Wk 8</td><td class="num">$300</td><td class="num">$300</td></tr>
-        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$2,240</td><td class="num">$2,240</td></tr>
+        <tr class="section-label"><td colspan="3">Clinical labor · 8-week intensive</td></tr>
+        <tr><td>Concierge · daily presence</td><td class="muted">$25/hr · 68 hrs total</td><td class="num">$1,700</td></tr>
+        <tr><td>OT/PT · Fridays</td><td class="muted">$60/hr · 4 hrs total</td><td class="num">$240</td></tr>
+        <tr><td>MD · labs + final review</td><td class="muted">$300/hr · 30 min Wk 4 + 30 min Wk 8</td><td class="num">$300</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$2,240</td></tr>
 
-        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num" data-pilot="$4,853" data-production="$5,008">$4,853</td><td class="num">—</td></tr>
-        <tr class="total"><td colspan="2">Gross profit at $11,500 sticker</td><td class="num" data-pilot="$6,647" data-production="$6,492">$6,647</td><td class="num">—</td></tr>
-        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num" data-pilot="57.8%" data-production="56.5%">57.8%</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num">$4,656</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $11,500 sticker</td><td class="num">$6,844</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num">59.5%</td></tr>
       </tbody>
     </table>
 
     <div class="callout-strip">
       <div class="callout-cell"><div class="num">$11,500</div><div class="label">Sticker</div></div>
-      <div class="callout-cell"><div class="num" data-pilot="$6,647" data-production="$6,492">$6,647</div><div class="label">Profit (pilot)</div></div>
-      <div class="callout-cell"><div class="num" data-pilot="57.8%" data-production="56.5%">57.8%</div><div class="label">Margin (pilot)</div></div>
+      <div class="callout-cell"><div class="num">$6,844</div><div class="label">Profit</div></div>
+      <div class="callout-cell"><div class="num">59.5%</div><div class="label">Margin</div></div>
     </div>
   </section>
 
@@ -830,7 +815,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
         <div class="day-card-dur">3 min active · 10 passive</div>
       </div>
-      <div class="day-card-content">Shen Men beads on both ears · rosemary L nostril + collar, eucalyptus R nostril + collar · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on (outside L / inside R) while child eats.</div>
+      <div class="day-card-content">Acupressure seeds on both ears · rosemary L nostril + collar, eucalyptus R nostril + collar · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on (outside L / inside R) while child eats.</div>
     </div>
 
     <div class="day-card">
@@ -852,7 +837,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="afternoon-dur">25 min</div>
 
         <div class="afternoon-time">3:55</div>
-        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · Hub game: <strong>Forest Journey</strong>. Sequential cues from concierge: laser vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → Green LED abdomen + cervical (3) → vibration device face L+R (2). SaeboStim hands-free.</div>
+        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · Hub game: <strong>Forest Journey</strong>. Sequential cues from concierge: red handheld vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → green handheld abdomen + cervical (3) → vibration device face L+R (2). SaeboStim hands-free.</div>
         <div class="afternoon-dur">25 min</div>
 
         <div class="afternoon-time">4:20</div>
@@ -882,7 +867,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">7:30 pm · bedtime wind-down · solo</div>
         <div class="day-card-dur">12 min active</div>
       </div>
-      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off · LED panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · acupressure seeds off · Red Light Panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
     </div>
 
     <div class="callout-strip">
@@ -901,7 +886,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="phase-cell">
         <div class="phase-num">WEEK 1</div>
         <div class="phase-title">Onboarding</div>
-        <div class="phase-detail">Kit lands Day 1. Concierge runs extended sessions (~90 min/day) for the first 3 days teaching every device. Baseline Mendi logged. MD reviews labs and confirms classification.</div>
+        <div class="phase-detail">Kit lands Day 1. Concierge runs extended sessions (~90 min/day) for the first 3 days teaching every device. Baseline ATEC logged. MD reviews labs and confirms classification.</div>
       </div>
       <div class="phase-cell">
         <div class="phase-num">WEEKS 2-3</div>
@@ -911,7 +896,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="phase-cell">
         <div class="phase-num">WEEKS 4-5</div>
         <div class="phase-title">First wins</div>
-        <div class="phase-detail">Most Foundational kids show first reflex resolution. Mendi delta usually visible. Concierge pulls in advanced Hub games and tightens reflex progressions.</div>
+        <div class="phase-detail">Most Foundational kids show first reflex resolution. ATEC gains usually visible. Concierge pulls in advanced Hub games and tightens reflex progressions.</div>
       </div>
       <div class="phase-cell">
         <div class="phase-num">WEEKS 6-7</div>
@@ -925,7 +910,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">Week 8 · Graduation</div>
         <div class="day-card-dur">last week</div>
       </div>
-      <div class="day-card-content"><strong>Final Mendi scan.</strong> Wk-1 → Wk-8 delta presented to family with explanation of what changed. <strong>Exit documentation</strong> — what worked, what to maintain, what to revisit. Continuing Care offered separately. Mom is running this in 30 minutes on autopilot. Family decides whether to schedule a follow-up intensive.</div>
+      <div class="day-card-content"><strong>Final ATEC assessment.</strong> Wk-1 → Wk-8 delta presented to family with explanation of what changed, alongside Hub engagement data. <strong>Exit documentation</strong> — what worked, what to maintain, what to revisit. Continuing Care offered separately. Mom is running this in 30 minutes on autopilot. Family decides whether to schedule a follow-up intensive.</div>
     </div>
 
     <h2 style="margin-top: 32px;">Calendar view</h2>
@@ -1070,7 +1055,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <div class="cover">
     <div class="cover-mark" style="color: var(--plan-b)">Plan B · The chassis-plus-upgrade pathway</div>
     <h1 class="cover-title">Plan B · <em>Lite Intensive</em></h1>
-    <p class="cover-sub">Same 8-week home neurological intensive as Plan A, with a lighter concierge presence after the first 2 weeks, a 9-item kit, the universal stool panel only, and async MD oversight. Designed as a chassis with named upgrade lanes — families add OAT, Gut Feeling, or LED panel if the program reveals a need.</p>
+    <p class="cover-sub">Same 8-week home neurological intensive as Plan A, with a lighter concierge presence after the first 2 weeks, an 8-item kit, the universal stool panel only, and async MD oversight. Designed as a chassis with named upgrade lanes — families add OAT, Gut Feeling, or the Red Light Panel if the program reveals a need.</p>
   </div>
 
   <div class="plan-hero plan-b">
@@ -1082,8 +1067,8 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="plan-hero-price">$6,500</div>
       </div>
       <div>
-        <div class="plan-hero-stat-lbl">Margin · pilot</div>
-        <div class="plan-hero-stat-val" data-pilot="53.8%" data-production="51.4%">53.8%</div>
+        <div class="plan-hero-stat-lbl">Margin</div>
+        <div class="plan-hero-stat-val">56.8%</div>
       </div>
       <div>
         <div class="plan-hero-stat-lbl">Duration</div>
@@ -1099,25 +1084,25 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <div class="plan-includes">
     <div class="plan-includes-label">What's included</div>
     <ul class="plan-includes-list">
-      <li><strong>9-item NeuroHome Kit</strong> · LED panel available as add-on</li>
+      <li><strong>8-item NeuroHome Kit</strong> · Red Light Panel available as add-on</li>
       <li><strong>2-month supplement supply</strong> · Intrakid · benaGene · AdrenaCalm</li>
       <li><strong>Stool / Gut Zoomer panel</strong> · OAT available as add-on</li>
       <li><strong>Concierge presence</strong> · 5×/wk Wks 1-2 · 2×/wk Wks 3-6 · 2×/wk (1-hr) Wks 7-8 · 40 hrs total</li>
       <li><strong>OT/PT</strong> · 2 hrs live · every other Friday starting Wk 2</li>
       <li><strong>Async MD report</strong> · written labs interpretation, no live call</li>
       <li><strong>NeuroSage Hub</strong> · 3 months included</li>
-      <li><strong>Mendi fNIRS</strong> · weekly scans · family keeps device</li>
+      <li><strong>Outcome tracking</strong> · ATEC baseline / midpoint / final + Hub engagement data</li>
       <li><strong>Companion app</strong> · daily routine + Hub session</li>
       <li><strong>Exit documentation</strong> · maintenance protocol post-Week 8</li>
     </ul>
   </div>
 
-  <div class="info-box"><strong>Plan B vs Plan A — the first 2 weeks are identical.</strong> Daily 2-hr concierge presence M-F through Week 2. Same kit teaching, same protocol scaffolding. After Week 2, Plan B concierge density steps down faster — mom is running the protocol with check-ins, not daily on-screen guidance. The 9-item kit is the same minus the LED panel (a bedtime-only modality). Three supplements share the foundation; Gut Feeling is the peptide gut-axis upgrade.</div>
+  <div class="info-box"><strong>Plan B vs Plan A — the first 2 weeks are identical.</strong> Daily 2-hr concierge presence M-F through Week 2. Same kit teaching, same protocol scaffolding. After Week 2, Plan B concierge density steps down faster — mom is running the protocol with check-ins, not daily on-screen guidance. The 8-item kit is the same minus the Red Light Panel (a bedtime-only modality). Three supplements share the foundation; Gut Feeling is the peptide gut-axis upgrade.</div>
 
   <section class="section">
     <div class="section-tag" style="color: var(--plan-b)">§ Add-on SKUs</div>
     <h2>Upgrade lanes within the program</h2>
-    <p>Concierge and OT/PT recommend add-ons clinically when the program surfaces a need. Stool panel returns unclear findings? OAT add-on. Gut-axis regulation lagging? Gut Feeling supplement. Bedtime regulation work needed? LED panel. Family can also opt into the bundle upfront if their phone consult already suggests they'll want all three.</p>
+    <p>Concierge and OT/PT recommend add-ons clinically when the program surfaces a need. Stool panel returns unclear findings? OAT add-on. Gut-axis regulation lagging? Gut Feeling supplement. Bedtime regulation work needed? Red Light Panel. Family can also opt into the bundle upfront if their phone consult already suggests they'll want all three.</p>
 
     <div class="addon-grid">
       <div class="addon-card">
@@ -1130,18 +1115,18 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       </div>
       <div class="addon-card">
         <div class="addon-name">Gut Feeling</div>
-        <div class="addon-purpose">3-month peptide + gut-axis supplement. BPC-157 + KPV + Akkermansia. Recommended for slow gut regulation progress or interesting stool findings.</div>
+        <div class="addon-purpose">Peptide + gut-axis supplement. BPC-157 + KPV + Akkermansia. Recommended for slow gut regulation progress or interesting stool findings.</div>
         <div class="addon-price-row">
           <div class="addon-price">$420</div>
-          <div class="addon-meta">+$240 COGS</div>
+          <div class="addon-meta">+$160 COGS</div>
         </div>
       </div>
       <div class="addon-card">
-        <div class="addon-name">LED Light Panel</div>
-        <div class="addon-purpose">4-40 Hz bedtime wind-down panel. Recommended for kids with sleep-onset difficulty or evening dysregulation.</div>
+        <div class="addon-name">Red Light Panel</div>
+        <div class="addon-purpose">RLPRO 100-9Wave bedtime wind-down panel. Recommended for kids with sleep-onset difficulty or evening dysregulation.</div>
         <div class="addon-price-row">
           <div class="addon-price">$349</div>
-          <div class="addon-meta">+$199 COGS</div>
+          <div class="addon-meta">+$200 COGS</div>
         </div>
       </div>
     </div>
@@ -1158,54 +1143,53 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <section class="section">
     <div class="section-tag" style="color: var(--plan-b)">§ COGS &amp; margin</div>
     <h2>The math behind $6,500</h2>
-    <p>Cost-to-deliver per family across the 8-week intensive. American Labor model — $25/hr concierge. The hardware delta from Plan A is the LED Light Panel ($199). The supplement delta is Gut Feeling ($160 at 2 mo). The labs delta is OAT ($400). The labor delta is concierge hours (28 fewer), OT/PT hours (2 fewer), and MD (async only).</p>
+    <p>Cost-to-deliver per family across the 8-week intensive. American Labor model — $25/hr concierge. The hardware delta from Plan A is the Red Light Panel ($200). The supplement delta is Gut Feeling ($160). The labs delta is OAT ($400). The labor delta is concierge hours (28 fewer), OT/PT hours (2 fewer), and MD (async only).</p>
 
     <table class="cogs-table">
       <thead>
-        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Cost</th></tr>
       </thead>
       <tbody>
-        <tr class="section-label"><td colspan="4">Hardware (kit · 9 items, no LED panel)</td></tr>
-        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
-        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
-        <tr><td>SaeboStim Pro 4-in-1</td><td class="muted">NMES + TENS + FES + SES</td><td class="num">$279</td><td class="num">$279</td></tr>
-        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
-        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
-        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
-        <tr><td>Mendi Headband</td><td class="muted">B2B partner · family keeps device</td><td class="num">$150</td><td class="num">$150</td></tr>
-        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$1,024</td><td class="num">$1,179</td></tr>
+        <tr class="section-label"><td colspan="3">Hardware (kit · 8 items, no Red Light Panel)</td></tr>
+        <tr><td>Red Light Handheld</td><td class="muted">RL12-B.1 · Idea Light</td><td class="num">$120</td></tr>
+        <tr><td>Green Light Handheld</td><td class="muted">RL12-B.2 · Idea Light</td><td class="num">$200</td></tr>
+        <tr><td>SaeboStim</td><td class="muted">4-in-1 Neuromuscular Estim · Saebo</td><td class="num">$250</td></tr>
+        <tr><td>Blue Glasses</td><td class="muted">Blue LED Eyelights</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils</td><td class="muted">ArtNaturals Top 6</td><td class="num">$15</td></tr>
+        <tr><td>Acupressure Seeds</td><td class="muted">Vaccaria seeds · Tophld</td><td class="num">$6</td></tr>
+        <tr><td>Vibration Stimulation</td><td class="muted">SensoryBuzz oral motor kit · Joyreal</td><td class="num">$40</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · $0 COGS ($25/mo family sub)</td><td class="num">$0</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$826</td></tr>
 
-        <tr class="section-label"><td colspan="4">Supplements · 2-month supply (no Gut Feeling)</td></tr>
-        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 2</td><td class="num">$90</td><td class="num">$90</td></tr>
-        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td><td class="num">$60</td></tr>
-        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td><td class="num">$130</td></tr>
-        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$280</td><td class="num">$280</td></tr>
+        <tr class="section-label"><td colspan="3">Supplements · 2-month supply (no Gut Feeling)</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · 2 mo</td><td class="num">$90</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$280</td></tr>
 
-        <tr class="section-label"><td colspan="4">Labs · Stool only (no OAT)</td></tr>
-        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
-        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$550</td><td class="num">$550</td></tr>
+        <tr class="section-label"><td colspan="3">Labs · Stool only (no OAT)</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$550</td></tr>
 
-        <tr class="section-label"><td colspan="4">Clinical labor · 8-week intensive</td></tr>
-        <tr><td>Concierge · daily presence</td><td class="muted">$25/hr · 40 hrs total</td><td class="num">$1,000</td><td class="num">$1,000</td></tr>
-        <tr><td>OT/PT · every other Friday</td><td class="muted">$60/hr · 2 hrs total</td><td class="num">$120</td><td class="num">$120</td></tr>
-        <tr><td>MD · async report</td><td class="muted">Written labs interpretation, no live call</td><td class="num">$30</td><td class="num">$30</td></tr>
-        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$1,150</td><td class="num">$1,150</td></tr>
+        <tr class="section-label"><td colspan="3">Clinical labor · 8-week intensive</td></tr>
+        <tr><td>Concierge · daily presence</td><td class="muted">$25/hr · 40 hrs total</td><td class="num">$1,000</td></tr>
+        <tr><td>OT/PT · every other Friday</td><td class="muted">$60/hr · 2 hrs total</td><td class="num">$120</td></tr>
+        <tr><td>MD · async report</td><td class="muted">Written labs interpretation, no live call</td><td class="num">$30</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$1,150</td></tr>
 
-        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num" data-pilot="$3,004" data-production="$3,159">$3,004</td><td class="num">—</td></tr>
-        <tr class="total"><td colspan="2">Gross profit at $6,500 sticker</td><td class="num" data-pilot="$3,496" data-production="$3,341">$3,496</td><td class="num">—</td></tr>
-        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num" data-pilot="53.8%" data-production="51.4%">53.8%</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Total COGS per family</td><td class="num">$2,806</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $6,500 sticker</td><td class="num">$3,694</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin</td><td class="num">56.8%</td></tr>
       </tbody>
     </table>
 
     <div class="callout-strip">
       <div class="callout-cell"><div class="num">$6,500</div><div class="label">Sticker</div></div>
-      <div class="callout-cell"><div class="num" data-pilot="$3,496" data-production="$3,341">$3,496</div><div class="label">Profit (pilot)</div></div>
-      <div class="callout-cell"><div class="num" data-pilot="53.8%" data-production="51.4%">53.8%</div><div class="label">Margin (pilot)</div></div>
+      <div class="callout-cell"><div class="num">$3,694</div><div class="label">Profit</div></div>
+      <div class="callout-cell"><div class="num">56.8%</div><div class="label">Margin</div></div>
     </div>
 
-    <div class="info-box"><strong>Add-on revenue uplift.</strong> Realistic uptake assumptions: 30% take OAT, 20% take Gut Feeling, 15% take LED panel. Expected revenue uplift per Plan B family: ~$344. Expected margin uplift per Plan B family: ~$148. Tracked as a primary KPI — add-on attach rate is the lever that protects Plan B's contribution to portfolio margin if Plan B mix runs high.</div>
+    <div class="info-box"><strong>Add-on revenue uplift.</strong> Realistic uptake assumptions: 30% take OAT, 20% take Gut Feeling, 15% take LED panel. Expected revenue uplift per Plan B family: ~$344. Tracked as a primary KPI — add-on attach rate is the lever that protects Plan B's contribution to portfolio margin if Plan B mix runs high.</div>
   </section>
 
   <section class="section">
@@ -1218,7 +1202,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
         <div class="day-card-dur">3 min active · 10 passive</div>
       </div>
-      <div class="day-card-content">Shen Men beads on both ears · oils L+R nostril + collar · Intrakid 1 oz · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on while child eats.</div>
+      <div class="day-card-content">Acupressure seeds on both ears · oils L+R nostril + collar · Intrakid 1 oz · benaGene lozenge · AdrenaCalm 1 pump to stomach · theta music low. Blue eye lights on while child eats.</div>
     </div>
 
     <div class="day-card">
@@ -1240,7 +1224,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="afternoon-dur">25 min</div>
 
         <div class="afternoon-time">3:55</div>
-        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · App cues sequence: laser vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → Green LED abdomen + cervical (3) → vibration device face L+R (2). Hub game: <strong>Forest Journey</strong>.</div>
+        <div class="afternoon-what"><strong>Stim sequence + Hub round 2</strong> · App cues sequence: red handheld vagus L+R (6) → cerebellum L+R (4) → abdomen vagus (5) → green handheld abdomen + cervical (3) → vibration device face L+R (2). Hub game: <strong>Forest Journey</strong>.</div>
         <div class="afternoon-dur">25 min</div>
 
         <div class="afternoon-time">4:20</div>
@@ -1267,10 +1251,10 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
 
     <div class="day-card">
       <div class="day-card-header">
-        <div class="day-card-label">7:30 pm · bedtime wind-down · solo (no LED panel)</div>
+        <div class="day-card-label">7:30 pm · bedtime wind-down · solo (no Red Light Panel)</div>
         <div class="day-card-dur">8 min active</div>
       </div>
-      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off. <em>Plan B does not include LED panel — bedtime regulation relies on music + glycinate + sensory routine.</em></div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · acupressure seeds off. <em>Plan B does not include the Red Light Panel — bedtime regulation relies on music + glycinate + sensory routine.</em></div>
     </div>
 
     <div class="callout-strip">
@@ -1289,7 +1273,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="phase-cell">
         <div class="phase-num">WEEKS 1-2</div>
         <div class="phase-title">Onboarding · full presence</div>
-        <div class="phase-detail">Identical to Plan A. Daily 2-hr concierge presence. Mom learns the entire kit. Baseline Mendi. MD writes async labs report.</div>
+        <div class="phase-detail">Identical to Plan A. Daily 2-hr concierge presence. Mom learns the entire kit. Baseline ATEC. MD writes async labs report.</div>
       </div>
       <div class="phase-cell">
         <div class="phase-num">WEEKS 3-6</div>
@@ -1299,12 +1283,12 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
       <div class="phase-cell">
         <div class="phase-num">WEEKS 7-8</div>
         <div class="phase-title">Taper · 1-hr check-ins</div>
-        <div class="phase-detail">Concierge to 2×/wk 1-hr check-ins. Mom owns the daily block. OT/PT does end-of-program assessment. Mendi delta tracked.</div>
+        <div class="phase-detail">Concierge to 2×/wk 1-hr check-ins. Mom owns the daily block. OT/PT does end-of-program assessment. ATEC delta tracked.</div>
       </div>
       <div class="phase-cell">
         <div class="phase-num">WEEK 8</div>
         <div class="phase-title">Graduation</div>
-        <div class="phase-detail">Final Mendi scan. Exit documentation. Add-on uptake reviewed for any remaining recommendations. Continuing care options discussed.</div>
+        <div class="phase-detail">Final ATEC assessment. Exit documentation. Add-on uptake reviewed for any remaining recommendations. Continuing care options discussed.</div>
       </div>
     </div>
 
@@ -1463,8 +1447,8 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="plan-hero-price">$5,500</div>
       </div>
       <div>
-        <div class="plan-hero-stat-lbl">Margin · pilot</div>
-        <div class="plan-hero-stat-val" data-pilot="51.9%" data-production="49.1%">51.9%</div>
+        <div class="plan-hero-stat-lbl">Margin</div>
+        <div class="plan-hero-stat-val">52.3%</div>
       </div>
       <div>
         <div class="plan-hero-stat-lbl">Entry duration</div>
@@ -1480,7 +1464,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <div class="plan-includes">
     <div class="plan-includes-label">Entry phase includes</div>
     <ul class="plan-includes-list">
-      <li><strong>8-item NeuroHome Kit</strong> · no SaeboStim, no Mendi (added when graduating to A or B)</li>
+      <li><strong>8-item NeuroHome Kit</strong> · no SaeboStim (added when graduating to A or B)</li>
       <li><strong>2-month supplement supply</strong> · all 4 supplements · refill available via continuation</li>
       <li><strong>Universal labs panel</strong> · Stool (Gut Zoomer) + OAT — diagnostic-led</li>
       <li><strong>Light concierge check-ins</strong> · 2-3×/wk · 30 min · coaching style</li>
@@ -1497,45 +1481,45 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
   <section class="section">
     <div class="section-tag" style="color: var(--plan-pre)">§ Entry phase COGS &amp; margin</div>
     <h2>The math behind the $5,500 entry</h2>
-    <p>Cost-to-deliver for the 8-week entry phase. American Labor model — $25/hr concierge. Hardware drops two items vs Plan A (no SaeboStim, no Mendi — these get added when family graduates to A or B). All 4 supplements at 2-month supply with refill available via continuation. Full lab panel because diagnosing the underlying driver is the whole point.</p>
+    <p>Cost-to-deliver for the 8-week entry phase. American Labor model — $25/hr concierge. Hardware drops one item vs Plan A (no SaeboStim — added when family graduates to A or B). All 4 supplements at 2-month supply with refill available via continuation. Full lab panel because diagnosing the underlying driver is the whole point.</p>
 
     <table class="cogs-table">
       <thead>
-        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Pilot</th><th style="text-align:right">Post-patent</th></tr>
+        <tr><th>Item</th><th>Notes</th><th style="text-align:right">Cost</th></tr>
       </thead>
       <tbody>
-        <tr class="section-label"><td colspan="4">Hardware (kit · 8 items)</td></tr>
-        <tr><td>LED Light Panel</td><td class="muted">BlockBlueLight · 4-40 Hz</td><td class="num">$199</td><td class="num">$199</td></tr>
-        <tr><td>Foundational Laser</td><td class="muted">Red LED Handheld → LED Laser NSH</td><td class="num">$145</td><td class="num">$300</td></tr>
-        <tr><td>Green LED Laser</td><td class="muted">Handheld green wavelength</td><td class="num">$220</td><td class="num">$220</td></tr>
-        <tr><td>Blue Glasses + Eye Lights</td><td class="muted">Right-brain visual stim</td><td class="num">$195</td><td class="num">$195</td></tr>
-        <tr><td>Essential Oils Kit</td><td class="muted">Rosemary · peppermint · eucalyptus · frankincense</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Shen Men Beads</td><td class="muted">Auricular acupressure</td><td class="num">$10</td><td class="num">$10</td></tr>
-        <tr><td>Vibration Device</td><td class="muted">Generic handheld</td><td class="num">$15</td><td class="num">$15</td></tr>
-        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · no marginal cost</td><td class="num">$0</td><td class="num">$0</td></tr>
-        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$794</td><td class="num">$949</td></tr>
+        <tr class="section-label"><td colspan="3">Hardware (kit · 8 items)</td></tr>
+        <tr><td>Red Light Panel</td><td class="muted">RLPRO 100-9Wave · Idea Light</td><td class="num">$200</td></tr>
+        <tr><td>Red Light Handheld</td><td class="muted">RL12-B.1 · Idea Light</td><td class="num">$120</td></tr>
+        <tr><td>Green Light Handheld</td><td class="muted">RL12-B.2 · Idea Light</td><td class="num">$200</td></tr>
+        <tr><td>Blue Glasses</td><td class="muted">Blue LED Eyelights</td><td class="num">$195</td></tr>
+        <tr><td>Essential Oils</td><td class="muted">ArtNaturals Top 6</td><td class="num">$15</td></tr>
+        <tr><td>Acupressure Seeds</td><td class="muted">Vaccaria seeds · Tophld</td><td class="num">$6</td></tr>
+        <tr><td>Vibration Stimulation</td><td class="muted">SensoryBuzz oral motor kit · Joyreal</td><td class="num">$40</td></tr>
+        <tr><td>NeuroSage Hub access</td><td class="muted">Proprietary · $0 COGS ($25/mo family sub)</td><td class="num">$0</td></tr>
+        <tr class="subtotal"><td colspan="2">Hardware subtotal</td><td class="num">$776</td></tr>
 
-        <tr class="section-label"><td colspan="4">Supplements · 2-month supply (all 4)</td></tr>
-        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · $45/mo × 2</td><td class="num">$90</td><td class="num">$90</td></tr>
-        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia · 2 mo</td><td class="num">$160</td><td class="num">$160</td></tr>
-        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td><td class="num">$60</td></tr>
-        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td><td class="num">$130</td></tr>
-        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$440</td><td class="num">$440</td></tr>
+        <tr class="section-label"><td colspan="3">Supplements · 2-month supply (all 4)</td></tr>
+        <tr><td>Intrakid</td><td class="muted">Drucker Labs pediatric · 2 mo</td><td class="num">$90</td></tr>
+        <tr><td>Gut Feeling</td><td class="muted">Integrative Peptides · BPC-157 + KPV + Akkermansia · 2 mo</td><td class="num">$160</td></tr>
+        <tr><td>benaGene Lozenges</td><td class="muted">Oxaloacetate · 2-month supply</td><td class="num">$60</td></tr>
+        <tr><td>AdrenaCalm</td><td class="muted">Topical HPA-axis · 2-month supply</td><td class="num">$130</td></tr>
+        <tr class="subtotal"><td colspan="2">Supplements subtotal</td><td class="num">$440</td></tr>
 
-        <tr class="section-label"><td colspan="4">Labs · universal panel</td></tr>
-        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td><td class="num">$550</td></tr>
-        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td><td class="num">$400</td></tr>
-        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td><td class="num">$950</td></tr>
+        <tr class="section-label"><td colspan="3">Labs · universal panel</td></tr>
+        <tr><td>Stool / Gut Zoomer</td><td class="muted">All-in cost to clinic</td><td class="num">$550</td></tr>
+        <tr><td>OAT</td><td class="muted">Organic Acids Test · mold + mito markers</td><td class="num">$400</td></tr>
+        <tr class="subtotal"><td colspan="2">Labs subtotal</td><td class="num">$950</td></tr>
 
-        <tr class="section-label"><td colspan="4">Clinical labor · 8-week entry</td></tr>
-        <tr><td>Concierge · telehealth check-ins</td><td class="muted">$25/hr · 10 hrs · 2-3×/wk · 30 min</td><td class="num">$250</td><td class="num">$250</td></tr>
-        <tr><td>OT/PT</td><td class="muted">$60/hr · 1 hr · initial + end</td><td class="num">$60</td><td class="num">$60</td></tr>
-        <tr><td>MD · labs review</td><td class="muted">$300/hr · 30 min live</td><td class="num">$150</td><td class="num">$150</td></tr>
-        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$460</td><td class="num">$460</td></tr>
+        <tr class="section-label"><td colspan="3">Clinical labor · 8-week entry</td></tr>
+        <tr><td>Concierge · telehealth check-ins</td><td class="muted">$25/hr · 10 hrs · 2-3×/wk · 30 min</td><td class="num">$250</td></tr>
+        <tr><td>OT/PT</td><td class="muted">$60/hr · 1 hr · initial + end</td><td class="num">$60</td></tr>
+        <tr><td>MD · labs review</td><td class="muted">$300/hr · 30 min live</td><td class="num">$150</td></tr>
+        <tr class="subtotal"><td colspan="2">Labor subtotal</td><td class="num">$460</td></tr>
 
-        <tr class="total"><td colspan="2">Total entry COGS per family</td><td class="num" data-pilot="$2,644" data-production="$2,799">$2,644</td><td class="num">—</td></tr>
-        <tr class="total"><td colspan="2">Gross profit at $5,500 sticker</td><td class="num" data-pilot="$2,856" data-production="$2,701">$2,856</td><td class="num">—</td></tr>
-        <tr class="margin-row"><td colspan="2">Gross margin · entry</td><td class="num" data-pilot="51.9%" data-production="49.1%">51.9%</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="2">Total entry COGS per family</td><td class="num">$2,626</td></tr>
+        <tr class="total"><td colspan="2">Gross profit at $5,500 sticker</td><td class="num">$2,874</td></tr>
+        <tr class="margin-row"><td colspan="2">Gross margin · entry</td><td class="num">52.3%</td></tr>
       </tbody>
     </table>
 
@@ -1627,7 +1611,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">7:30 am · breakfast anchor · solo</div>
         <div class="day-card-dur">5 min active</div>
       </div>
-      <div class="day-card-content">Shen Men beads on both ears · oils L nostril (rosemary) + R nostril (eucalyptus) · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · classical music low.</div>
+      <div class="day-card-content">Acupressure seeds on both ears · oils L nostril (rosemary) + R nostril (eucalyptus) · Intrakid 1 oz + Gut Feeling · benaGene lozenge · AdrenaCalm 1 pump to stomach · classical music low.</div>
     </div>
 
     <div class="day-card featured">
@@ -1641,11 +1625,11 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="afternoon-dur">5 min</div>
 
         <div class="afternoon-time">10:05</div>
-        <div class="afternoon-what"><strong>Laser anchor</strong> · concierge cues placement: vagus L+R behind ear (3 min) → cerebellum L+R (2 min). Child sits or lies still with eye lights on (passive). Music continues.</div>
+        <div class="afternoon-what"><strong>Red handheld anchor</strong> · concierge cues placement: vagus L+R behind ear (3 min) → cerebellum L+R (2 min). Child sits or lies still with eye lights on (passive). Music continues.</div>
         <div class="afternoon-dur">5 min</div>
 
         <div class="afternoon-time">10:10</div>
-        <div class="afternoon-what"><strong>Green LED to abdomen</strong> · 3 min while child watches Hub passive scene (Forest Journey passive mode). Vibration device gently to face L+R (low setting) interspersed.</div>
+        <div class="afternoon-what"><strong>Green handheld to abdomen</strong> · 3 min while child watches Hub passive scene (Forest Journey passive mode). Vibration device gently to face L+R (low setting) interspersed.</div>
         <div class="afternoon-dur">5 min</div>
 
         <div class="afternoon-time">10:15</div>
@@ -1675,7 +1659,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
         <div class="day-card-label">7:30 pm · bedtime wind-down · solo</div>
         <div class="day-card-dur">10 min</div>
       </div>
-      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · Shen Men beads off · LED panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
+      <div class="day-card-content">Theta music on through bath · blue eye lights second round during story (passive). Lights-out: magnesium glycinate · acupressure seeds off · Red Light Panel at 4 Hz facing back of head, 10 min while child falls asleep.</div>
     </div>
 
     <div class="callout-strip">
@@ -1858,10 +1842,11 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
     <div class="footer-section">
       <h4>About this document</h4>
       <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">Single source of truth for NeuroHome's three intensive pathways — Plan A Full Intensive, Plan B Lite Intensive, and Pre-Intensive (Entry + Continuation). All three are 8-week home neurological intensive products. Maintenance subscription and Re-Intensive bundles are part of the broader business strategy but documented separately. Internal use; not customer-facing in this form (Tab 1 + Tab 2 customer rows can be lifted into a customer view).</p>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">Document v2.2.0 · May 26, 2026 · Replaces v2.1.0 · 8-week intensive · American Labor ($25/hr concierge)</p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">Document v2.3.0 · July 9, 2026 · Replaces v2.2.0 · 8-week intensive · American Labor ($25/hr concierge) · costs per Inventory master</p>
     </div>
     <div class="footer-section">
       <h4>Changelog</h4>
+      <div class="changelog-entry"><span class="changelog-version">v2.3.0</span><span class="changelog-date">July 9, 2026</span><strong>Reconciled to Inventory master (source of truth).</strong> All device and supplement costs set to the NeuroHome Inventory master unit values (Red Light Panel $200, Red Light Handheld $120, Green Light Handheld $200, SaeboStim $250, Blue Glasses $195, Essential Oils $15, Acupressure Seeds $6, Vibration Stimulation $40; Intrakid $90, Gut Feeling $160, benaGene $60, AdrenaCalm $130; Stool $550, OAT $400). Mendi headband removed from all kits — outcome tracking is now ATEC + NeuroSage Hub engagement data. Pilot/post-patent margin toggle removed; single inventory-cost basis (the master carries one cost per SKU). NeuroSage Hub carried at $0 COGS (proprietary; $25/mo is a family subscription, not a per-kit cost). Kit items renamed to inventory SKU names. Recomputed margins: <strong>Plan A 59.5%</strong> (COGS $4,656), <strong>Plan B 56.8%</strong> ($2,806), <strong>Pre-Intensive Entry 52.3%</strong> ($2,626). Add-on COGS deltas updated: Red Light Panel +$200, Gut Feeling +$160, OAT +$400. Kit counts: Plan A 9-item, Plan B 8-item, Pre 8-item.</div>
       <div class="changelog-entry"><span class="changelog-version">v2.2.0</span><span class="changelog-date">May 26, 2026</span><strong>Intensive-only scope.</strong> Reverted from v2.1.0 lifecycle/bundle model back to focused 8-week intensive structure. Plans A &amp; B no longer 16-week bundles — they're standalone 8-week intensives. Continuing care phase removed from this document. Maintenance subscription and Re-Intensive bundles removed (still exist as business strategy, documented separately). Plan A dropped from $12,500 → <strong>$11,500</strong> (57.8% pilot margin). Plan B unchanged at $6,500 (53.8% margin at intensive-only COGS). Pre-Intensive Entry unchanged at $5,500 (51.9%). Pre-Intensive Continuation unchanged at $500/mo (67%). Tab 6 Maintenance deleted; back to 5 tabs. Re-Intensive sub-sections deleted from Plan A and Plan B tabs. Lifecycle journey diagram removed from Tab 1. All COGS tables rebuilt at 8-week intensive labor totals.</div>
       <div class="changelog-entry"><span class="changelog-version">v2.1.0</span><span class="changelog-date">May 26, 2026</span><strong>Lifecycle pivot (superseded by v2.2.0).</strong> Plans A &amp; B restructured as 16-week bundles (8 wks intensive + 8 wks continuing care). New Maintenance subscription ($300/mo, 71.7% margin) and Re-Intensive Bundles ($7,500 Plan A / $4,000 Plan B). Switched concierge labor model from $10/hr offshore to $25/hr American Labor; supplements moved from 3-mo to 2-mo supply. Tab 1 lifecycle journey diagram added. This pivot was reverted in v2.2.0 — the American Labor model and 2-mo supplement supply persist; the bundle structure and lifecycle tabs were rolled back.</div>
       <div class="changelog-entry"><span class="changelog-version">v2.0.3</span><span class="changelog-date">May 24, 2026</span>Calendar schedule revisions across all three plans. <strong>Plan A:</strong> OT/PT moves to Fridays (30 min weekly, every OT/PT now paired with a concierge day); MD splits from 1×1hr to 2×30min — Wk 4 Fri labs review + Wk 8 Fri final review. <strong>Plan B:</strong> OT/PT moves to every other Friday starting Wk 2 (4 × 30 min total). <strong>Pre-Intensive:</strong> OT/PT and MD move to Fridays. Hour totals unchanged across all plans; positioning and clinical-anchor cadence improved.</div>
@@ -1877,16 +1862,6 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
 
 <script>
 (function() {
-  // ============ Pilot/post-patent state toggle ============
-  const setState = (state) => {
-    document.querySelectorAll('.state-toggle-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.state === state);
-    });
-    document.querySelectorAll('[data-pilot][data-production]').forEach(el => {
-      el.textContent = el.dataset[state];
-    });
-  };
-
   // ============ Tab routing with URL hash ============
   const setTab = (tabId) => {
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1910,13 +1885,7 @@ footer { background: var(--bg-deep); border-top: 1px solid var(--border); paddin
 
   // ============ Click handlers ============
   document.addEventListener('click', e => {
-    // State toggle
-    const stateBtn = e.target.closest('.state-toggle-btn');
-    if (stateBtn) {
-      setState(stateBtn.dataset.state);
-      return;
-    }
-    // Tab button
+// Tab button
     const tabBtn = e.target.closest('.tab-btn');
     if (tabBtn) {
       setTab(tabBtn.dataset.tab);
